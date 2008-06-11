@@ -1,0 +1,130 @@
+#summary Coding conventions used in the development of libmv
+
+= Introduction =
+
+It is extremely important that a project has a style guide, and that it is followed closely. It is not particularly important which style guide (within reason), as long as there is one, and the code consistently follows it. See [http://lwn.net/Articles/270620/ this good post] on LKML from a notable kernel hacker about one developer's realization of the value of super uniform style. 
+
+== Comments ==
+
+All comments must be full sentences. This means at the very least, they all start with a capital letter and end with a period.
+
+= C++ conventions =
+
+== 80 character lines ==
+All lines should be 80 characters or less. Function calls that are too long should be indented up to their opening brace, or indented 4 characters on a new line. The two styles are:
+{{{
+  MyLongFooName my_foo = ReallyLongFunctionHere(param1,
+                                                param2,
+                                                param3);
+}}}
+or
+{{{
+  MyLongFooName my_foo = ReallyLongFunctionHere(
+      param1, param2, param3);
+}}}
+Sometimes it is clearer to break after the `=`. In that case indent 4 spaces on the new line. For example:
+{{{
+  MyLongFooNameIsGettingOutOfHandHuge my_foo_with_a_gigantic_name =
+      ReallyLongFunctionHere(param1, param2, param3);
+}}}
+
+== 2-space indents ==
+
+Use 2-space indents with no tabs anywhere. Exception is `public/protected/private` which are indented one space. For example:
+{{{
+class MyFoo {
+ public:
+  void FooMethod();
+  void MoreFoo();
+ private:
+  int num_foos_;
+};
+}}}
+
+== Brace on same line ==
+Always put opening curly braces on the same line. For example:
+{{{
+void Foo() {
+  // ...
+}
+
+void Foo()  // Bad!
+{
+  // ...
+}
+}}}
+
+== No exceptions ==
+Though libraries may throw them, our code does not.
+
+== Spaces around operators ==
+{{{
+int x = y * 4;
+}}}
+not
+{{{
+int x=y*4; // Bad!
+int x = y*4; // Bad!
+}}}
+
+== Naming ==
+
+Classes, functions, and methods are CamelCase (but not lowerCamelCase). Example:
+{{{
+void Function(int x, int y) {
+  // Do stuff.
+}
+
+class MyClass {
+  void AllMethodsAreCapitalized();
+  int MoreCapitalizedMethods();
+};
+}}}
+Variables should be `named_with_underscores`.
+{{{
+int my_variable, num_cameras;
+}}}
+Member variables should be named with a trailing underscore.
+{{{
+class Foo {
+ public:
+  ...
+ private:
+  int num_something_;
+  vector<Foo *> other_foos_;
+};
+}}}
+
+== Placement of `*` and '&' ==
+
+Put these next to the variable.
+{{{
+int *x;
+int* x; // Bad!
+
+vector<Foo *> foos;
+vector<Foo*> foos; // Bad!
+
+const vector<int> &numbers;
+const vector<int>& numbers; // Bad!
+}}}
+
+== Input and output parameters ==
+
+  * Use `const Type &input_param` for inputs that are not changed.
+  * Use `Type *output_param` for outputs that are modified.
+
+For example:
+{{{
+void ReadSiftCorrespondences(const string &filename,
+                             vector<Correspondence> *correspondences) {
+  // Open filename.
+  // Read correspondences into correspondences vector.
+}
+}}}
+
+This has the nice property that it is always apparent what is happening to parameters just from a callsite, without having to look up the function definition.
+
+= Formatting and naming conventions for Python =
+
+  * Follow [http://www.python.org/dev/peps/pep-0008/ standard Python style (PEP8)].
