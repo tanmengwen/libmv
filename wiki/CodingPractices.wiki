@@ -125,6 +125,51 @@ void ReadSiftCorrespondences(const string &filename,
 
 This has the nice property that it is always apparent what is happening to parameters just from a callsite, without having to look up the function definition.
 
+= Unit tests =
+
+Most code checked in should be covered by a unit test. Yes, even the vision code! In the short term it seems easier to Just Do It, not writing tests, however this does not work out in the long term. There are several benefits to writing comprehensive unit tests. See some of the following articles [http://dlsthoughts.blogspot.com/2005/08/cost-benefits-of-unit-testing.html 1], [http://www.codeproject.com/KB/architecture/onunittesting.aspx 2], [http://www.code-magazine.com/Article.aspx?quickid=0411031 3].
+
+We use a slightly patched version of [http://testsoon.sourceforge.net/ testsoon] for unittesting.
+
+== Adding a new test ==
+
+Give a file and a header, `foo.cc` and `foo.h`, put the test in `foo_test.cc`. This keeps tests in the same place as the code, which is generally desired. Some tests use generated matrices from Python via numpy; name those `foo_test_data.py`.
+
+For example, in the simple case there are files:
+{{{
+foo.cc
+foo.h
+foo_test.cc
+}}}
+If there is a single data file (for example a small png), it would be named the same as the test. For example:
+{{{
+foo.cc
+foo.h
+foo_test.cc
+foo_test.png
+}}}
+If there is more test data, then it would go in a subdirectory named after the test
+{{{
+foo.h
+foo.cc
+foo_test.cc
+foo_test/image1.png
+foo_test/image2.png
+foo_test/...
+}}}
+If there is test data to be shared across multiple tests, put it in `testdata/`. For example:
+{{{
+foo.h
+foo.cc
+foo_test.cc
+bar.h
+bar.cc
+bar_test.cc
+testdata/image1.png
+testdata/image2.png
+}}}
+where both `foo_test.cc` and `bar_test.cc` use the data inside testdata.
+
 = Formatting and naming conventions for Python =
 
   * Follow [http://www.python.org/dev/peps/pep-0008/ standard Python style (PEP8)].
