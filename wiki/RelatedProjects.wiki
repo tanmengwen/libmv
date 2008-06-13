@@ -2,8 +2,7 @@
 
 = Introduction =
 
-In this page we list and describe other computer vision libraries and softwares.
-
+In this describes other computer vision libraries and software.
 
 = General Purpose Computer Vision Libraries =
 
