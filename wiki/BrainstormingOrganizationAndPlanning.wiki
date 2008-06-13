@@ -1,0 +1,58 @@
+#summary Thoughts about the library uses and organization.
+#labels brainstorming,organization,planning
+
+= Introduction =
+
+In this page we put general thoughts about the library and what we want it to be.  The idea is to put what ever we have in mind, so that we progressively get an idea of what has to be done.  We can start by enumerating possible users and uses of the library.  Then, we enumerate the required functionalities.  And finally, we will hopefully get an idea on how to organize the library.  A kind of work plan would be nice too.
+
+
+= Users and Uses =
+  * Computer vision researchers can use the library
+    * as a black box for calibrating images sequences,
+    * or as a library to develop and test their calibration and reconstruction algorithms.
+  * Programmers of 3D softwares can use the library to add motion tracking and image based modeling capabilities.
+  * If in addition to the library we develop easy applications, then 3D artists can use this applications to
+    * do motion tracking of videos for 3D post-production.
+    * get 3D models of real objects from photographs or videos.
+  * ...
+
+= Functionalities =
+
+  * Feature matching and tracking
+    * sift
+    * surf
+    * contour matching
+    * robust matching using epipolar geometry
+
+  * Structure from Motion
+    * Calibration with target
+      * 3d target
+      * planar target
+    * Calibrated SFM
+    * Uncalibrated projective SFM
+    * Self-calibration
+      * plane-based
+      * general
+
+  * Dense Reconstruction
+    * Depthmap estimation
+      * plane sweep (winner takes all)
+      * MRF (with BP, TRW-BP, graph-cuts)
+      * graph-cuts with occlusions
+    * Depthmap merging
+      * Curless levoy
+      * TV-L1 regularized (Zach07)
+    * Volumetric Graph-cuts
+      * discreet
+      * continuous using TV and continuous max-flow
+    * Surface evolution
+      * minimize Prediction error (Pons05)
+      * minimize Reprojection error (Soato01, Gargallo07)
+      * using Level-set
+      * using Delaunay shapes
+
+
+
+= Library organization =
+
+= Work plan =
