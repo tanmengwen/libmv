@@ -1,0 +1,22 @@
+#summary List of related projects.
+
+= Introduction =
+
+In this page we list and describe other computer vision libraries and softwares.
+
+
+= General Purpose Computer Vision Libraries =
+
+  * [http://sourceforge.net/projects/opencvlibrary/ OpenCV]
+  * [http://sourceforge.net/projects/opencvlibrary/ VXL]
+
+= Calibration Libraries and Tools =
+There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/links.html here]
+
+  * Bouguet's [http://www.vision.caltech.edu/bouguetj/calib_doc/  Camera Calibration Toolbox for Matlab]
+  * [http://www.dlr.de/rm-neu/desktopdefault.aspx/tabid-3925/ DLR Camera Calibration Toolbox]
+
+
+= 3D Reconstruction Libraries and Tools =
+  * [http://code.google.com/p/openvis3d/ OpenVis3D]
+  * [http://www.mip.informatik.uni-kiel.de/~wwwadmin/Software/Doc/BIAS/html/ BIAS]
