@@ -10,7 +10,7 @@ In this page we put general thoughts about the library and what we want it to be
   * Computer vision researchers can use the library
     * as a black box for calibrating images sequences,
     * or as a library to develop and test their calibration and reconstruction algorithms.
-  * Programmers of 3D softwares can use the library to add motion tracking and image based modeling capabilities.
+  * Programmers of 3D software can use the library to add motion tracking and image based modeling capabilities.
   * If in addition to the library we develop easy applications, then 3D artists can use this applications to
     * do motion tracking of videos for 3D post-production.
     * get 3D models of real objects from photographs or videos.
@@ -35,11 +35,11 @@ In this page we put general thoughts about the library and what we want it to be
       * general
 
   * Dense Reconstruction
-    * Depthmap estimation
+    * Depth map estimation
       * plane sweep (winner takes all)
       * MRF (with BP, TRW-BP, graph-cuts)
       * graph-cuts with occlusions
-    * Depthmap merging
+    * Depth map merging
       * Curless levoy
       * TV-L1 regularized (Zach07)
     * Volumetric Graph-cuts
