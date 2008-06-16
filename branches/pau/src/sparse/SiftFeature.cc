@@ -1,7 +1,7 @@
 #include "SiftFeature.h"
 
 
-double sift_feature_distance( const SiftFeature &a, const SiftFeature &b )
+double SiftFeature::distance( const SiftFeature &a, const SiftFeature &b )
 {
 	double result = 0;
 	for(int i=0; i<128; i++)

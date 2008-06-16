@@ -2,7 +2,7 @@
 
 PROJECT( mv )
 
-SUBDIRS( dense opengl sparse )
+SUBDIRS( dense opengl sparse ui )
 
 
 #########################

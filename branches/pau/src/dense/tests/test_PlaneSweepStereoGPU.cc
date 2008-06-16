@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 
 	MiddleburyData data;
 
-//	data.read("/home/paulinus/pro/mv/src/dense/tests/data", "templeR", true);
 	data.read(argv[1], argv[2], true);
 
 	PlaneSweepStereoGPU ps;
