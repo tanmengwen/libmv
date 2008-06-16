@@ -5,10 +5,11 @@
 #include <vector>
 
 // A widget displaying multiple images on a plane.
-// Dragging moves the plane.
-// Scrolling zooms.
-// Shift-dragging moves the selected image.
-// Shift-scrolling scales the selected image.
+//  - Dragging moves the plane.
+//  - Scrolling zooms.
+// In the future:
+//  - Shift-dragging moves the selected image.
+//  - Shift-scrolling scales the selected image.
 class MultiImageViewer : public QGLWidget
 {
 	Q_OBJECT
@@ -30,6 +31,7 @@ class MultiImageViewer : public QGLWidget
 		QSize sizeHint() const;
 
 	public slots:
+		void addImage( const QImage &im );
 		void loadImageFile( const QStringList &filenames );
 		void setTransformation(float tx_, float ty_, float zoom_);
 
@@ -53,7 +55,7 @@ class MultiImageViewer : public QGLWidget
 
 		float tx;  /// top left corner of the window in image coordinates
 		float ty;
-		float zoom;     /// window pixels per image pixel
+		float zoom;     /// window pixels per plane pixel
 
 		QPoint lastPos;
 };
