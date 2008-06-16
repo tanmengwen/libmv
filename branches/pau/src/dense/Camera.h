@@ -25,20 +25,23 @@ public:
 
 
 	/////////////////////////////////////////////////
-	/// Settings
+	// Settings
 
 	void set_P(const vnl_double_3x4 &P_);
 	void set_KRt(const vnl_double_3x3 &K_, const vnl_double_3x3 &R_, const vnl_double_3 &t_);
+private:
 	bool check_K(const double tol=1e-8);
-	vnl_double_3x4 Rt();
 	void update_KR1();
 	void update_optical_center();
+
+public:
+	vnl_double_3x4 Rt();
 	void image_resize( int neww, int newh );
 	void include_between_near_and_far(const double x, const double y, const double z);
 
 
 	/////////////////////////////////////////////////
-	/// Projections
+	// Projections
 
 	void project( double &u,double &v,double &zi,
 			const double x,const double y,const double z ) const {
@@ -87,7 +90,7 @@ public:
 	}
 
 	/////////////////////////////////////////////////
-	/// UnProjections
+	// UnProjections
 
 
 	vnl_double_3 unproject(	const double u,const double v,const double zi ) const {

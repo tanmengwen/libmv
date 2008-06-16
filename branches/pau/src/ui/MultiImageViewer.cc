@@ -19,58 +19,64 @@ MultiImageViewer::~MultiImageViewer()
 }
 
 
+void MultiImageViewer::addImage( const QImage &im )
+{
+	OnScreenImage oi;
+
+	glGenTextures( 1, &oi.textureID );
+
+	oi.width = im.width();
+	oi.height = im.height();
+
+	unsigned char *data = new unsigned char[oi.width*oi.height*4];
+
+	for(int i=0;i<oi.height;i++)
+		for(int j=0;j<oi.width;j++)
+		{
+			data[4*(i*oi.width+j) + 0] = im.bits()[4*(i*oi.width+j) + 2];
+			data[4*(i*oi.width+j) + 1] = im.bits()[4*(i*oi.width+j) + 1];
+			data[4*(i*oi.width+j) + 2] = im.bits()[4*(i*oi.width+j) + 0];
+		}
+
+	// select our current texture
+	glBindTexture( GL_TEXTURE_2D, oi.textureID );
+	// select modulate to mix texture with color for shading
+	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+	// when texture area is small, bilinear filter the closest mipmap
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST );
+	// when texture area is large, bilinear filter the original
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+	// the texture wraps over at the edges (repeat)
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+	glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+
+	// build our texture mipmaps
+	gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGBA, oi.width, oi.height,
+				GL_RGBA, GL_UNSIGNED_BYTE, data );
+
+	delete [] data;
+
+
+	if(si.size()==0) {
+		oi.posx = 0;
+		oi.posy = 0;
+	} else {
+		int l = si.size();
+		oi.posx = si[l-1].posx + si[l-1].width + 10;
+		oi.posy = si[l-1].posy;
+	}
+
+	si.push_back(oi);
+
+	updateGL();
+}
+
 void MultiImageViewer::loadImageFile( const QStringList &filenames )
 {
-	int inum = filenames.size();
-
-	// allocate a texture name
-	GLuint textureID[inum];
-	glGenTextures( inum, &textureID[0] );
-	si.resize(inum);
-	for(int i=0;i<inum;i++)
-		si[i].textureID = textureID[i];
-
 	// read image files and bind textures
-	for(int l=0;l<inum;l++)
-	{
+	for(int l=0;l<filenames.size();l++) {
 		QImage im( filenames[l] );
-		si[l].width = im.width();
-		si[l].height = im.height();
-		unsigned char *data = new unsigned char[si[l].width*si[l].height*4];
-
-		for(int i=0;i<si[l].height;i++)
-			for(int j=0;j<si[l].width;j++)
-			{
-				data[4*(i*si[l].width+j) + 0] = im.bits()[4*(i*si[l].width+j) + 2];
-				data[4*(i*si[l].width+j) + 1] = im.bits()[4*(i*si[l].width+j) + 1];
-				data[4*(i*si[l].width+j) + 2] = im.bits()[4*(i*si[l].width+j) + 0];
-			}
-
-		// select our current texture
-		glBindTexture( GL_TEXTURE_2D, si[l].textureID );
-		// select modulate to mix texture with color for shading
-		glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-		// when texture area is small, bilinear filter the closest mipmap
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST );
-		// when texture area is large, bilinear filter the original
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-		// the texture wraps over at the edges (repeat)
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-
-		// build our texture mipmaps
-		gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGBA, si[l].width, si[l].height,
-			   GL_RGBA, GL_UNSIGNED_BYTE, data );
-
-		delete [] data;
-
-		if(l==0) {
-			si[0].posx = 0;
-			si[0].posy = 0;
-		} else {
-			si[l].posx = si[l-1].posx + si[l-1].width + 10;
-			si[l].posy = si[l-1].posy;
-		}
+		addImage(im);
 	}
 }
 
@@ -107,11 +113,6 @@ void MultiImageViewer::initializeGL()
 {
 	glClearColor(0,0,0,1);
 	glShadeModel(GL_FLAT);
-
-
-	//alba
-	QStringList pathImage = QFileDialog::getOpenFileNames(this,"Select Images", "", "Image Files (*.png)");
-	loadImageFile(pathImage);
 }
 
 
