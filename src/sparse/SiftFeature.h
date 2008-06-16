@@ -8,9 +8,9 @@ class SiftFeature : public PointFeature
 {
 public:
 	int descriptor[128];
+	static double distance( const SiftFeature &a, const SiftFeature &b );
 };
 
-double sift_feature_distance( const SiftFeature &a, const SiftFeature &b );
 
 
 #endif //__SIFTFEATURE_H__
