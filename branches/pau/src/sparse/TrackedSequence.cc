@@ -1,7 +1,7 @@
 #include "TrackedSequence.h"
 #include "Frame.h"
 
-	
+
 void TrackedSequence::load_frames(std::vector<std::string> &filenames)
 {
 	for(unsigned i=0; i<filenames.size(); i++) {
@@ -13,10 +13,10 @@ void TrackedSequence::load_frames(std::vector<std::string> &filenames)
 void TrackedSequence::compute_sift_features()
 {
 	for(unsigned i=0; i<frames.size(); i++) {
-		frames[i].load_sift_features();
+		frames[i].compute_sift_features();
 	}
 }
-	
+
 void TrackedSequence::compute_two_view_matches()
 {
 	for(unsigned i=0; i<frames.size(); i++)
@@ -48,7 +48,7 @@ void TrackedSequence::compute_track_from_matches()
 				track0found = true;
 				track0 = trackOfFramePoint[point0];
 			}
-			
+
 			FramePoint point1(image1, pml[j].i1);
 			std::list<PointTrack>::iterator track1;
 			bool track1found = false;
@@ -56,7 +56,7 @@ void TrackedSequence::compute_track_from_matches()
 				track1 = trackOfFramePoint[point1];
 				track1found = true;
 			}
-			
+
 			if(track0found && track1found)
 			{
 				//fusionem tracks
@@ -71,10 +71,10 @@ void TrackedSequence::compute_track_from_matches()
 					//i modifiquem el trackOfFramePoint corresponent
 					trackOfFramePoint[FramePoint(iter->first,iter->second)] = track0;
 				}
-				
+
 				//eliminem el track1
 				tracks.erase(track1);
-			}	
+			}
 			else if(!track0found && track1found)
 			{
 				//afegim punt0 al track1
@@ -94,7 +94,7 @@ void TrackedSequence::compute_track_from_matches()
 				newTrack.track_indices[image0] = pml[j].i0;
 				newTrack.track_indices[image1] = pml[j].i1;
 				tracks.push_back(newTrack);
-				
+
 				trackOfFramePoint[point0] = --tracks.end();
 				trackOfFramePoint[point1] = --tracks.end();
 			}
