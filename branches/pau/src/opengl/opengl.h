@@ -3,7 +3,7 @@
 
 
 extern "C" {
-#include <GL/glew.h>
+#include "extern/GL/glew.h"
 #include <GL/gl.h>
 #include <GL/glu.h>
 
