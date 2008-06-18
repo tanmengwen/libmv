@@ -4,12 +4,13 @@
 #include <QGLWidget>
 #include <vector>
 
-#include "Frame.h"
-#include "TrackedSequence.h"
+#include "sparse/Frame.h"
+#include "sparse/TrackedSequence.h"
+#include "ui/MultiImageViewer.h"
 
 
 
-class TSWidget : public QGLWidget
+class TSWidget : public MultiImageViewer
 {
 	Q_OBJECT
 
