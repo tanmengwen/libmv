@@ -6,7 +6,7 @@
 
 
 TSWidget::TSWidget(QWidget *parent)
-: QGLWidget(parent)
+: MultiImageViewer(parent)
 {
 	tx = 0;
 	ty = 0;
@@ -15,55 +15,9 @@ TSWidget::TSWidget(QWidget *parent)
 
 TSWidget::~TSWidget()
 {
-	makeCurrent();
 }
 
-/*
-void TSWidget::loadImageFile( const std::vector<QString> &filenames )
-{
-	// allocate a texture name
-	GLuint textureID[3];
-	glGenTextures( 3, &textureID[0] );
-	si.resize(3);
-	for(int i=0;i<3;i++)
-		si[i].textureID = textureID[i];
 
-	// read image files and bind textures
-	for(int l=0;l<3;l++)
-	{
-		QImage im( filenames[l] );
-		si[l].width = im.width();
-		si[l].height = im.height();
-		unsigned char *data = new unsigned char[si[l].width*si[l].height*4];
-
-		for(int i=0;i<si[l].height;i++)
-			for(int j=0;j<si[l].width;j++)
-			{
-				data[4*(i*si[l].width+j) + 0] = im.bits()[4*(i*si[l].width+j) + 2];
-				data[4*(i*si[l].width+j) + 1] = im.bits()[4*(i*si[l].width+j) + 1];
-				data[4*(i*si[l].width+j) + 2] = im.bits()[4*(i*si[l].width+j) + 0];
-			}
-
-		// select our current texture
-		glBindTexture( GL_TEXTURE_2D, si[l].textureID );
-		// select modulate to mix texture with color for shading
-		glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-		// when texture area is small, bilinear filter the closest mipmap
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST );
-		// when texture area is large, bilinear filter the original
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-		// the texture wraps over at the edges (repeat)
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-		glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-
-		// build our texture mipmaps
-		gluBuild2DMipmaps( GL_TEXTURE_2D, GL_RGBA, si[l].width, si[l].height,
-			   GL_RGBA, GL_UNSIGNED_BYTE, data );
-
-		delete [] data;
-	}
-}
-*/
 void TSWidget::loadImageFile( const QStringList &filenames )
 {
 	int inum = filenames.size();
@@ -81,6 +35,7 @@ void TSWidget::loadImageFile( const QStringList &filenames )
 		QImage im( filenames[l] );
 		si[l].width = im.width();
 		si[l].height = im.height();
+
 		unsigned char *data = new unsigned char[si[l].width*si[l].height*4];
 
 		for(int i=0;i<si[l].height;i++)

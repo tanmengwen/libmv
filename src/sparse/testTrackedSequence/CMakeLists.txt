@@ -14,6 +14,7 @@ LINK_DIRECTORIES( ${QT_LIBRARY_DIR} )
 INCLUDE_DIRECTORIES(
 	${VXL_OXL_INCLUDE_DIR}
 	..
+	../..
 )
 
 
@@ -27,7 +28,7 @@ ADD_EXECUTABLE( testTrackedSequence
 )
 
 TARGET_LINK_LIBRARIES( testTrackedSequence
-	MVsparse
+	MVsparse MVui
 	mvl
 	vgl vgl_algo
 	vnl vnl_algo v3p_netlib

@@ -32,7 +32,7 @@ class MultiImageViewer : public QGLWidget
 
 	public slots:
 		void addImage( const QImage &im );
-		void loadImageFile( const QStringList &filenames );
+		void loadImageFiles( const QStringList &filenames );
 		void setTransformation(float tx_, float ty_, float zoom_);
 
 	protected:

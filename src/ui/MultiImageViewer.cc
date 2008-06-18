@@ -71,7 +71,7 @@ void MultiImageViewer::addImage( const QImage &im )
 	updateGL();
 }
 
-void MultiImageViewer::loadImageFile( const QStringList &filenames )
+void MultiImageViewer::loadImageFiles( const QStringList &filenames )
 {
 	// read image files and bind textures
 	for(int l=0;l<filenames.size();l++) {
