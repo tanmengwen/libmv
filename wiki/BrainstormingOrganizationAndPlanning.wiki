@@ -57,51 +57,51 @@ In this page we put general thoughts about the library and what we want it to be
 
 == Temptative Data Structure ==
 
- * FeaturePoint
-   * Frame reference
+ * `FeaturePoint`
+   * `Frame` reference
    * coordinates
    * orientation
    * scale
    * descriptor
 
- * Frame
-   * List of FeaturePoints
+ * `Frame`
+   * file name
+   * width and height
+   * List of `FeaturePoints`
 
- * FeaturePointMatch
-   * 2 FeaturePoints references
+ * `FeaturePointMatch`
+   * 2 `FeaturePoints` references
 
- * TwoFrameMatches
-   * 2 Frame references
-   * List of FeaturePointMatch
+ * `TwoFrameMatches`
+   * 2 `Frame` references
+   * List of `FeaturePointMatch`
 
- * FeaturePointTrack
-   * map<Frame reference, FeaturePoint reference>
+ * `FeaturePointTrack`
+   * map<`Frame` reference, `FeaturePoint` reference>
 
- * TrackedSequence
-   * List of Frame references
-   * List of TwoFrameMatches references
-   * List of FeaturePointTrack references
+ * `TrackedSequence`
+   * List of `Frame` references
+   * List of `FeaturePointTrack` references
 
 
-*Question:* Should a FeaturePoint have a pointer to its Frame?
+*Question:* Should a `FeaturePoint` have a pointer to its `Frame`?
 
 *Answer:* not sure if it is required, but could be usefull.
 
 
-*Question:* Should it be a list or a vector of FeaturePoints?
+*Question:* Should it be a list or a vector of `FeaturePoints`?
 
-*Answer:* A list is more flexible.  It enables to remove a FeaturePoint from the list without invalidating the pointers to the others.
-
-
-*Question:* If FeaturePoint already has a pointer to its frame, then the 2 Frame references on TwoFrameMatches are unnecessary.
-
-*Answer:* Yes, but it looks more clear like this, and may be one day FeaturePoint will have no reference to its Frame.
+*Answer:* A list is more flexible.  It enables to remove a `FeaturePoint` from the list without invalidating the pointers to the others.
 
 
-*Question:* Wouldn't it be simpler to deal with memory management if TrackedSequence contained list of actual objects instead of lists of references?
+*Question:* If `FeaturePoint` already has a pointer to its frame, then the 2 `Frame` references on `TwoFrameMatches` are unnecessary.
 
-*Answer:* Memory management would be simpler.  However, having lists of references allows to have different TrakedSequences sharing the same Frames and Tracks without copies.  I'm not sure if we need that though.
+*Answer:* Yes, but it looks more clear like this, and may be one day `FeaturePoint` will have no reference to its `Frame`.
 
+
+*Question:* Wouldn't it be simpler to deal with memory management if `TrackedSequence` contained list of actual objects instead of lists of references?
+
+*Answer:* Memory management would be simpler.  However, having lists of references allows to have different `TrakedSequence`s sharing the same frames and tracks without copies.  
 
 
 = Work plan =
