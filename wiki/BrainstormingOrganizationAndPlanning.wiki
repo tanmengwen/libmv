@@ -111,12 +111,12 @@ Here is possible set of data types representing the entities required by structu
 *Answer:* not sure if it is required, but could be usefull.
 
 
-*Question:* Should it be a list or a vector of `FeaturePoints`?
+*Question:* Should `Frame` contain a list or a vector of `FeaturePoints`?
 
 *Answer:* A list is more flexible.  It enables to remove a `FeaturePoint` from the list without invalidating the pointers to the others.
 
 
-*Question:* If `FeaturePoint` already has a pointer to its frame, then the 2 `Frame` references on `TwoFrameMatches` are unnecessary.
+*Question:* If `FeaturePoint` already has a pointer to its frame, then the 2 `Frame` references on `MatchedFramePair` are unnecessary.
 
 *Answer:* Yes, but it looks more clear like this, and may be one day `FeaturePoint` will have no reference to its `Frame`.
 
