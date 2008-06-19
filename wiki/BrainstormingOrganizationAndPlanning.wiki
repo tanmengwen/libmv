@@ -53,9 +53,31 @@ In this page we put general thoughts about the library and what we want it to be
 
 
 
-= Library organization =
+= Library Organization =
 
-== Temptative Data Structure ==
+== Temptative Data Structure for SFM ==
+
+Here is possible set of data types representing the entities required by structure from motion algorithms.
+
+An important design choice which I (pau) think that would be very practical, is to use these classes as _dummy_ containers, and implement the algorithms that compute or use these structures in other classes.  For example, instead of something like
+{{{
+TrakedSequence ts;
+for(...)
+  ts.AddFrame(...);
+ts.ComputeTracks();
+}}}
+it is better something like
+{{{
+TrakedSequenceComputator tsc;
+for(...)
+  tsc.AddFrame(...);
+tsc.ComputeTracks();
+TrackedSequence ts = tsc.GetTrackedSequence();
+}}}
+The advantage is that the data classes will be independent of the algorithms that are used to compute them.  Thus, testing different algorithms will be much easier.  This is something fairly standard, but I always tend to forget it and implement algorithms inside data classes.
+
+
+Here goes the data classes:
 
  * `FeaturePoint`
    * `Frame` reference
