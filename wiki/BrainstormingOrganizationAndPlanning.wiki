@@ -94,7 +94,7 @@ Here is possible set of data types representing the entities required by structu
  * `FeaturePointMatch`
    * 2 `FeaturePoints` references
 
- * `TwoFrameMatches`
+ * `MatchedFramePair`
    * 2 `Frame` references
    * List of `FeaturePointMatch`
 
