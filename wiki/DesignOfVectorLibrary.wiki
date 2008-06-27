@@ -58,6 +58,12 @@ A hackable library is important; ublas is pretty opaque and hard to hack.
 
 Extracting the vxl numeric code would require about the same amount of work as writing new libraries from scratch. Furthermore, with modern C++ techniques it is possible to mix fixed size and dynamically sized vectors/matrices.
 
+=== Imath libraries from OpenEXR ===
+
+There is a nice matrix / vector implementation in OpenEXR 1.2.x, which was removed in later releases. It has a clean design, though it is not designed for small fixed size matrices.
+
+The separation of vector operations from storage makes the code both understandable and flexible. See [http://google.com/codesearch?hl=en&q=show:hRmRQbamX2M:cE-9HYhgC4U:K7_MOf0VtIM&sa=N&ct=rd&cs_p=http://www.angstrom-distribution.org/unstable/sources/cinelerra-2.1-src.tar.bz2&cs_f=cinelerra-2.1/OpenEXR-1.2.1/Imath/ImathTMatrixBase.h&start=1 TMatrixBase].
+
 == Conclusion ==
 
 We build our own, heavily borrowing from the techniques in TooN to support fixed and variable sizes in a clean way.
