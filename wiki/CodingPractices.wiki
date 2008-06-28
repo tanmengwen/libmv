@@ -4,6 +4,8 @@
 
 It is extremely important that a project has a style guide, and that it is followed closely. It is not particularly important which style guide (within reason), as long as there is one, and the code consistently follows it. See [http://lwn.net/Articles/270620/ this post] on LKML from a notable kernel hacker about one developer's realization of the value of uniform style. 
 
+*We follow the Google coding conventions. See the [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide] for more details.* Below are some of the things in the style guide, mainly around formatting.
+
 == Comments ==
 
 All comments must be full sentences. This means at the very least, they all start with a capital letter and end with a period.
