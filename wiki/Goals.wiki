@@ -21,7 +21,7 @@ The scene solves successfully. Upon returning to blender, the scene has a camera
 
 Andrew is a structure from motion researcher. He has an idea for a new method for autocalibration (converting from a projective to a metric reconstruction). He wants to evaluate it against the other state of the art algorithms.
 
-Andrew builds libmv and reconstructs a simple scene to make sure it works. Then, Andrew writes his new method as a new strategy for autocalibration inside libmv, and plugs it into the solver as a new autocalibration method.
+Andrew builds libmv and reconstructs a simple scene to make sure it works. Then, Andrew writes his new method as a new strategy for autocalibration inside libmv, and plugs it into the solver as a new autocalibration method. Since there are lots of examples and the code is well written and documented, this is straightforward for Andrew to do. Andrew even adds a unit test, because it's very straightforward to test numeric code inside libmv.
 
 Then, Andrew makes a new libmv evaluation script by copying one of the examples. He adds a section that causes reconstructions to be built with his new autocalibration method in addition to the other methods already in libmv. The script does many complete reconstructions (images to point clouds in this case). The reconstructed scenes are part of libmv, and include ground truth.
 
