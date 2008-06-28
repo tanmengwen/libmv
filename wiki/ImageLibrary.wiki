@@ -1,0 +1,19 @@
+#summary Discussion of the image library in libmv.
+
+= Introduction =
+
+There are many image libraries to chose from. In libmv there are a couple of constraints on what libraries we can use, because we want to remain commercial friendly. Furthermore, we would like whatever image library we chose to be sufficiently understandable that we can modify it if necessary.
+
+In libmv, because the focus is on tracking, our needs are fairly limited. In most practical reconstruction applications, we only need grayscale images. For example, SIFT and KLT by default work with the luminance component of images and ignore colors.
+
+On the other hand, for a variety of algorithms it is necessary to support subpixel sampling and image views.
+
+== Blender integration ==
+
+Blender has it's own image object, library, and caching system. It can handle a gigantic variety of formats. 
+
+= Conclusion =
+
+We write our own simple image library by building on the matrix library. It will load `.pgm` (trivial), `.png` (via `libpng`), and jpg (via `libjpeg`) files by default.
+
+By default, the library itself will not support `.avi` files or other movies. The image structure will be sufficiently simple that it is easy to convert from other image structures to libmv's image type. For example, the blender matchmover will convert from Blender's internal image format and pass it to libmv for tracking. This way libmv is functional for researchers (it's easy enough to run `mplayer -vo png`) who do processing on the command line, and still useful for matchmoving applications.
