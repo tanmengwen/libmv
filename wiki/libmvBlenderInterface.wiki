@@ -1,3 +1,5 @@
+#summary Blender - libmv interface notes
+
 = Introduction =
 This document describes how libmv is interfaced in blender. It does not give you a full description of the libmv API, but merely tries to describe how the libmv API is used within blender.
 
