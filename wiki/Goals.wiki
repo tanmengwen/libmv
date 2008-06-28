@@ -27,4 +27,4 @@ Then, Andrew makes a new libmv evaluation script by copying one of the examples.
 
 In the morning, Andrew looks at the figures and plots automatically generated from the reconstructions, and determines that his new method handily beats existing autocalibration methods both in computation speed and reconstruction quality, but only when the focal length is fixed for all images.
 
-Andrew is pleased that he did not have to implement the many details required to do a complete reconstruction in order to evaluate his new autocalibration method.
+Andrew is pleased that he did not have to implement the many details required to do a complete reconstruction in order to evaluate his new autocalibration method. _Andrew is able to go from algorithm idea to functioning code and full evaluation in a production quality reconstruction system with convincing test scenes in days. His paper is ready the following week._
