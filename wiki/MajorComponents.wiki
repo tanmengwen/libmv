@@ -1,0 +1,16 @@
+#summary Major parts of libmv, and their dependencies.
+
+= Introduction =
+
+libmv consists of many components, which are summarized here.
+
+   * MatrixLibrary - Standard matrix and vector operations, for fixed size and dynamically sized matrices and vectors.
+   * ImageLibrary - Loading images from disk, image class. Built on the matrix library.
+   * ImageProcessingLibrary - Cached, stacked image processing.
+   * CorrespondenceContainerLibrary - Data structures for manipulating correspondences between images.
+   * CorrespondenceFindingLibrary - Algorithms for finding correspondences between images, either in a sequence or heterogeneous images.
+   * StructureFromMotionLibrary - Algorithms for converting correspondences into motion estimates, either projective or metric. Most of the interesting parts of libmv will go here.
+   * MinimizationLibrary - Fast minimization of large sparse nonlinear systems.
+   * CalibrationLibrary - Routines to calibrate cameras (determine focal length, lens distortion, etc) for higher-quality reconstructions.
+   * EvaluationLibrary - A system for running experiments, comparing the quality of the results, and making plots showing how each reconstruction strategy compared to the others.
+   * BlenderPatches - Patches to blender to enable it to produce the ground truth data for image sequences it renders. Hopefully these can get into upstream blender so it is not necessary to patch blender to produce ground truth data.
