@@ -9,7 +9,8 @@ libmv consists of many components, which are summarized here.
    * ImageProcessingLibrary - Cached, stacked image processing.
    * CorrespondenceContainerLibrary - Data structures for manipulating correspondences between images.
    * CorrespondenceFindingLibrary - Algorithms for finding correspondences between images, either in a sequence or heterogeneous images.
-   * StructureFromMotionLibrary - Algorithms for converting correspondences into motion estimates, either projective or metric. Most of the interesting parts of libmv will go here.
+   * RobustEstimationLibrary - A library for estimating relations from noisy data.
+   * StructureFromMotionLibrary - Algorithms for converting correspondences into motion estimates, either projective or metric. Most of the interesting parts of libmv will go here. This will depend on the robust estimation library.
    * MinimizationLibrary - Fast minimization of large sparse nonlinear systems.
    * CalibrationLibrary - Routines to calibrate cameras (determine focal length, lens distortion, etc) for higher-quality reconstructions.
    * EvaluationLibrary - A system for running experiments, comparing the quality of the results, and making plots showing how each reconstruction strategy compared to the others.
