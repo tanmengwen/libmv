@@ -1,4 +1,4 @@
-#summary Parts of libmv reconstruction system.
+#summary Long term goals for libmv.
 
 Libmv aims for two goals:
 
