@@ -7,9 +7,9 @@ Libmv aims for two goals:
 
 These goals align nicely. In order to be come a great research tool for reconstruction, the library must first be good at reconstruction and matchmoving. Then, for research, tools for analysis can be added. 
 
-== Use cases ==
+= Use cases =
 
-= Bob = 
+== Bob == 
 
 Bob is a special effects artist. He has some HD footage where a camera moves around a cathedral, and he needs to insert a ghost character. Bob loads blender, clicks 'matchmover', and opens his video. He clicks 'automatic track', and waits for a minute while the video is processed.
 
@@ -17,7 +17,7 @@ The video didn't track perfectly, so he scrubs the video and finds a faulty trac
 
 The scene solves successfully. Upon returning to blender, the scene has a camera with appropriately set focal lengths and keyframes, as well as a 3D point cloud where the tracks were. Bob proceeds to insert rendered elements into the scene, and makes his deadline.
 
-= Andrew =
+== Andrew ==
 
 Andrew is a structure from motion researcher. He has an idea for a new method for autocalibration (converting from a projective to a metric reconstruction). He wants to evaluate it against the other state of the art algorithms.
 
