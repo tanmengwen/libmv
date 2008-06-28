@@ -12,4 +12,12 @@ Generally, a sparse variant of the Levenberg-Marquardt algorithm is used to mini
 As part of this minimization, it is necessary to solve a sparse symmetric linear system. For a comparison of libraries for this task, see
 [ftp://ftp.numerical.rl.ac.uk/pub/reports/ghsRAL200505.pdf this comparison of sparse, symmetric solvers]. [http://www.tau.ac.il/~stoledo/taucs/ TAUCS] looks like a reasonable choice, because it is liberally licensed.
 
-In libmv1, [www.ics.forth.gr/~lourakis/sba/ Sparse Bundle Adjustment] was used. Unfortunately, SBA is limited to cost functions with a particular structure (one kind of cameras and one kind of structure), and does not allow for the common situation of bundling a common focal length across all cameras.
+In libmv1, [http://www.ics.forth.gr/~lourakis/sba/ Sparse Bundle Adjustment] was used. Unfortunately, SBA is limited to cost functions with a particular structure (one kind of cameras and one kind of structure), and does not allow for the common situation of bundling a common focal length across all cameras.
+
+== Value to other projects ==
+
+A general sparse minimizer will be useful in many other projects. We should try to have no dependencies beyond our matrix/vector classes and a sparse minimization system.
+
+= Conclusion =
+
+We implement our own. I (keir) have already started one and plan on integrating it soon.
