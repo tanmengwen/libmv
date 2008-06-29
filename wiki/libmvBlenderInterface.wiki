@@ -24,7 +24,7 @@ There is one class that holds data which is exchanged between libmv and blender.
 
 
 = Blender interface =
-There is one source file that interfaces between libmv and blender. It wraps all implementation so the sources stay clean and extending functionality or changing libmv API is easily maintainted. 
+There is one source file that interfaces between libmv and blender. It wraps all implementation so the sources stay clean and extending functionality or changing libmv API is easily maintained. 
 
 
 = libmv_track =
@@ -45,11 +45,14 @@ The following list globally describes the order of function calls to libmv and t
 
 
 == coplanarity ==
-To contrain the solver features can be grouped and are set to be coplanar. This requires the need to be able to select distinct features and group them together.
+To constrain the solver features can be grouped and are set to be coplanar. This requires the need to be able to select distinct features and group them together.
 
 
 = Blender UI =
 The blender UI is kept as clean as possible and numerous settings that libmv allows you to do are hidden in BF_libmv.c.
+An example of the new tracker menus is shown in the following image.
+
+http://libmv.googlecode.com/svn/wiki/blender_track_menu.jpg
 
 
 == Tracker dialog ==
@@ -61,12 +64,12 @@ The tracker dialog shows the following items:
   * number of features to track (integer, 500)
   * number of RANSAC rounds in 3point reconstruction (integer, 300) 
 
-  * camera intrisics (file path)
+  * camera intrinsics (file path)
 
   * bundle adjust subsets after each one is created (boolean, true)
   * use nview rather than threeview code for subsets (boolean, true)
-  * trim outliers before bundeling (boolean, false)
-  * force points te be in front of camera (boolean, true)
+  * trim outliers before bundling (boolean, false)
+  * force points to be in front of camera (boolean, true)
   * first subset of the sequence to use (integer, 1)
   * last subset of the sequence to use (integer, frame count)
 
@@ -75,10 +78,10 @@ The tracker dialog shows the following items:
 
 
 == Constraints dialog ==
-  * Selected features are coplanar (link feature groups to a planar object like a bone or have a system like the modifier stack eg contraint stack) 
+  * Selected features are coplanar (link feature groups to a planar object like a bone or have a system like the modifier stack eg constraint stack) 
 
 
-== Visualisation dialog ==
+== Visualization dialog ==
 This dialog allows you to do some settings on how to visualize the tracking process
 
   * show tracks: show the feature tracks
@@ -87,5 +90,5 @@ This dialog allows you to do some settings on how to visualize the tracking proc
 
 
 = Todo =
-  * Investigate wether or not to save extended settings in an XML file in the root of the blender directory. This way we can keep the UI clean and still provide maximal flexibility to the user.
+  * Investigate whether or not to save extended settings in an XML file in the root of the blender directory. This way we can keep the UI clean and still provide maximal flexibility to the user.
   * Enabling selection of individual features, one way of solving this is to create empties for each feature in the image plane and add an IPO curve for the moving in XY direction. The user can modify the movement of features in consecutive frames before running the 3D solver.
