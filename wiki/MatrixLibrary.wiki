@@ -64,6 +64,14 @@ There is a nice matrix / vector implementation in OpenEXR 1.2.x, which was remov
 
 The separation of vector operations from storage makes the code both understandable and flexible. See [http://google.com/codesearch?hl=en&q=show:hRmRQbamX2M:cE-9HYhgC4U:K7_MOf0VtIM&sa=N&ct=rd&cs_p=http://www.angstrom-distribution.org/unstable/sources/cinelerra-2.1-src.tar.bz2&cs_f=cinelerra-2.1/OpenEXR-1.2.1/Imath/ImathTMatrixBase.h&start=1 TMatrixBase].
 
+=== FLENS ===
+
+[http://flens.sf.net FLENS] is a numeric toolkit which aims to offer intuitive syntax, while still calling the underlying BLAS routines.
+
+FLENS has very readable code, and already links to the LAPACK routines needed for libmv.
+
 == Conclusion ==
 
-We build our own, heavily borrowing from the techniques in TooN to support fixed and 
+~~We build our own, heavily borrowing from the techniques in TooN to support fixed ~~
+
+We use FLENS. It's really great. It's hackable. It's fast. It has sparse matrix support too, and block-sparse support soon.
