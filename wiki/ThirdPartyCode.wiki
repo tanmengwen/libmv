@@ -19,4 +19,4 @@ Previous local modifications (adding better SVD) were merged upstream in r1230.
 
 == Modifying third_party code ==
 
-Any time you modify third party code, update `README.libmv`. If you are adding new functionality add new unit tests. _Yes, add tests for third_party libraries_! If the third party library has a testing framework, use that. Otherwise use libmv's simple testing framework.
+Any time you modify third party code, update `README.libmv`. If you are adding new functionality add unit tests covering the added functionality. _Yes, add tests for third_party libraries_! If the third party library has a testing framework, use that. Otherwise use libmv's simple testing framework.
