@@ -28,7 +28,14 @@ Given that the needs are few, that we want to reduce libmv's dependencies to a m
 
 
 = Design =
-2D images can be easily represented as 3D arrays whose indices represent row, column and channel.  Here are the basic parts of a simple template class that would do the job:
+The image container and the algorithms that use it and the io functions should be separated, so that the container remains simple.
+
+== The container ==
+2D images can be easily represented as 3D arrays whose indices represent row, column and channel.  We have two options here:
+ * write a dedicated image container, or
+ * use an existing 3D array container, eventually from FLENS.
+
+Writing a dedicated container is not hard.  For example, here are the basic parts of a simple template class that would do the job:
 {{{
 /// A simple image class storing pixel values in a 3D array.
 /// Acces to component v of pixel (x,y) as im(y,x,v).
@@ -65,44 +72,59 @@ class Image
     data_buffer.reset(data_);
   }
   
-  /// Returns the number of elements along an axis.
+  /// Return the number of elements along an axis.
   int Shape(int axis) const {
     return shape_[axis];
   }
 
-  /// Returns de distance between neighboring elements along axis.
+  /// Return de distance between neighboring elements along axis.
   int Strides(int axis) const {
     return strides_[axis];
   }
 
-  /// Returns the total number of elements.
+  /// Return the total number of elements.
   int Size() const {
     return Shape(0) * Shape(1) * Shape(2);
   }
 
-  /// Returns a pointer to the element
+  /// Return the number of rows of the image.
+  int Height() const {
+	  return Shape(0);
+  }
+
+  /// Return the number of columns of the image.
+  int Width() const {
+	  return Shape(1);
+  }
+  
+  /// Return the number of channels of the image.
+  int Depth() const {
+	  return Shape(2);
+  }
+
+  /// Return a pointer to the element
   T *TopLeftPtr() {
     return data_;
   }
 
-  /// Returns the number of elements between the origin and a given position.
+  /// Return the number of elements between the origin and a given position.
   int Offset(int i0, int i1, int i2) const {
     return i0 * Strides(0)
 	 + i1 * Strides(1)
 	 + i2 * Strides(2);
   }
   
-  /// Returns a reference to element (i0,i1,i2).
+  /// Return a reference to element (i0,i1,i2).
   T &operator()(int i0, int i1, int i2) {
     return *( TopLeftPtr() + Offset(i0,i1,i2) );
   }
 
-  /// Returns a constant reference to element (i0,i1,i2).
+  /// Return a constant reference to element (i0,i1,i2).
   const T &operator()(int i0, int i1, int i2) const {
     return *( TopLeftPtr() + Offset(i0,i1,i2) );
   }
   
-  /// Returns true if (i0,i1,i2) is inside the image. 
+  /// Return true if (i0,i1,i2) is inside the image. 
   bool Contains(int i0, int i1, int i2) const {
     return i0 >= 0 && i0 < Shape(0)
 	&& i1 >= 0 && i1 < Shape(1)
@@ -110,3 +132,18 @@ class Image
   }
 };
 }}}
+
+
+
+== Multidimensional arrays ==
+
+The image class bellow can easily be generalized to an arbitrary number of dimensions.  Although there is no urgent need for a multidimensional array type, it will certainly be useful at some point since it is a basic and very versatile data structure.  Examples of uses include voxels (3D arrays), voxels with colors (4D arrays), color histograms (3D array), coordinate lists (2D array)...
+
+It may be a good idea to build a ArrayND class from the beginning.  If we do so, then the Image class can heritate from the 3D array, and add some syntactic sugar such as `Height()` and `Width()` methods.
+
+We have to see how this n-dimensional arrays can inter-operate, or be build from FLENS structures.
+
+
+== Image algorithms ==
+
+Assuming that we are going to build the ArrayND class, then there are certain image algorithms like interpolation that should better be considered ArrayND algorithms, since they are not intrinsically restricted to 2D arrays.  Since the image class will heritate from the array class, this algorithms will work with images also.  Other functionalities, such as io are exclusive for images.
