@@ -1,0 +1,21 @@
+#summary Dealing with third-party code into libmv.
+
+== Importing new third_party code ==
+
+  # Make sure the license is compatible. In particular, it cannot be GPL-incompatible (because libmv will be bundled with blender eventually). This means Apache, GPL3, among others, are incompatible.
+  # Email the list to ask before adding it!
+  # Create a directory for it under 'third_party/'; for example '`flens/`'.
+  # Copy only the relevant parts of the code for the project. For example, with FLENS, only the source under the `flens` directory in the FLENS distribution was include (not examples, tutorials, etc).
+  # Create a `README.libmv` file which follows the below template:
+{{{
+License: New BSD
+Upstream version: svn r1234, or cvs @ date ..., or version 1.2.6.
+Local modifications: Extended TinyMatrix support so it has a more convenient API.
+
+Previous local modifications (adding better SVD) were merged upstream in r1230.
+}}}
+  # Create a sconstruct that builds the relevant files.
+
+== Modifying third_party code ==
+
+Any time you modify third party code, update `README.libmv`. If you are adding new functionality add new unit tests. _Yes, add tests for third_party libraries_! If the third party library has a testing framework, use that. Otherwise use libmv's simple testing framework.
