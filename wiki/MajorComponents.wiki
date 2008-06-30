@@ -31,6 +31,7 @@ libmv consists of many components, which are summarized here.
     * Containers for reconstructions.
     * Designing this part will be very tricky to get right, as there are many constraints.
     * `TODO(keir):` Figure out requirements for reconstruction library -- in place bundle adjust? Immutable?
+    * IO for converting to other useful formats - e.g. blender.
   * RobustEstimationLibrary - `robust_estimation/`
     * A library for estimating relations from noisy data.
   * StructureFromMotionLibrary - `multiview/`
