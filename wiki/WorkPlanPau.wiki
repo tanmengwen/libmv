@@ -1,0 +1,17 @@
+#summary What Pau is been working on in libmv.
+
+
+= Currently working on =
+ * the ImageLibrary.
+
+
+= To do =
+
+ * Write ImageLibrary goals and non-goals.
+ * Write a minimal api for the ImageLibrary.
+ * Start writing image io stuff.
+
+
+= Done =
+
+==== Monday, June 30th, 2008 ====
