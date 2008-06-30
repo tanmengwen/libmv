@@ -2,7 +2,7 @@
 
 = Introduction =
 
-There are many different methods for reconstruction; here one complete method is described, with references to specific components inside libmv. It is similar in flavor to that used by [http://www.cs.unc.edu/~marc/research.html Pollefeys], though here we move to a metric frame immediately. The task here is to recover a sparse reconstruction for matchmoving. The reconstruction is only points and cameras.
+There are many different methods for reconstruction; here one complete method is described, with references to specific components inside libmv. It is similar in flavor to [http://www.inf.ethz.ch/personal/pomarc/pubs/PollefeysIJCV04.pdf that] used by [http://www.inf.ethz.ch/personal/pomarc/ Pollefeys], though here we move to a metric frame immediately. The task here is to recover a sparse reconstruction for matchmoving. The reconstruction is only points and cameras.
 
   # Find correspondences between frames; this is a purely 2D process.
     * KLT algorithm is the current method of choice.
