@@ -86,10 +86,31 @@ compose a feature finder with other trackers. It can take pairs of feature
 finder and tracker factory function, so that it can blindly track lines, points,
 and others without knowing about the particular tracker representation.
 
+
 = Photos =
 
-A much harder case is correspondences across arbitrary photos. This is usually solved by SIFT, SURF, or other fingerprint detector.
+Tracking features in unordered sets of images can not be done with the previous approach because of the following reasons:
+  # There is no inherent order in the image set.  Thus, every image should be potentially matched with any other image.
+  # The feature positions can be very different in different images.  Thus, searching a feature in one image requires exploring very large regions.
+  # The feature appearance can be very different in different images.  Thus, comparing image patches is not robust enough.
 
-=== GUI interaction ===
+The solution to these problems are the following:
+  # Try to find correspondences between every pair of images and then link the pair-wise matches into tracks.
+  # Instead of detecting features in one images and doing a local search in the other, a more global search approach is used:  detect features in both images, then find correspondences between the two sets of features.
+  # Use robust and discriminative descriptors.  For points these can be SIFT, SURF, or others.
+
+Although it may look more complicated that tracking in a video sequence, once you have a feature detector and descriptor, it is actually very simple since matching reduces to descriptor vector comparison.  There is no image to image comparison.
+
+== Uses of the unordered approach for video tracking ==
+
+Since the approach is generic, it also works for video sequences.  Of course, it is much slower than standard tracking, and it can not be used blindly to track long video sequences.  Nevertheless, there are some ideas of this methodology that can be useful for motion tracking video sequences:
+  * When camera shake is important, extracting features in both images can improve the matching since we no longer rely on the hypothesis of small motions.
+  * For long video sequences, where the same parts of the scenes appear multiple times, matching every pair of images can improve the quality of the reconstruction and avoid multiple tracks of the same real point (it closes the loop).
+  * Multiple video sequences can be tracked at once improving the overall quality and yielding coherent relative camera poses.
+  * Still images can be combined with the video to help the structure from motion algorithms in the case of degenerate camera motions.  These will be useful in cinema where the director will be free to choose the camera motion independently of the motion track requirements (right now, camera movements are chosen such that camera tracking works).
+
+
+
+= GUI interaction =
 
 Since GUI interaction is important for reconstruction, whatever data structures we pick must be amenable to visualization and interactive manipulation (i.e. what happens if a user clicks a track and moves it half way through? Should the sequence after the user adjusted the tracker position be re-tracked?)
