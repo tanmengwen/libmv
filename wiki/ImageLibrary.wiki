@@ -4,12 +4,30 @@
 
 There are many image libraries to chose from. In libmv there are a couple of constraints on what libraries we can use, because we want to remain commercial friendly. Furthermore, we would like whatever image library we chose to be sufficiently understandable that we can modify it if necessary.
 
-In libmv, because the focus is on tracking, our needs are fairly limited. In most practical reconstruction applications, we only need grayscale images. For example, SIFT and KLT by default work with the luminance component of images and ignore colors.
+Because the focus is on tracking, our initial needs are fairly limited:
+  * loading the image,
+  * converting to grayscale,
+  * and access its pixels with subpixel precision.
 
-On the other hand, for a variety of algorithms it is necessary to support subpixel sampling and image views. Subpixel sampling is not available in many image libraries.
+Given that the needs are few, that we want to reduce libmv's dependencies to a minimum, and that we want to have control on how the images behave, we have decided to design our own image library.
 
-= Conclusion =
+== Goals ==
+  * Simple and compact image container, which do not necessarily own the pixel data.
+  * Easy access to the raw image data.
+  * Easy conversion from and to other image types without copying pixel data.
+  * Friendly access to pixel data as `image(i,j,k)`.
+  * Basic support for different pixel formats (grayscale, RGB, RGBA, ...) and channel arranging strategies (an array of RGB values vs. 3 arrays, one per color).
+  * Read and write in a variety of formats.  Initially, `.pgm` (trivial), `.png` (via `libpng`), and jpg (via `libjpeg`).
+  * Different interpolation methods (nearest, linear, cubic).
+  * Support for building image pyramids.
 
-We write our own simple image library by building on the matrix library. It will load `.pgm` (trivial), `.png` (via `libpng`), and jpg (via `libjpeg`) files by default. It will support image views and subpixel sampling.
 
-By default, the library itself will not support `.avi` files or other movies. The image structure will be sufficiently simple that it is easy to convert from other image structures to libmv's image type. For example, the blender matchmover will convert from Blender's internal image format and pass it to libmv for tracking. This way libmv is functional for researchers (it's easy enough to run `mplayer -vo png`) who do processing on the command line, and still useful for matchmoving applications.
+== Non-Goals ==
+  * A video library.  For now video will be read as a sequence of image files.
+  * Drawing functionality.
+
+
+= Design =
+A simple 3D array is an image container that satisfies our needs...
+
+
