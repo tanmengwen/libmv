@@ -4,17 +4,20 @@ When I have time to spend on libmv, I plan out what I want to accomplish here an
 
 ==== Sunday, June 29th, 2008 ====
 
-  * Expand components page, by looking at libmv1.
-  * Based on the components, figure out a reasonable directory hierarchy.
-  * Update current code and build to follow the new structure
-  * Make third_party directory, and check FLENS into it.
-  * Figure out where to put FLENS-libmv tests
+  * ~~Expand components page, by looking at libmv1.~~
+  * ~~Based on the components, figure out a reasonable directory hierarchy.~~
+  * ~~Update current code and build to follow the new structure~~
+  * ~~Make third_party directory, and check FLENS into it.~~
+  * ~~Write ThirdPartyCode wiki page~~
+  * ~~Make FLENS build inside libmv~~
+  * ~~Figure out where to put FLENS-libmv tests~~
     * We will write unit tests for new functionality we add to flens, but inside the libmv unit test system. This is because FLENS unfortunately doesn't have a unit test system.
-    * Probably in the numeric/ directory.
+    * *Put them in the numeric/ directory.*
   * Add needed TinyMatrix functionality into our FLENS fork (I'll sync it upstream later).
   * Add numerics directory, and write nullspace() function and tests.
   * Create structure-from-motion directory and add nview triangulation and tests.
   * Put MIT license boilerplate on existing code.
+  * Write page about tracking, summarizing the notes I made at ICVS2008
 
 ==== Saturday, June 28th, 2008 ====
 
