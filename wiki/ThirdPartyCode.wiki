@@ -1,4 +1,4 @@
-#summary Dealing with third-party code into libmv.
+#summary Dealing with third-party code in libmv.
 
 == Importing new third_party code ==
 
