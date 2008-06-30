@@ -17,9 +17,9 @@ In rough order of dependence:
 
 _We are going to use FLENS_.
 
-  * Check current CVS into libmv third_party/
-  * Make super-simple wrapper for common operations inside libmv (i.e. typedefs for `DenseVector<FullStorage<double> >` as 'Vector', etc). 
-  * Polish FLENS's existing support for tiny vectors.
+  * ~~Check current CVS into libmv third_party/~~
+  * ~~Make super-simple wrapper for common operations inside libmv (i.e. typedefs for `DenseVector<FullStorage<double> >` as 'Vector', etc). ~~
+  * ~~Polish FLENS's existing support for tiny vectors.~~
 
 See MatrixLibrary for other details.
 
