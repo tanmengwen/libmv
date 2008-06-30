@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary This should appear in the header of every libmv source file.
 
 Include the following boilerplate in C and C++ files:
 
