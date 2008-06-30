@@ -28,6 +28,85 @@ Given that the needs are few, that we want to reduce libmv's dependencies to a m
 
 
 = Design =
-A simple 3D array is an image container that satisfies our needs...
+2D images can be easily represented as 3D arrays whose indices represent row, column and channel.  Here are the basic parts of a simple template class that would do the job:
+{{{
+/// A simple image class storing pixel values in a 3D array.
+/// Acces to component v of pixel (x,y) as im(y,x,v).
+template <typename T>
+class Image
+{
+  /// The number of elements in each dimension.
+  int shape_[3];
+  /// How to jump to neighbors in each dimension.
+  int strides_[3];
+  /// Pointer to the first element.
+  T *data_;
+  /// A shared pointer to the data buffer so that pixels get deleted
+  /// when last image using them is deleted.
+  boost::shared_array<T> shared_buffer_; 
 
+ public:
+  Image(int s0, int s1, int s2) {
+    Reset(s0,s1,s2);
+  }
+  
+  /// Set the shape of the image and allocates the pixels.
+  void Reset(int s0, int s1, int s2) {
+    shape_[0] = s0;
+    shape_[1] = s1;
+    shape_[2] = s2;
+    strides_[2] = 1;
+    strides_[1] = strides_[2] * shape_[2];
+    strides_[0] = strides_[1] * shape_[1];
+    if(size()>0)
+      data_ = new T[size()];
+    else
+      data_ = NULL;
+    data_buffer.reset(data_);
+  }
+  
+  /// Returns the number of elements along an axis.
+  int Shape(int axis) const {
+    return shape_[axis];
+  }
 
+  /// Returns de distance between neighboring elements along axis.
+  int Strides(int axis) const {
+    return strides_[axis];
+  }
+
+  /// Returns the total number of elements.
+  int Size() const {
+    return Shape(0) * Shape(1) * Shape(2);
+  }
+
+  /// Returns a pointer to the element
+  T *TopLeftPtr() {
+    return data_;
+  }
+
+  /// Returns the number of elements between the origin and a given position.
+  int Offset(int i0, int i1, int i2) const {
+    return i0 * Strides(0)
+	 + i1 * Strides(1)
+	 + i2 * Strides(2);
+  }
+  
+  /// Returns a reference to element (i0,i1,i2).
+  T &operator()(int i0, int i1, int i2) {
+    return *( TopLeftPtr() + Offset(i0,i1,i2) );
+  }
+
+  /// Returns a constant reference to element (i0,i1,i2).
+  const T &operator()(int i0, int i1, int i2) const {
+    return *( TopLeftPtr() + Offset(i0,i1,i2) );
+  }
+  
+  /// Returns true if (i0,i1,i2) is inside the image. 
+  bool Contains(int i0, int i1, int i2) const {
+    return i0 >= 0 && i0 < Shape(0)
+	&& i1 >= 0 && i1 < Shape(1)
+	&& i2 >= 0 && i2 < Shape(2);
+  }
+};
+}}}
