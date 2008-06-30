@@ -14,7 +14,7 @@ Local modifications: Extended TinyMatrix support so it has a more convenient API
 
 Previous local modifications (adding better SVD) were merged upstream in r1230.
 }}}
-  # Create a sconstruct that builds the relevant files.
+  # Create a `sconstruct` that builds the relevant files.
 
 == Modifying third_party code ==
 
