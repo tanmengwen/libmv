@@ -14,6 +14,7 @@ Local modifications: Extended TinyMatrix support so it has a more convenient API
 
 Previous local modifications (adding better SVD) were merged upstream in r1230.
 }}}
+  # Make sure there is a `LICENSE` file with the terms of the license. If there isn't one, find the relevant license text and put it in the file `LICENSE`.
   # Create a `sconstruct` that builds the relevant files.
 
 == Modifying third_party code ==
