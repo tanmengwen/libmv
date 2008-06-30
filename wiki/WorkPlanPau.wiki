@@ -9,8 +9,8 @@
 
  * Continuously update ImageLibrary.
  * Replicate boost::shared_array.
- * Write the IndexND class for representing multidimensional indices.
- * Write the ArrayND class with basic acces functionality.
+ * Write ArrayND tests.
+ * Add ArrayND functionalities.
  * Write the Image class heritating from ArrayND.
  * Start writing image io stuff.
  * Write linear interpolation functions.
@@ -21,3 +21,5 @@
 ==== Monday, June 30th, 2008 ====
  * Write ImageLibrary goals and non-goals.
  * Write a minimal example of Image class.
+ * Write the Tuple class for representing multidimensional indices.
+ * Write the ArrayND class with basic acces functionality.
