@@ -13,7 +13,8 @@ When I have time to spend on libmv, I plan out what I want to accomplish here an
   * ~~Figure out where to put FLENS-libmv tests~~
     * We will write unit tests for new functionality we add to flens, but inside the libmv unit test system. This is because FLENS unfortunately doesn't have a unit test system.
     * *Put them in the numeric/ directory.*
-  * Add needed TinyMatrix functionality into our FLENS fork (I'll sync it upstream later).
+  * ~~Add copying between TinyMatrices and dense matrices to FLENS (I'll sync it upstream later).~~
+  * Add comma list initializers to TinyMatrix / TinyVector.
   * Add numerics directory, and write nullspace() function and tests.
   * Create structure-from-motion directory and add nview triangulation and tests.
   * Put MIT license boilerplate on existing code.
