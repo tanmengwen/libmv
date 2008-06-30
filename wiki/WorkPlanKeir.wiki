@@ -19,6 +19,7 @@ When I have time to spend on libmv, I plan out what I want to accomplish here an
   * Create structure-from-motion directory and add nview triangulation and tests.
   * ~~Put MIT license boilerplate on existing code.~~
   * Write page about tracking, summarizing the notes I made at ICVS2008
+  * ~~Upload old tracking examples from my defense to YouTube, and link to them from the front page~~.
 
 ==== Saturday, June 28th, 2008 ====
 
