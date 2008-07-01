@@ -8,12 +8,9 @@
 = To do =
 
  * Continuously update ImageLibrary.
- * Replicate boost::shared_array.
  * Template specialization for low dimensional arrays:
-   * Rename ArrayND to ArrayNDBase and make a ArrayND heritate from ArrayND.
- * Write ArrayND tests.
  * Add ArrayND functionalities.
- * Write the Image class heritating from ArrayND.
+ * Write the Image class derived from ArrayND.
  * Start writing image io stuff.
  * Write linear interpolation functions.
  * Create a doxyfile and check that doxygen output looks ok.
@@ -25,4 +22,10 @@
  * Write ImageLibrary goals and non-goals.
  * Write a minimal example of Image class.
  * Write the Tuple class for representing multidimensional indices.
- * Write the ArrayND class with basic acces functionality.
+ * Write the ArrayND class with basic access functionality.
+
+==== Tuesday, July 1th, 2008 ====
+ * Wasted my day fighting with C++ templates.
+ * Understood the meaning of "pragmatic use of templates" in VXL's documentation.
+ * Removed smart pointers from ArrayND.  Only one array can own the data now.
+ * Wrote ArrayND tests.
