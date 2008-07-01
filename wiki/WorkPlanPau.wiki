@@ -14,6 +14,7 @@
  * Write the Image class heritating from ArrayND.
  * Start writing image io stuff.
  * Write linear interpolation functions.
+ * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
