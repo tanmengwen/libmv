@@ -9,6 +9,8 @@
 
  * Continuously update ImageLibrary.
  * Replicate boost::shared_array.
+ * Template specialization for low dimensional arrays:
+   * Rename ArrayND to ArrayNDBase and make a ArrayND heritate from ArrayND.
  * Write ArrayND tests.
  * Add ArrayND functionalities.
  * Write the Image class heritating from ArrayND.
