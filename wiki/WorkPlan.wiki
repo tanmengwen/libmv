@@ -25,7 +25,7 @@ See MatrixLibrary for other details.
 
 == Image class and loading ==
 
-  * Simple image class built on a matrix. Supports images that own and don't own the underlying data. 1 day.
+  * ~~Simple image class built on a matrix. Supports images that own and don't own the underlying data. 1 day.~~ Finally 2 days; Pau codes like a turtle.
   * Load PNG images. 3 hours.
   * Load JPG images. 2 hours.
 
