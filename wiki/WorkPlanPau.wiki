@@ -17,7 +17,7 @@
 ==== Wednesday, July 2th, 2008 ====
  * Wrote specific functions for low dimensional arrays.
  * Wrote an Image class extending ArrayND<T, 3>.
- * pgm reading.
+ * pgm read/write.
  * linear and nearest neighbor interpolation.
 
 ==== Tuesday, July 1th, 2008 ====
