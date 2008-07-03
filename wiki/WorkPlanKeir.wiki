@@ -2,6 +2,10 @@
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
 
+==== Wednesday, July 2nd, 2008 ====
+  * ~~Add comma list initializers to TinyMatrix / TinyVector.~~
+  * Focal length estimation from fundamental matrix via hartley's method.
+
 ==== Sunday, June 29th, 2008 ====
 
   * ~~Expand components page, by looking at libmv1.~~
