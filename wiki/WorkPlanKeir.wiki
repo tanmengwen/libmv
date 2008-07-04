@@ -2,6 +2,9 @@
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
 
+==== Friday, July 4th, 2008 ====
+  * ~~Trivial image loading in Qt via libmv image class~~
+
 ==== Thursday, July 3rd, 2008 ====
   * ~~Switch to GTest instead of testsoon~~
   * ~~Write GEMM specializations for tiny matrices~~
