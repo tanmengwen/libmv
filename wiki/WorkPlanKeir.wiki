@@ -2,6 +2,11 @@
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
 
+==== Thursday, July 3rd, 2008 ====
+  * ~~Switch to GTest instead of testsoon~~
+  * ~~Write GEMM specializations for tiny matrices~~
+  * Focal length estimation for fundamental matrix.
+
 ==== Wednesday, July 2nd, 2008 ====
   * ~~Add comma list initializers to TinyMatrix / TinyVector.~~
   * Focal length estimation from fundamental matrix via hartley's method.
