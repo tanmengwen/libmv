@@ -2,6 +2,10 @@
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
 
+==== Saturday, July 5th, 2008 ====
+  * Write simple image convolution for blurring and image derivatives (needed for KLT).
+  * Switch FLENS to zero-based indexing.
+
 ==== Friday, July 4th, 2008 ====
   * ~~Trivial image loading in Qt via libmv image class~~
 
