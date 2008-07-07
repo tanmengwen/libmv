@@ -27,6 +27,30 @@ Given that the needs are few, that we want to reduce libmv's dependencies to a m
   * Drawing functionality.
 
 
+= Desired Behavior =
+
+Construction and assignation.
+{{{
+Image im(480,640,3); // Creates a 480 rows, 640 columns and 3 channels image.
+assert(im.Height() == 480);
+assert(im.Width() == 640);
+assert(im.Depth() == 3);
+Image im2(im); // Creates a deep copy of the image.  Pixel data is copied.
+ImageView im_view = im.view(); // Creates a view of im that shares data with im.
+Image im3; // Creates an empty image;
+im3 = im;  // Assignation copies data;
+im3 = im_view;  // Copies data viewed by im_view.
+}}}
+
+Accessing to pixels.
+{{{
+Image im(480,640,3);
+im(y,x,v); // Access pixel at row y, column x, channel v
+           // In debug mode it does boundary checking.
+im(y,x); // Access pixel at row y, column x of a grayscale image
+         // In debug mode it checks that im.Depth() == 1;
+}}}
+
 = Design =
 The image container and the algorithms that use it and the io functions should be separated, so that the container remains simple.
 
