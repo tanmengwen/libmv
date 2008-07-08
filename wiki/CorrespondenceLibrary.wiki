@@ -39,6 +39,7 @@ The following trackers should be implementable with the eventual design:
 
   * KLT - Standard SSD KLT tracker, with translation, rotation, or affine.
     * I (Keir) have some ideas of how to make this wicked fast by using an integer only approximation.
+  * [http://www.ces.clemson.edu/~stb/research/jointtracking/ Joint KLT] - KLT + global movement smoothness constraint.
   * UKLT - Uses 5 other trackers underneath.
   * NCC - Standard translational tracker, using super fast FFTW.
   * GRIC - A new idea I (Keir) have: use model selection to compares translation, translation+rotation, and general affine warp trackers (3 of them) to find the best model. Could be composed into UKLT!
