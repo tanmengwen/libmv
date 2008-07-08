@@ -9,10 +9,19 @@
 
  * Continuously update ImageLibrary.
  * Write more image io stuff.
+ * Write KLT tracker.
+   * Visually test DetectGoodFeatures.
+   * Write displacement update rule.
+ * Make qt4 work on the mac.
  * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
+
+==== Tuesday, July 8th, 2008 ====
+ * Wrote a good features to track detector.
+ * Integral images based on Convolve.
+ * Fixed sconstruct files to work under Mac OS X.
 
 ==== Wednesday, July 2th, 2008 ====
  * Wrote specific functions for low dimensional arrays.
