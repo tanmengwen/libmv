@@ -2,7 +2,8 @@
 
 
 = Currently working on =
- * the ImageLibrary.
+ * Improving ImageLibrary.
+ * Implementing KLT for the CorrespondenceLibrary.
 
 
 = To do =
@@ -22,6 +23,9 @@
  * Wrote a good features to track detector.
  * Integral images based on Convolve.
  * Fixed sconstruct files to work under Mac OS X.
+
+==== Monday, July 7th, 2008 ====
+ * Implemented a Gaussian image pyramid.
 
 ==== Wednesday, July 2th, 2008 ====
  * Wrote specific functions for low dimensional arrays.
