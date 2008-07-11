@@ -14,7 +14,7 @@ libmv needs a serialization library of some sort.
     * It's clean, and has unit tests.
     * But is slow.
   * Protocol Buffers
-    * Great nice to work with
+    * Great to work with
     * Blazing fast
     * Python bindings.
     * Apache Licensed - Blender incompatible (grr).
