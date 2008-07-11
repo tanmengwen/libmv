@@ -2,6 +2,13 @@
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
 
+==== Thursday, July 11th, 2008 ====
+  * Added start of a bipartite graph class for storing correspondences and reconstructions.
+  * Started writing tracker base class definitions.
+ 
+==== Tuesday, July 9th, 2008 ====
+  * Refactored GoodFeaturesToTrack().
+
 ==== Saturday, July 5th, 2008 ====
   * Write simple image convolution for blurring and image derivatives (needed for KLT).
   * Switch FLENS to zero-based indexing.
