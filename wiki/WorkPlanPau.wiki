@@ -1,4 +1,4 @@
-#summary What Pau is and is been working on in libmv.
+#summary What Pau is been working on in libmv.
 
 
 = Currently working on =
@@ -11,13 +11,28 @@
  * Continuously update ImageLibrary.
  * Write more image io stuff.
  * Write KLT tracker.
-   * Visually test DetectGoodFeatures.
-   * Write displacement update rule.
- * Make qt4 work on the mac.
+   * --Visually test DetectGoodFeatures.--
+   * --Write displacement update rule.--
+   * Try the multiscale version.
+   * Integrate with Keir's generic tracking framework.
  * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
+
+==== Saturday,  July 12th, 2008 ====
+ * Added io support for color PPM.
+ * Added output to Lenna tracking test/example.
+ * Added pre-smoothing for the tracking examples.
+ * Wrote a note on why images *must* be smoothed before tracking.
+
+==== Friday,  July 11th, 2008 ====
+ * Wrote KLT derivation to facilitate and document the implementation.
+ * Implemented the basic version of KLT feature tracking.
+ * Made Qt4 work on the mac.
+
+==== Thursday,  July 10th, 2008 ====
+ * Switched to cmake.
 
 ==== Tuesday, July 8th, 2008 ====
  * Wrote a good features to track detector.
