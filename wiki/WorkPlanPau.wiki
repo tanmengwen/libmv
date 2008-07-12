@@ -11,8 +11,6 @@
  * Continuously update ImageLibrary.
  * Write more image io stuff.
  * Write KLT tracker.
-   * --Visually test DetectGoodFeatures.--
-   * --Write displacement update rule.--
    * Try the multiscale version.
    * Integrate with Keir's generic tracking framework.
  * Create a doxyfile and check that doxygen output looks ok.
