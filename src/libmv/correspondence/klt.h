@@ -40,12 +40,12 @@ class KltContext {
   typedef std::list<Feature> FeatureList;
 
   KltContext()
-      : half_window_size_(3),
+      : half_window_size_(7),
         max_iterations_(10),
         min_trackness_(0.1),
         min_feature_dist_(10),
         min_determinant_(1e-6),
-        min_update_distance2_(1e-6) {
+        min_update_distance2_(1e-2) {
   }
 
   void DetectGoodFeatures(const ImagePyramid &pyramid,
@@ -68,6 +68,12 @@ class KltContext {
                             const FloatImage &image2_gy,
                             Vec2 *position2_pointer);
 
+  void TrackFeatureOneLevelAligned(const FloatImage &image1,
+                                   const Vec2 &position1,
+                                   const FloatImage &image2,
+                                   const FloatImage &image2_gx,
+                                   const FloatImage &image2_gy,
+                                   Vec2 *position2_pointer);
 
   void DrawFeatureList(const FeatureList &features,
                        const Vec3 &color,
@@ -114,6 +120,18 @@ class KltContext {
                                float *gyy,
                                float *ex,
                                float *ey);
+
+  void ComputeTrackingEquationAligned(const FloatImage &image1,
+                                      const FloatImage &image2,
+                                      const FloatImage &image2_gx,
+                                      const FloatImage &image2_gy,
+                                      const Vec2i &position1,
+                                      const Vec2i &position2,
+                                      float *gxx,
+                                      float *gxy,
+                                      float *gyy,
+                                      float *ex,
+                                      float *ey);
 
   // Solve the tracking equation
   //  [gxx gxy] [dx] = [ex]

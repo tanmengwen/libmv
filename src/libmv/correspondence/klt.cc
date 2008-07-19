@@ -175,6 +175,15 @@ void KltContext::TrackFeature(const ImagePyramid &pyramid1,
     position2(0) *= 2;
     position2(1) *= 2;
 
+    /*
+    TrackFeatureOneLevelAligned(pyramid1.Level(i),
+                                position1,
+                                pyramid2.Level(i),
+                                pyramid2.GradientX(i),
+                                pyramid2.GradientY(i),
+                                &position2);
+                                */
+
     TrackFeatureOneLevel(pyramid1.Level(i),
                          position1,
                          pyramid2.Level(i),
@@ -212,6 +221,54 @@ void KltContext::TrackFeatureOneLevel(const FloatImage &image1,
   }
 }
 
+void KltContext::TrackFeatureOneLevelAligned(const FloatImage &image1,
+                                             const Vec2 &position1,
+                                             const FloatImage &image2,
+                                             const FloatImage &image2_gx,
+                                             const FloatImage &image2_gy,
+                                             Vec2 *position2_pointer) {
+  Vec2 &position2 = *position2_pointer;
+  Vec2i position1i, position2i;
+  position1i(0) = lround(position1(0));
+  position1i(1) = lround(position1(1));
+  position2i(0) = lround(position2(0));
+  position2i(1) = lround(position2(1));
+
+  Vec2 p1res = position1;
+  p1res -= position1i;
+  Vec2 p2res = position2;
+  p2res -= position2i;
+
+  int i;
+  for (i = 0; i < max_iterations_; ++i) {
+    // Compute gradient matrix and error vector.
+    float gxx, gxy, gyy, ex, ey;
+    ComputeTrackingEquationAligned(image1, image2, image2_gx, image2_gy,
+                                   position1i, position2i,
+                                   &gxx, &gxy, &gyy, &ex, &ey);
+    // Solve the linear system for deltad.
+    float dx, dy;
+    SolveTrackingEquation(gxx, gxy, gyy, ex, ey, &dx, &dy);
+
+    if (Square(dx) + Square(dy) < 1.0) {
+      break;
+    }
+
+    // Update feature2 position.
+    position2i(0) += lround(dx);
+    position2i(1) += lround(dy);
+  }
+  /*
+  if (i == max_iterations_) {
+    printf("Hit max iterations rather than converge\n");
+  } else {
+    printf("hit < 1.0 in %d iterations\n", i);
+  }
+  */
+  position2 = position2i;
+  position2 += p2res;
+}
+
 void KltContext::ComputeTrackingEquation(const FloatImage &image1,
                                          const FloatImage &image2,
                                          const FloatImage &image2_gx,
@@ -241,6 +298,48 @@ void KltContext::ComputeTrackingEquation(const FloatImage &image1,
       float J = SampleLinear(image2, y2, x2);
       float gx = SampleLinear(image2_gx, y2, x2);
       float gy = SampleLinear(image2_gy, y2, x2);
+      *gxx += gx * gx;
+      *gxy += gx * gy;
+      *gyy += gy * gy;
+      *ex += (I - J) * gx;
+      *ey += (I - J) * gy;
+    }
+  }
+}
+
+void KltContext::ComputeTrackingEquationAligned(const FloatImage &image1,
+                                                const FloatImage &image2,
+                                                const FloatImage &image2_gx,
+                                                const FloatImage &image2_gy,
+                                                const Vec2i &position1,
+                                                const Vec2i &position2,
+                                                float *gxx,
+                                                float *gxy,
+                                                float *gyy,
+                                                float *ex,
+                                                float *ey) {
+  int half_width = HalfWindowSize();
+  *gxx = 0;
+  *gxy = 0;
+  *gyy = 0;
+  *ex = 0;
+  *ey = 0;
+  for (int i = -half_width; i <= half_width; ++i) {
+    for (int j = -half_width; j <= half_width; ++j) {
+      int x1 = position1(0) + j;
+      int y1 = position1(1) + i;
+      int x2 = position2(0) + j;
+      int y2 = position2(1) + i;
+      if (!(image1.Contains(y1, x1) && image1.Contains(y2, x2))) {
+        // TODO(keir) Do something more sensible here.
+        return;
+      }
+      // TODO(pau): should do boundary checking outside this loop, and call here
+      // a sampler that does not boundary checking.
+      float I = image1(y1, x1);
+      float J = image2(y2, x2);
+      float gx = image2_gx(y2, x2);
+      float gy = image2_gy(y2, x2);
       *gxx += gx * gx;
       *gxy += gx * gy;
       *gyy += gy * gy;
