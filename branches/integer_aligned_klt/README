@@ -1,0 +1,19 @@
+Libmv multiview reconstruction and tracking library
+===================================================
+
+Libmv is a simple multiview reconstruction library.
+
+It is not ready yet. If you're interested in contributing, see:
+
+  http://code.google.com/p/libmv
+
+Building
+--------
+
+Before building, make sure you have the following:
+
+* cmake 2.4 or newer
+* atlas, lapack and blas development packages.  On ubuntu:
+    apt-get install lapack3-pic lapack-dev
+* Qt 4
+
