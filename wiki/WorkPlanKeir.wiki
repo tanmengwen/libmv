@@ -1,6 +1,9 @@
 #summary What Keir's been working on in libmv.
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
+==== Saturday, July 26th, 2008 ====
+  * Implemented start of correspondences data structure.
+  * Still to do: rework KLT code to use new correspondences data structure.
 
 ==== Thursday, July 11th, 2008 ====
   * Added start of a bipartite graph class for storing correspondences and reconstructions.
