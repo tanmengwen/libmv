@@ -29,8 +29,8 @@ public:
 		width = w;
 		height = h;
 
-		if(!opengl_init())
-			return false;
+//		if(!opengl_init())
+//			return false;
 
 		// get a name for the object
 		glGenFramebuffersEXT(1,&framebufferID);
@@ -48,7 +48,7 @@ public:
 		// allocate pixels
 		glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_DEPTH_COMPONENT,
 					 width, height);
-		// attach the the renderbuffer to the framebuffer
+		// attach the renderbuffer to the framebuffer
 		glFramebufferRenderbufferEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT,
 					     GL_RENDERBUFFER_EXT, depthbuffer);
 
