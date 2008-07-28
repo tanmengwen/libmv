@@ -20,8 +20,8 @@ public:
 	vnl_double_3x3 KR1;  // KR^{-1} for computing unprojections faster
 	vnl_double_3 ocenter;
 
-	int width,height;
-	double near,far;
+	int width, height;
+	double near, far;
 
 
 	/////////////////////////////////////////////////

@@ -8,9 +8,7 @@
 
 
 // a class for reading the multiview stereo evaluation data
-class MiddleburyData
-{
-
+class MiddleburyData {
 public:
 	int nimages;
 	vcl_vector<Image> images;

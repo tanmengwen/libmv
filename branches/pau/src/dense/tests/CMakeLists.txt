@@ -12,7 +12,6 @@ TARGET_LINK_LIBRARIES( test_MiddleburyData
 			vcl vnl vil png jpeg tiff
 )
 
-
 ADD_EXECUTABLE( test_PlaneSweepStereoGPU test_PlaneSweepStereoGPU.cc )
 TARGET_LINK_LIBRARIES( test_PlaneSweepStereoGPU
 			MVdense MVopengl

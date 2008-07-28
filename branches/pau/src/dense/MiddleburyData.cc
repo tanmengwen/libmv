@@ -74,7 +74,7 @@ bool MiddleburyData::read( const char *_dir, const char *_name, bool load_images
 	}
 	fclose(f);
 
-// read the bounding box
+        // read the bounding box
 	sprintf(buf, "%s/%s_bbox.txt", dir,name);
 	FILE *bbf = fopen( buf, "rb" );
 	if(bbf) {

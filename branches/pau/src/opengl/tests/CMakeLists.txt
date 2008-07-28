@@ -18,9 +18,9 @@ TARGET_LINK_LIBRARIES( test_ShaderProgram
 			vil png jpeg tiff
 			${OPENGL_LIBRARIES})
 
-ADD_CUSTOM_COMMAND(OUTPUT TestShader.h
-			COMMAND ${mv_SOURCE_DIR}/../scripts/cc_from_shader.py TestShader
-			DEPENDS TestShader.vert TestShader.frag
-			WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-
+ADD_CUSTOM_TARGET(
+  ${shadername}.h ALL
+  COMMAND ${mv_SOURCE_DIR}/../scripts/cc_from_shader.py TestShader
+  DEPENDS TestShader.vert TestShader.frag
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 

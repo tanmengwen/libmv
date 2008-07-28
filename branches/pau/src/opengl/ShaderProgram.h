@@ -17,8 +17,8 @@ public:
 	bool init(const char *vertexCode, const char *fragCode)
 	{
 		// check that OpenGL 2.0 is available
-		if(!opengl_init())
-			return false;
+//		if(!opengl_init())
+//			return false;
 
 		// allocate shaders
 		vertexShaderID = glCreateShader(GL_VERTEX_SHADER);

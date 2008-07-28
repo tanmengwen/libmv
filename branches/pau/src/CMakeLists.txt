@@ -4,6 +4,8 @@ PROJECT( mv )
 
 SUBDIRS( dense opengl sparse ui )
 
+#SET(CMAKE_CXX_FLAGS "-pg")
+
 
 #########################
 # vxl
@@ -38,7 +40,7 @@ ELSE(NOT APPLE)
 	NAMES GLU
 	PATHS /usr/X11R6/lib
   )
-  
+
   SET( OPENGL_LIBRARIES X11 ${OPENGL_gl_LIBRARY} ${OPENGL_glu_LIBRARY})
 
   IF(OPENGL_INCLUDE_DIR AND OPENGL_LIBRARIES)
