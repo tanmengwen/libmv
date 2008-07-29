@@ -104,8 +104,8 @@ private:
   void agregate_score_ZNCC(int kernel_size);
 
   void update_depth_score(int r, float depth);
-  void update_best_depth(float depth);
-  void read_best_depth_texture();
+  void update_best_depth(float depth, int nplanes);
+  void read_best_depth_texture(int nplanes);
 
   vnl_float_3x3 image_to_image_homography_in_texture_coordinates(int r,
                                                                  float depth);

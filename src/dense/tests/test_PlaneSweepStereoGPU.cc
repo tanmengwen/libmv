@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <algorithm>
 
 #include "../MiddleburyData.h"
 #include "../PlaneSweepStereoGPU.h"
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]) {
                       data.bbox[1][0],data.bbox[1][1],data.bbox[1][2] );
 
 
-  ps.compute(50, correlation, window_size);
+  ps.compute(100, correlation, window_size);
 
 
   std::string depthmap_filename = std::string(argv[3]) + ".depthmap.pgm";
@@ -55,7 +56,7 @@ int main(int argc, char *argv[]) {
   Image_save(depthmap, depthmap_filename.c_str());
 
   std::string confidence_filename = std::string(argv[3]) + ".confidence.pgm";
-  Image confidence = ps.get_depthmap();
+  Image confidence = ps.get_confidence();
   for(int i = 0; i < confidence.size(); i++) {
     confidence.top_left_ptr()[i] *= 255;
   }

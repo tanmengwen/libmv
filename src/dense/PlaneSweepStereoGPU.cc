@@ -148,7 +148,7 @@ void PlaneSweepStereoGPU::allocate_score_depth_textures() {
     glBindTexture(GL_TEXTURE_2D, best_depth_texture[i]);
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    glTexImage2D( GL_TEXTURE_2D, 0, 3, width(),height(),
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB16, width(),height(),
       0, GL_RGB, GL_FLOAT, NULL );
   }
 
@@ -158,29 +158,29 @@ void PlaneSweepStereoGPU::allocate_score_depth_textures() {
     glBindTexture(GL_TEXTURE_2D, depth_score_texture[i]);
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    glTexImage2D( GL_TEXTURE_2D, 0, 4, width(),height(),
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA16, width(),height(),
       0, GL_RGBA, GL_FLOAT, NULL );
   }
-  // warped image
+  // agregated score
   glGenTextures(1,&agregated_score_texture);
   glBindTexture(GL_TEXTURE_2D, agregated_score_texture);
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-  glTexImage2D( GL_TEXTURE_2D, 0, 3, width(),height(),
+  glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB16, width(),height(),
     0, GL_RGB, GL_FLOAT, NULL );
   // warped image
   glGenTextures(1,&warped_image_texture);
   glBindTexture(GL_TEXTURE_2D, warped_image_texture);
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-  glTexImage2D( GL_TEXTURE_2D, 0, 4, width(),height(),
+  glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA16, width(),height(),
     0, GL_RGBA, GL_FLOAT, NULL );
-    // warped image
+    // temporal texture
   glGenTextures(1,&tmp_texture);
   glBindTexture(GL_TEXTURE_2D, tmp_texture);
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
   glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-  glTexImage2D( GL_TEXTURE_2D, 0, 4, width(),height(),
+  glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA16, width(),height(),
     0, GL_RGBA, GL_FLOAT, NULL );
 }
 
@@ -241,7 +241,7 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
 
   // init best_depth and best_score
   for (int i = 0; i < 2; i++)
-    clear_framebuffer(99999, 99999, 99999, 99999, &best_depth_fbo[i]);
+    clear_framebuffer(99999, 99999, 0, 99999, &best_depth_fbo[i]);
 
   if (ct == ZNCC)
     prepare_key_texture_ZNCC(kernel_size);
@@ -253,7 +253,8 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
       clear_framebuffer(99999,99999,99999,99999, &depth_score_fbo[i]);
     // for every reference image
     for (int r = 0; r < nrefs(); r++) {
-      // compute the warped image and/or the matching score w.r.t. the key image
+      // compute the warped image and/or the matching score w.r.t. the key
+      // image
       compute_warped_image(r,depths[d],ct);
       //save_texture(warped_image_texture,"warped%02d_%03d.png",r,d);
       // agregate the score
@@ -263,10 +264,10 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
       update_depth_score(r,depths[d]);
     }
     // update the best_depth and best_score buffers
-    update_best_depth(float(d) / depths.size());
+    update_best_depth(float(d) / depths.size(), nplanes);
   }
 
-  read_best_depth_texture();
+  read_best_depth_texture(nplanes);
 }
 
 void PlaneSweepStereoGPU::agregate_score(CorrelationType ct, int kernel_size) {
@@ -277,15 +278,27 @@ void PlaneSweepStereoGPU::agregate_score(CorrelationType ct, int kernel_size) {
   }
 }
 
-void PlaneSweepStereoGPU::read_best_depth_texture() {
+void PlaneSweepStereoGPU::read_best_depth_texture(int nplanes) {
   depthmap = Image(width(),height(),1,1);
   confidence = Image(width(),height(),1,1);
+
+  Image score = Image(width(),height(),1,1);
+  Image sum = Image(width(),height(),1,1);
 
   glBindTexture(GL_TEXTURE_2D, best_depth_texture[current_best_depth_texture]);
   glGetTexImage(GL_TEXTURE_2D, 0, GL_RED,
                 GL_FLOAT, depthmap.top_left_ptr());
   glGetTexImage(GL_TEXTURE_2D, 0, GL_GREEN,
-                GL_FLOAT, confidence.top_left_ptr());
+                GL_FLOAT, score.top_left_ptr());
+  glGetTexImage(GL_TEXTURE_2D, 0, GL_BLUE,
+                GL_FLOAT, sum.top_left_ptr());
+
+  for (int i = 0; i < confidence.size(); ++i) {
+    float ratio = (1 - score.top_left_ptr()[i])
+        / sum.top_left_ptr()[i];
+    float conf = ratio - 1;
+    confidence.top_left_ptr()[i] = std::min(1.0f, conf / 2.0f);
+  }
 }
 
 
@@ -484,8 +497,10 @@ void PlaneSweepStereoGPU::agregate_score_ZNCC(int kernel_size) {
   float offsety[kernel_size];
   gaussian_convolution_kernel(weights,offsetx,offsety,kernel_size);
 
-  convolve_texture(warped_image_texture, weights, offsetx, offsety, kernel_size, &tmp_fbo);
-  convolve_texture(tmp_texture, weights, offsety, offsetx, kernel_size, &warped_image_fbo);
+  convolve_texture(warped_image_texture, weights,
+                   offsetx, offsety, kernel_size, &tmp_fbo);
+  convolve_texture(tmp_texture, weights,
+                   offsety, offsetx, kernel_size, &warped_image_fbo);
 
 
   // at this point
@@ -642,8 +657,10 @@ void PlaneSweepStereoGPU::convolve_textureRGBA(GLuint source,
     {
       // pass arguments to the program
       glUniform1i( sp.get_uniform("source"), 0 );
-      glUniform2fv( sp.get_uniform("offsets"),kernel_size, &normalized_offsets[0] );
-      glUniform4fv( sp.get_uniform("weights"),kernel_size, &weightsRGBA[0][0] );
+      glUniform2fv( sp.get_uniform("offsets"),
+                    kernel_size, &normalized_offsets[0] );
+      glUniform4fv( sp.get_uniform("weights"),
+                    kernel_size, &weightsRGBA[0][0] );
       glUniform1i( sp.get_uniform("kernel_size"), kernel_size);
 
       draw_canonical_rectangle();
@@ -666,7 +683,8 @@ void PlaneSweepStereoGPU::update_depth_score(int r, float depth) {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, agregated_score_texture);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, depth_score_texture[1-current_depth_score_texture]);
+    glBindTexture(GL_TEXTURE_2D,
+                  depth_score_texture[1-current_depth_score_texture]);
 
     // init the shader program
     ShaderProgram &sp = PushInSortedListShader;
@@ -683,14 +701,15 @@ void PlaneSweepStereoGPU::update_depth_score(int r, float depth) {
   }
   fb.end();
 
-//  save_texture( depth_score_texture[current_depth_score_texture],
-//          "/home/paulinus/Desktop/test_PlaneSweepStereo/depth_score%04d_%f.png",r,depth);
+//  save_texture(depth_score_texture[current_depth_score_texture],
+//      "/home/paulinus/Desktop/test_PlaneSweepStereo/depth_score%04d_%f.png",
+//      r, depth);
 }
 
 
-void PlaneSweepStereoGPU::update_best_depth(float depth) {
+void PlaneSweepStereoGPU::update_best_depth(float depth, int nplanes) {
   // swap buffers
-  current_best_depth_texture = 1-current_best_depth_texture;
+  current_best_depth_texture = 1 - current_best_depth_texture;
 
   FramebufferObject &fb = best_depth_fbo[current_best_depth_texture];
   fb.begin();
@@ -698,9 +717,11 @@ void PlaneSweepStereoGPU::update_best_depth(float depth) {
     // set active textures
     glEnable(GL_TEXTURE_2D);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, depth_score_texture[current_depth_score_texture]);
+    glBindTexture(GL_TEXTURE_2D,
+                  depth_score_texture[current_depth_score_texture]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, best_depth_texture[1-current_best_depth_texture]);
+    glBindTexture(GL_TEXTURE_2D,
+                  best_depth_texture[1 - current_best_depth_texture]);
 
     // init the shader program
     ShaderProgram &sp = UpdateBestDepthShader;
@@ -710,16 +731,17 @@ void PlaneSweepStereoGPU::update_best_depth(float depth) {
       glUniform1i( sp.get_uniform("depth_score_texture"), 0 );
       glUniform1i( sp.get_uniform("best_depth_texture"), 1 );
       glUniform1f( sp.get_uniform("depth"), depth );
+      glUniform1f( sp.get_uniform("nplanes"), float(nplanes) );
 
       draw_canonical_rectangle();
-
     }
     sp.end();
   }
   fb.end();
 
 //    save_texture( best_depth_texture[current_best_depth_texture],
-//            "/home/paulinus/Desktop/test_PlaneSweepStereo/best_depth%f.png",depth);
+//        "/home/paulinus/Desktop/test_PlaneSweepStereo/best_depth%f.png",
+//        depth);
 }
 
 

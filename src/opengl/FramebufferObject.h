@@ -11,7 +11,7 @@ class FramebufferObject
 
 	GLuint RGBbuffer;
 	GLuint depthbuffer;
-	int width,height;
+	int width, height;
 
 public:
 	FramebufferObject()

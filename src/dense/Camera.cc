@@ -38,7 +38,6 @@ void Camera::set_KRt(const vnl_double_3x3 &K_, const vnl_double_3x3 &R_, const v
 
 bool Camera::check_K(const double tol)
 {
-
 	if( fabs(K(1,0)-0)<tol
 			&& fabs(K(2,0)-0)<tol
 			&& fabs(K(2,1)-0)<tol
