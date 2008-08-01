@@ -30,8 +30,74 @@ vnl_float_3 vnl_float_3_from_x( const T &x ) {
 
 
 class PlaneSweepStereoGPU : public PlaneSweepStereo {
+public:
+  PlaneSweepStereoGPU();
+  int AddFrontoParallelPlanes(int nplanes);
+  int AddPlane(const vnl_double_4 &plane);
+  void compute(int nplanes, CorrelationType ct, int kernel_size);
+  Image get_depthmap();
+  Image get_confidence();
+
+private:
+  void init_shaders();
+  void release_shaders();
+  void init_framebuffers();
+  void release_framebuffers();
+
+  void load_image_texture(GLuint texID, Image &im);
+  void load_image_textures();
+  void release_image_textures();
+  void allocate_score_depth_textures();
+  void release_score_depth_textures();
+
+  void new_compute(int nplanes, CorrelationType ct, int kernel_size);
+
+  void prepare_key_texture_ZNCC(int key_texture);
+  void compute_grayscale_and_square(GLuint src_texture,
+                                    FramebufferObject *dest_fbo);
+
+  void compute_warped_image(int r, int plane_index, CorrelationType ct);
+
+  void agregate_score(CorrelationType ct, int kernel_size);
+  void agregate_score_SD();
+  void agregate_score_SSD(int kernel_size);
+  void agregate_score_ZNCC(int kernel_size);
+
+  void update_depth_score(int r);
+  void update_best_depth(int plane_number);
+  void read_best_depth_texture();
+
+  vnl_float_3x3 ImagePlaneImageHomographyInTexCoords(int r,
+                                                     const vnl_double_4 &plane);
+
+  void clear_framebuffer(float r, float g, float b, float a,
+                         FramebufferObject *fbo);
+  void save_texture(GLuint texID, const char *filename, ... );
+  void convolve_texture(GLuint source,
+                        float weights[],
+                        float offsets_x[],
+                        float offsets_y[],
+                        int kernel_size,
+                        FramebufferObject *dest_fbo);
+  void convolve_textureRGBA(GLuint source,
+                            float weightsRGBA[][4],
+                            float offsets_x[],
+                            float offsets_y[],
+                            int kernel_size,
+                            FramebufferObject *dest_fbo);
+  void gaussian_convolution_kernel(float *weights,
+                                   float *offsetsx,
+                                   float *offsetsy,
+                                   int kernel_size);
+
+  void draw_bounding_box();
+  void draw_canonical_rectangle();
+  void place_opengl_camera();
+
+ private:
   Image depthmap;
   Image confidence;
+  vcl_vector<vnl_double_4> planes;
 
   GLuint key_texture;
   vcl_vector<GLuint> ref_textures;
@@ -71,68 +137,6 @@ class PlaneSweepStereoGPU : public PlaneSweepStereo {
   ShaderProgram UpdateBestDepthShader;
   ShaderProgram ConvolutionShader;
   ShaderProgram ConvolutionRGBAShader;
-
-public:
-  PlaneSweepStereoGPU();
-  void compute(int nplanes, CorrelationType ct, int kernel_size);
-  Image get_depthmap();
-        Image get_confidence();
-
-private:
-  void init_shaders();
-  void release_shaders();
-  void init_framebuffers();
-  void release_framebuffers();
-
-  void load_image_texture(GLuint texID, Image &im);
-  void load_image_textures();
-  void release_image_textures();
-  void allocate_score_depth_textures();
-  void release_score_depth_textures();
-
-  void new_compute(int nplanes, CorrelationType ct, int kernel_size);
-
-  void prepare_key_texture_ZNCC(int key_texture);
-  void compute_grayscale_and_square(GLuint src_texture,
-                                    FramebufferObject *dest_fbo);
-
-  void compute_warped_image(int r, double depth, CorrelationType ct);
-
-  void agregate_score(CorrelationType ct, int kernel_size);
-  void agregate_score_SD();
-  void agregate_score_SSD(int kernel_size);
-  void agregate_score_ZNCC(int kernel_size);
-
-  void update_depth_score(int r, float depth);
-  void update_best_depth(float depth, int nplanes);
-  void read_best_depth_texture(int nplanes);
-
-  vnl_float_3x3 image_to_image_homography_in_texture_coordinates(int r,
-                                                                 float depth);
-
-  void clear_framebuffer(float r, float g, float b, float a,
-                         FramebufferObject *fbo);
-  void save_texture(GLuint texID, const char *filename, ... );
-  void convolve_texture(GLuint source,
-                        float weights[],
-                        float offsets_x[],
-                        float offsets_y[],
-                        int kernel_size,
-                        FramebufferObject *dest_fbo);
-  void convolve_textureRGBA(GLuint source,
-                            float weightsRGBA[][4],
-                            float offsets_x[],
-                            float offsets_y[],
-                            int kernel_size,
-                            FramebufferObject *dest_fbo);
-  void gaussian_convolution_kernel(float *weights,
-                                   float *offsetsx,
-                                   float *offsetsy,
-                                   int kernel_size);
-
-  void draw_bounding_box();
-  void draw_canonical_rectangle();
-  void place_opengl_camera();
 };
 
 #endif //__PlaneSweepStereoGPU_h__
