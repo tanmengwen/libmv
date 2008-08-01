@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
                       data.bbox[1][0],data.bbox[1][1],data.bbox[1][2] );
 
 
-  ps.compute(100, correlation, window_size);
+  ps.compute(200, correlation, window_size);
 
 
   std::string depthmap_filename = std::string(argv[3]) + ".depthmap.pgm";

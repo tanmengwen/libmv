@@ -204,6 +204,22 @@ void PlaneSweepStereoGPU::clear_framebuffer(float r,
   fbo->end();
 }
 
+int PlaneSweepStereoGPU::AddFrontoParallelPlanes(int nplanes) {
+  int first_index = planes.size();
+  vcl_vector<double> depths;
+  get_plane_depths(depths, nplanes);
+  for (int i = 0; i < depths.size(); ++i) {
+    planes.push_back(key_camera.frontoparallel_plane_from_depth(depths[i]));
+  }
+  return first_index;
+}
+
+int PlaneSweepStereoGPU::AddPlane(const vnl_double_4 &plane) {
+  planes.push_back(plane);
+  return planes.size() - 1;
+}
+
+
 
 void PlaneSweepStereoGPU::compute(int nplanes,
                                   CorrelationType ct,
@@ -236,8 +252,8 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
                                       CorrelationType ct,
                                       int kernel_size) {
   near_and_far_from_bounding_box();
-  vcl_vector<double> depths;
-  get_plane_depths(depths, nplanes);
+  AddFrontoParallelPlanes(nplanes);
+  // AddPlane(vnl_double_4(0,0,1,0.83));
 
   // init best_depth and best_score
   for (int i = 0; i < 2; i++)
@@ -246,7 +262,7 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
   if (ct == ZNCC)
     prepare_key_texture_ZNCC(kernel_size);
 
-  for (uint d = 0; d < depths.size(); d++) {
+  for (uint plane_number = 0; plane_number < planes.size(); ++plane_number) {
     // Init the depth_scores buffer.
     // (It will contain the K best scores for this depth.)
     for (int i = 0; i < 2; i++)
@@ -255,19 +271,19 @@ void PlaneSweepStereoGPU::new_compute(int nplanes,
     for (int r = 0; r < nrefs(); r++) {
       // compute the warped image and/or the matching score w.r.t. the key
       // image
-      compute_warped_image(r,depths[d],ct);
+      compute_warped_image(r, plane_number, ct);
       //save_texture(warped_image_texture,"warped%02d_%03d.png",r,d);
       // agregate the score
-      agregate_score(ct,kernel_size);
+      agregate_score(ct, kernel_size);
       //save_texture(agregated_score_texture,"agregated%02d_%03d.png",r,d);
       // update the depth_scores buffer
-      update_depth_score(r,depths[d]);
+      update_depth_score(r);
     }
     // update the best_depth and best_score buffers
-    update_best_depth(float(d) / depths.size(), nplanes);
+    update_best_depth(plane_number);
   }
 
-  read_best_depth_texture(nplanes);
+  read_best_depth_texture();
 }
 
 void PlaneSweepStereoGPU::agregate_score(CorrelationType ct, int kernel_size) {
@@ -278,12 +294,12 @@ void PlaneSweepStereoGPU::agregate_score(CorrelationType ct, int kernel_size) {
   }
 }
 
-void PlaneSweepStereoGPU::read_best_depth_texture(int nplanes) {
-  depthmap = Image(width(),height(),1,1);
-  confidence = Image(width(),height(),1,1);
+void PlaneSweepStereoGPU::read_best_depth_texture() {
+  depthmap = Image(width(), height(), 1, 1);
+  confidence = Image(width(), height(), 1, 1);
 
-  Image score = Image(width(),height(),1,1);
-  Image sum = Image(width(),height(),1,1);
+  Image score = Image(width(), height(), 1, 1);
+  Image sum = Image(width(), height(), 1, 1);
 
   glBindTexture(GL_TEXTURE_2D, best_depth_texture[current_best_depth_texture]);
   glGetTexImage(GL_TEXTURE_2D, 0, GL_RED,
@@ -310,12 +326,8 @@ Image PlaneSweepStereoGPU::get_confidence() {
   return confidence;
 }
 
-vnl_float_3x3
-PlaneSweepStereoGPU::
-image_to_image_homography_in_texture_coordinates( int r,
-                                                  float depth) {
-  vnl_double_4 plane = key_camera.frontoparallel_plane_from_depth(depth);
-
+vnl_float_3x3 PlaneSweepStereoGPU::
+ImagePlaneImageHomographyInTexCoords(int r, const vnl_double_4 &plane) {
   // Homography from the key image to the ref image in central pixel coords.
   vnl_double_3x3 Him2im = Camera::H_from_2P_plane(key_camera,
                                                   ref_cameras[r],
@@ -333,7 +345,7 @@ image_to_image_homography_in_texture_coordinates( int r,
 
 
 void PlaneSweepStereoGPU::compute_warped_image(int r,
-                                               double depth,
+                                               int plane_index,
                                                CorrelationType ct) {
   ShaderProgram *sp_pointer;
   switch(ct) {
@@ -368,31 +380,12 @@ void PlaneSweepStereoGPU::compute_warped_image(int r,
       glUniform1i( sp.get_uniform("ref_texture"), 1 );
 
       // compute homography induced by a plane at depth depth
-      vnl_float_3x3 H = image_to_image_homography_in_texture_coordinates(r,
-                                                                         depth);
+      vnl_double_4 &plane = planes[plane_index];
+      vnl_float_3x3 H = ImagePlaneImageHomographyInTexCoords(r, plane);
       glUniformMatrix3fv( sp.get_uniform("H"), 1, GL_TRUE, H.data_block() );
 
       // draw the plane
-      vnl_double_3 tl = key_camera.unproject( -.5,-.5,depth);
-      vnl_double_3 tr = key_camera.unproject(width()-.5,-.5,depth);
-      vnl_double_3 bl = key_camera.unproject( -.5,height()-.5,depth);
-      vnl_double_3 br = key_camera.unproject(width()-.5,height()-.5,depth);
-
-      glBegin(GL_QUADS);
-        glColor3f(1,1,1);
-        glMultiTexCoord2f(GL_TEXTURE0,0,0);
-        glVertex3dv(tl.data_block());
-
-        glMultiTexCoord2f(GL_TEXTURE0,0,1);
-        glVertex3dv(bl.data_block());
-
-        glMultiTexCoord2f(GL_TEXTURE0,1,1);
-        glVertex3dv(br.data_block());
-
-        glMultiTexCoord2f(GL_TEXTURE0,1,0);
-        glVertex3dv(tr.data_block());
-      glEnd();
-
+      draw_canonical_rectangle();
     }
     sp.end();
   }
@@ -401,7 +394,8 @@ void PlaneSweepStereoGPU::compute_warped_image(int r,
 
 
 void PlaneSweepStereoGPU::agregate_score_SD() {
-  // TODO this should be done simply by copying the warped_texture_texture to the agregated_score_texture
+  // TODO this should be done simply by copying the warped_texture_texture
+  // to the agregated_score_texture
   agregate_score_SSD(1);
 }
 
@@ -420,7 +414,7 @@ void PlaneSweepStereoGPU::agregate_score_SSD(int kernel_size) {
                    kernel_size, &agregated_score_fbo);
 }
 
-/// given a color texture, computes its gray scale (or intensity) version I
+// given a color texture, computes its gray scale (or intensity) version I
 //  and its square I*I, the intensity is stored on the red channel of
 //  dest_texture and the square on the green channel
 void PlaneSweepStereoGPU::compute_grayscale_and_square(GLuint src_texture,
@@ -671,9 +665,9 @@ void PlaneSweepStereoGPU::convolve_textureRGBA(GLuint source,
   fb.end();
 }
 
-void PlaneSweepStereoGPU::update_depth_score(int r, float depth) {
+void PlaneSweepStereoGPU::update_depth_score(int r) {
   // swap buffers
-  current_depth_score_texture = 1-current_depth_score_texture;
+  current_depth_score_texture = 1 - current_depth_score_texture;
 
   FramebufferObject &fb = depth_score_fbo[current_depth_score_texture];
   fb.begin();
@@ -695,7 +689,6 @@ void PlaneSweepStereoGPU::update_depth_score(int r, float depth) {
       glUniform1i( sp.get_uniform("sorted_list_texture"), 1 );
 
       draw_canonical_rectangle();
-
     }
     sp.end();
   }
@@ -707,7 +700,7 @@ void PlaneSweepStereoGPU::update_depth_score(int r, float depth) {
 }
 
 
-void PlaneSweepStereoGPU::update_best_depth(float depth, int nplanes) {
+void PlaneSweepStereoGPU::update_best_depth(int plane_number) {
   // swap buffers
   current_best_depth_texture = 1 - current_best_depth_texture;
 
@@ -728,10 +721,10 @@ void PlaneSweepStereoGPU::update_best_depth(float depth, int nplanes) {
     sp.begin();
     {
       // pass arguments to the program
-      glUniform1i( sp.get_uniform("depth_score_texture"), 0 );
-      glUniform1i( sp.get_uniform("best_depth_texture"), 1 );
-      glUniform1f( sp.get_uniform("depth"), depth );
-      glUniform1f( sp.get_uniform("nplanes"), float(nplanes) );
+      glUniform1i(sp.get_uniform("depth_score_texture"), 0 );
+      glUniform1i(sp.get_uniform("best_depth_texture"), 1 );
+      glUniform1f(sp.get_uniform("depth"), float(plane_number) / planes.size());
+      glUniform1f(sp.get_uniform("nplanes"), float(planes.size()) );
 
       draw_canonical_rectangle();
     }
