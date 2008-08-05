@@ -10,7 +10,7 @@
 = To do =
 
  * Two view reconstruction algos:
-   * 8-point algorithm for the fundamental matrix.
+   * ~~8-point algorithm for the fundamental matrix.~~
    * Non-linear MLE of the fundamental matrix.
    * Focal from fundamental, Hartley method.
  * Set up cmake files to call test data generators.
@@ -19,6 +19,9 @@
 
 
 = Done =
+
+==== Tuesday,  August 5th, 2008 ====
+ * Implemented the 8-point algorithm.
 
 ==== End of July ====
  * Wrote the multiscale version of KLT.
