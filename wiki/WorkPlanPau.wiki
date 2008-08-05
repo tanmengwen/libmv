@@ -2,21 +2,25 @@
 
 
 = Currently working on =
+ * Basic multiview reconstruction algorithms.
  * Improving ImageLibrary.
  * Implementing KLT for the CorrespondenceLibrary.
 
 
 = To do =
 
- * Continuously update ImageLibrary.
+ * Two view reconstruction algos:
+   * 8-point algorithm for the fundamental matrix.
+   * Non-linear MLE of the fundamental matrix.
+   * Focal from fundamental, Hartley method.
  * Write more image io stuff.
- * Write KLT tracker.
-   * Try the multiscale version.
-   * Integrate with Keir's generic tracking framework.
  * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
+
+==== End of July ====
+ * Wrote the multiscale version of KLT.
 
 ==== Saturday,  July 12th, 2008 ====
  * Added io support for color PPM.
