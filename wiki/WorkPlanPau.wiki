@@ -13,6 +13,7 @@
    * 8-point algorithm for the fundamental matrix.
    * Non-linear MLE of the fundamental matrix.
    * Focal from fundamental, Hartley method.
+ * Set up cmake files to call test data generators.
  * Write more image io stuff.
  * Create a doxyfile and check that doxygen output looks ok.
 
