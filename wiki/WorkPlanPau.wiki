@@ -20,6 +20,15 @@
 
 = Done =
 
+==== Thursday, August 7th, 2008 ====
+ * Added inefficient implementation of Determinant and Inverse functions.
+ * Added matrix stacking functions.
+ * Wrote P_from_KRt and KRT_from_P functions.
+
+==== Wednesday, August 6th, 2008 ====
+ * Improved the 8-point algorithm.
+ * Moved things numeric.
+
 ==== Tuesday,  August 5th, 2008 ====
  * Implemented the 8-point algorithm.
 
