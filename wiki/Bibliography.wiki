@@ -1,4 +1,13 @@
 #summary Some of the techniques used in libmv
 
+=== Correspondences ===
+==== KLT ====
+  * [http://www.ces.clemson.edu/~stb/klt/ The Implementation.]
+  * J. Shi and C. Tomasi.  Good Features to Track.  In IEEE Conference on Computer Vision and Pattern Recognition, pages 593-600, 1994. ([http://www.ces.clemson.edu/~stb/klt/shi-tomasi-good-features-cvpr1994.pdf PDF])
+
+=== Multiview Geometry ===
+  * R. I. Hartely and A. Zisserman.  Multiple View Geometry in Computer Vision.  Second Edition.  Cambridge University Press, ISBN: 0521540518, 2004.
+  * R. I. Hartley.  Extraction of focal lengths from the fundamental matrix.  Technical Repport, 1993 ([http://axiom.anu.edu.au/~hartley/Papers/focal-lengths/focal.pdf PDF])
+
 === Dense reconstruction ===
-  * C. Zach, M. Sormann, and K. Karner. High-performance multi-view reconstruction. In International Symposium on 3D Data Processing, Visualization and Transmission (3DPVT), 2006 ([http://www.icg.tugraz.at/Members/zach/my_publications/3dpvt2006a.pdf PDF])
+  * C. Zach, M. Sormann, and K. Karner.  High-performance multi-view reconstruction.  In International Symposium on 3D Data Processing, Visualization and Transmission (3DPVT), 2006 ([http://www.icg.tugraz.at/Members/zach/my_publications/3dpvt2006a.pdf PDF])
