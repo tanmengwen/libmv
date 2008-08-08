@@ -9,11 +9,21 @@
 
 = To do =
 
+
  * Two view reconstruction algos:
    * ~~8-point algorithm for the fundamental matrix.~~
    * Non-linear MLE of the fundamental matrix.
    * ~~Focal from fundamental, Hartley method.~~
    * Add failure handling to focal from fundamental.
+ * Three view reconstruction:
+   * Look what Keir did in libmv1.
+   * Port it.
+ * Bundle adjustment:
+   * Look what Keir did in libmv1.
+   * Port it.
+ * Arrange the multiview functions:
+   * Put functions in their adequate files (ex. P_From_KRt should not be in fundamental.h).
+   * Decide a naming convention for the functions.
  * ~~Set up cmake files to call test data generators.~~
  * Write more image io stuff.
  * Create a doxyfile and check that doxygen output looks ok.
