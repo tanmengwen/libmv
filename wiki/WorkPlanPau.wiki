@@ -12,13 +12,18 @@
  * Two view reconstruction algos:
    * ~~8-point algorithm for the fundamental matrix.~~
    * Non-linear MLE of the fundamental matrix.
-   * Focal from fundamental, Hartley method.
- * Set up cmake files to call test data generators.
+   * ~~Focal from fundamental, Hartley method.~~
+   * Add failure handling to focal from fundamental.
+ * ~~Set up cmake files to call test data generators.~~
  * Write more image io stuff.
  * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
+This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+
+==== Friday, August 8th, 2008 ====
+ * Finished Hartley's focal from fundamental.
 
 ==== Thursday, August 7th, 2008 ====
  * Added inefficient implementation of Determinant and Inverse functions.
@@ -26,6 +31,7 @@
  * Wrote P_from_KRt and KRT_from_P functions.
 
 ==== Wednesday, August 6th, 2008 ====
+ * Set up cmake files to call test data generators.
  * Improved the 8-point algorithm.
  * Moved things numeric.
 
