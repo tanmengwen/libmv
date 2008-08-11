@@ -9,20 +9,20 @@
 
 = To do =
 
-
  * Two view reconstruction algos:
    * ~~8-point algorithm for the fundamental matrix.~~
    * Non-linear MLE of the fundamental matrix.
    * ~~Focal from fundamental, Hartley method.~~
-   * Add failure handling to focal from fundamental.
+   * ~~Add failure handling to focal from fundamental.~~
+   * Add data sets for testing.
  * Three view reconstruction:
    * Look what Keir did in libmv1.
    * Port it.
  * Bundle adjustment:
    * Look what Keir did in libmv1.
    * Port it.
- * Arrange the multiview functions:
-   * Put functions in their adequate files (ex. P_From_KRt should not be in fundamental.h).
+ * ~~Arrange the multiview functions:~~
+   * ~~Put functions in their adequate files (ex. P_From_KRt should not be in fundamental.h).~~
    * Decide a naming convention for the functions.
  * ~~Set up cmake files to call test data generators.~~
  * Write more image io stuff.
@@ -31,6 +31,11 @@
 
 = Done =
 This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+
+==== Saturday, August 9th, 2008 ====
+ * Fixed a bug in fundamental_test.cc
+ * Made FundamentalFromCorrespondence return a "confidence" value.
+ * Arranged fundamental files a bit.
 
 ==== Friday, August 8th, 2008 ====
  * Finished Hartley's focal from fundamental.
