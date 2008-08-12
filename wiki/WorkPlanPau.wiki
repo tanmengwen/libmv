@@ -11,10 +11,12 @@
 
  * Two view reconstruction algos:
    * ~~8-point algorithm for the fundamental matrix.~~
-   * Non-linear MLE of the fundamental matrix.
+   * ~~Non-linear MLE of the fundamental matrix.~~ Lets just bundle adjust the structure, motion and camera parameters.
    * ~~Focal from fundamental, Hartley method.~~
    * ~~Add failure handling to focal from fundamental.~~
-   * Add data sets for testing.
+   * Add more data sets for testing.
+   * Recover R and t from F and K.
+   * Triangulate structure.
  * Three view reconstruction:
    * Look what Keir did in libmv1.
    * Port it.
@@ -31,6 +33,10 @@
 
 = Done =
 This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+
+==== Monday, August 11th, 2008 ====
+ * Separated data sets for test.
+ * Fixed TwoViewReconstruction test.  First correspondences to focal length example.
 
 ==== Saturday, August 9th, 2008 ====
  * Fixed a bug in fundamental_test.cc
