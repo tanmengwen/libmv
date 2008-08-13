@@ -15,7 +15,7 @@
    * ~~Focal from fundamental, Hartley method.~~
    * ~~Add failure handling to focal from fundamental.~~
    * Add more data sets for testing.
-   * Recover R and t from F and K.
+   * ~~Recover R and t from F and K.~~
    * Triangulate structure.
  * Three view reconstruction:
    * Look what Keir did in libmv1.
@@ -33,6 +33,13 @@
 
 = Done =
 This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+
+==== Wednesday, August 13th, 2008 ====
+ * Motion from essential matrix.
+ * Port TriangulateDLT.
+
+==== Tuesday, August 12th, 2008 ====
+ * Essential matrix computation.
 
 ==== Monday, August 11th, 2008 ====
  * Separated data sets for test.
