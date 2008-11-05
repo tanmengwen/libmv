@@ -7,10 +7,16 @@
 
 === Multiview Geometry ===
   * R. I. Hartely and A. Zisserman.  Multiple View Geometry in Computer Vision.  Second Edition.  Cambridge University Press, ISBN: 0521540518, 2004.
+
 ==== Focal Length Estimation ====
   * R. I. Hartley.  Extraction of focal lengths from the fundamental matrix.  Technical Repport, 1993 ([http://axiom.anu.edu.au/~hartley/Papers/focal-lengths/focal.pdf PDF])
   * P. Sturm, Z.L. Cheng, P.C.Y. Chen and A.N. Poo.  Focal length calibration from two views: method and analysis of singular cases.  Computer Vision and Image Understanding, Volume 99, Issue 1, July 2005, Pages 58-95 ([http://perception.inrialpes.fr/Publications/2005/SCCP05/SturmZhengChenPoo-cviu05.pdf PDF])
+  * H. Stewénius, D. Nistér, F. Kahl and F. Schaffalitzky.  A Minimal Solution for Relative Pose with Unknown Focal Length.  CVPR 2005.  ([http://cmp.felk.cvut.cz/~martid1/articles/Martinec-CVPR2007.pdf PDF])
   * [http://phototour.cs.washington.edu/focal.html Estimating the focal length of a photo from EXIF tags], by Noah Snavely.
+  
+
+==== Reconstruction Registration ====
+  * D. Martinec and T. Pajdla. Robust Rotation and Translation Estimation in Multiview Reconstruction. CVPR 2007. ([http://cmp.felk.cvut.cz/~martid1/articles/Martinec-CVPR2007.pdf PDF], [http://cmp.felk.cvut.cz/~martid1/demoCVPR07/ web])
 
 === Dense reconstruction ===
   * C. Zach, M. Sormann, and K. Karner.  High-performance multi-view reconstruction.  In International Symposium on 3D Data Processing, Visualization and Transmission (3DPVT), 2006 ([http://www.icg.tugraz.at/Members/zach/my_publications/3dpvt2006a.pdf PDF])
