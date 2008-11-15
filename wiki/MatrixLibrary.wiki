@@ -78,4 +78,6 @@ FLENS has very readable code, and already links to the LAPACK routines needed fo
 
 ~~We build our own, heavily borrowing from the techniques in TooN to support fixed ~~
 
-We use FLENS. It's really great. It's hackable. It's fast. It has sparse matrix support too, and block-sparse support soon. It's license is compatible with the MIT license (it's BSD-style).
+~~We use FLENS. It's really great. It's hackable. It's fast. It has sparse matrix support too, and block-sparse support soon. It's license is compatible with the MIT license (it's BSD-style).~~
+
+FLENS required too many local changes, and had an API that is too low level. Eigen2 is our new library.
