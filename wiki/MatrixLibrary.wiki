@@ -48,6 +48,8 @@ As an interesting note, tvmet [http://tvmet.sourceforge.net/license.html had ado
 
 [http://websvn.kde.org/branches/work/eigen2/ Eigen2] is part of the KDE project. However, it has unacceptable compile speed problems because of it's extreme use of template metaprogramming. Furthermore, eigen2 has a 'pure' mathematics bent, which results in an awkward API that doesn't offer all the functionality required for practical numeric applications.
 
+*Update: Eigen2 has come a long way. In particular, there are now more array-type functionality and (most importantly) allows us to drop dependence on LAPACK, BLAS, and ATLAS. This is libmv's new library.* 
+
 === ublas ===
 
 ublas is the matrix and vector class offered by boost. ublas was used in libmv1. From an API perspective, ublas is not so bad after a bit of wrapping and typedeffing. However, the code could be conservatively described as outrageously over complicated.
