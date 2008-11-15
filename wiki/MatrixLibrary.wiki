@@ -4,6 +4,8 @@
 
 In the world of numeric processing, there are (unfortunately) many choices for matrix and vector classes. For libmv, there are two choices: use an existing matrix/vector library, or invent our own.
 
+*Update November 2008: We switched to Eigen2; no more LAPACK or ATLAS dependencies; more readable code; better performance; and most importantly no custom libmv changes necessary!*
+
 == Core functionality requirements ==
 
 The library must:
