@@ -1,6 +1,11 @@
 #summary What Keir's been working on in libmv.
 
 When I have time to spend on libmv, I plan out what I want to accomplish here and check things off as I go.
+
+==== Saturday, November 15th, 2008 ====
+  * Replaced FLENS with Eigen2.
+  * Work on reconstruction data structure.
+
 ==== Saturday, July 26th, 2008 ====
   * Implemented start of correspondences data structure.
   * Still to do: rework KLT code to use new correspondences data structure.
