@@ -1,0 +1,183 @@
+Notes on API Design
+===================
+
+These are notes from Joshua Bloch's presentation on API design.
+ * Video
+   - http://www.infoq.com/presentations/effective-api-design
+ * PDF Slides
+   - http://lcsd05.cs.tamu.edu/slides/keynote.pdf
+        
+The Process of API Design
+-------------------------
+ * Write use cases
+   - What does the api need to do to be successful?
+
+ * Know who your users are
+
+ * Start with a short one-page API design
+   - One line per function, same for classes.
+   - Should have return type, parameters. Maybe a description if the name is
+     not clear.
+   - Early on, agility trumps complete. Remeber, you have to live with these
+     decisions forever!
+
+ * Write code against the 1-page API before you start.
+   - This will become the most important code you write, even though it seems
+     like a waste of time at the start.
+   - It forces you to see the consequences the user encounters which result
+     from your choice of API.
+
+ * For API's which are also SPI's (Service Provider Interface)
+   - Careful API design is very important!
+   - Write multiple plugins before release
+     + If one, it won't support another
+     + If two, it will support more with difficulty
+     + If three, it will work fine
+
+ * Most API designs are overconstrained
+   - Aim to displease everyone equally
+
+General Principles
+------------------
+ * API should do one thing and do it well
+   - If it's hard to name, that's a bad sign
+   - Good names drive development
+   - Be amenable to splitting/merging modules
+
+ * An API should be as small as possible, but no smaller
+   - *When in doubt, leave it out*
+     + You can always add, but never remove.
+   - Conceptual weight is more important than bulk!
+   - Look for a good power-to-weight ratio
+     + But don't go too far
+
+ * Implementation should not impact API
+   - Implementation details
+     + Confuse users
+     + Inhibit freedom to change implementation
+   - Be aware of what is an implementation detail
+     + Do not overspecify behaviour of methods
+     + Be suspicious of tuning parameters
+   - Don't let implementation details 'leak' into the API
+     + On disk formats and wire formats (e.g. serialized)
+     + Exceptions (e.g. raising an SQLError is a leak)
+
+ * Minimize accessibiltity of everything
+   - Make classes and members as private as possible
+   - Public classes should have no public fields
+     + Constants are ok
+   - Allows modules to be used, understood, built, tested, and debugged
+     independenantly.
+
+ * Names matter
+   - Names should be largely self-explanatory
+     + Avoid cryptic abbrevations
+   - Be consistent-- same word means same thing throughout API, and API's on
+     that platform.
+   - Be regular--Strive for symmetry
+   - Code should read like prose.
+
+ * Documentation matters
+   "Reuse is something that is far easier to say than
+    to do. Doing it requires both good design and very good documentation. Even
+    when we see good design, which is still infrequently, we won't see the
+    components reused without good documentation."
+    - D. L. Parnas, _Software Aging. Proceedings of 16th International
+      Conference Software Engineering, 1994
+
+ * Document religiously
+   - Add a sentence saying what an instance of a class represents (noun!)
+   - Carefully document state space for objects which have a complex life
+   - For example, the conditions required for which methods to be valid
+   - Avoid preisthood
+     + API should be easy to write to, easy to use, and easy to learn
+
+ * Consider performance consequences of API design decisions
+   - Bad decisions can limit performance
+     + Making a type mutable
+     + Providing a constructor instead of a static factory
+     + Using implementation type instead of interface
+   - Do not warp API to gain performance
+     + Underlying performance issue will get fixed, but headaches will be with
+       you forever.
+     + Good design usually coincides with good performance.
+
+ * Effects of API design are real and permanant
+   - Component.getSize() returns Dimension
+   - Dimension is mutable: BAD
+   - Each getSize call must allocate a Dimension
+   - Causes millions of needeless object allocations
+
+ * API must coexist peacfully with the platform
+   - Do what is customary
+     + Obey standard naming conventions
+     + Avoid obsolete parameter and return types
+     + Mimic pattetrs in core APIs and language
+   - Take advantage of API-friendly features
+     + Generics, varargs, enums, default args, generators, etc
+   - Know and avoid API traps and pitfalls
+
+Class Design
+------------
+
+ * Minimize mutability
+   - Classes should be immutable unless there's a good reason to do otherwise
+     + Advantages: simple, threadsafe, reusable.
+     + Disadvantages: separate object for each value
+   - If mutable, keep the state space small and well defined
+     + Make it very clear when it's valid to call which method
+
+ * Subclass only where it makes sense
+   - You should be able to say with a straight face X is a Y. 
+     + A Properties is a HashMap: BAD!
+     + A Stack is a Vector: BAD!
+     + A ProjectiveCamera is a Camera: GOOD
+     + A Set is a Collection: GOOD
+   - Subclassing implies substitutability
+     + Sublass only when is-a relationship exists
+     + Otherwise, use composition
+   - Public classes should not subclass other public classes for ease of
+     implementation.
+
+ * Design and document for inheritance or phrohibit it
+   - Inheritance violates encapsulation
+     + Subclass is sensitive to implementation details of superclass
+   - If you allow subclassing, document self-use: how do methods use eachother
+
+ * Conservative policy: all classes final. Sadly, nothing like this for C++
+
+Method Design
+-------------
+
+ * Reduce boilerplate code
+   - Generally done via cut-and-paste
+   - Ugly, annoying, and error prone.
+ * Don't violate principle of least astonishment
+   - Worth extra implementation efford
+   - It's even worth reduced performance
+ * Fail fast
+   - Compile time is best
+   - At runtime, first bad method invocation is best
+ * Provide programmatic access to all data available in string form
+   - Otherwise, clients will parse strings
+     + Painful for clients
+     + Worse, turns string format into defacto API
+ * Overload with care
+   - Avoid ambiguous overloadings
+     + Conservative: no two with same number of args
+   - Just because you can doesn't mean you should
+     + Often better to use a different name
+   - If you must use ambiguous overloadings, ensure same behaviour for same
+     arguments.
+ * Use consistent parameter ordering across methods
+ * Avoid return values (e.g. NULL) which require exceptional processing
+
+Exception Design
+----------------
+
+I skipped this section because it is less applicaple to libmv
+
+Refactoring API designs
+-----------------------
+
+I skipped this section because it is less applicaple to libmv

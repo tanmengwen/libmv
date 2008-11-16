@@ -1,0 +1,28 @@
+#!/bin/sh
+
+PAT=%04d.pgm
+BASE="big"
+FEATS=2000
+START=28
+END=64
+PGMDIR="pgms"
+
+LIBMV=~/wrk/libmv/
+PATH=$PATH:$LIBMV
+
+all : ${BASE}.py
+
+
+mkdir "$1-rec"
+cd "$1-rec"
+mplayer -vo pnm:pgm $1
+
+$LIBMV/track_sequence
+	--pattern=$PAT \
+	---start=$START
+	--end=$END \
+	---num_features=$FEATS \
+	--output=${BASE}_orig.ts
+$LIBMV/correct_radial_distortion -t ${BASE}_orig.ts 
+$LIBMV/reconstruct -t $BASE.ts -o $BASE.ppr
+$LIBMV/merge_subsets -t $BASE.ts -s $BASE.ppr -o $BASE.pr

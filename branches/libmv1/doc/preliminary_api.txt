@@ -1,0 +1,281 @@
+API Design Preliminaries
+========================
+
+This is a brief api design doc, built to help flesh out issues in the API
+before it is baked in stone. As such, it is neither complete nor final.
+
+Audience
+--------
+
+Who is the intended audience for libmv?
+
+ 1. Researchers working on creating new or extending existing algorithms (and
+    their evaluation against other algorithms) in multiview geometry and 3D
+    reconstruction from images and video sequences.
+
+ 2. Application writers who wish to add multiview reconstruction abilities to
+    their applications (e.g. video matchmoving in blender) but do not care
+    about the particulars of how the reconstruction works.
+
+API Use Cases
+-------------
+
+The API falls into two categories: The researchers who will extend the existing
+code via the plugin API to evaluate new algorithms, and applictaion writers who
+are merely using the existing functionailty.
+
+Researcher use cases
+
+ * Bob wants to try out a new strategy obtaining the initial projective
+   reconstruction. He extends libmv with his algorithm. He then runs several
+   reconstructions with and without his algorithm, evaluating the performance
+   of his algorithm against others.
+   
+   + He makes a graph of mean reprojection error for each algorithm, both
+     before and after bundle adjustment.
+
+ * Jane has an idea for autocalibration. She writes an implementation for the
+   metric upgrade stage and inserts it into the reconstruction pipeline. To
+   evaluate it, she runs several reconstructions in the testbed, and compares
+   the errors of her estimation against ground truth and the other algorithms.
+
+   + She makes plots of ground truth K values (focal length, etc) against a
+     distribution of the results from her and other algorithm (evaluated over
+     many runs with random data). libmv generates the fake data, and handles
+     generation and solving over the different approaches.
+
+   + She also compares for different choices of the actual camera, and does
+     this with minimal code duplication.
+
+ * Blake reads a paper on a new technique for calculating radial distortion in
+   fisheye lenses undergoing rotation. He would like to have it available for
+   evaluation. He extends libmv with the new radial distortion calculation,
+   which will be invoked by the solver if a rotation motion is detected and the
+   camera type is fisheye.
+
+ * Laura develops a new method for choosing keyframes in a video sequence from
+   which to create an initial reconstruction. She extends keyframe selection
+   with her algorithm, and compares the quality of the resulting reconstruction
+   and the speed of the reconstruction against the other approaches already in
+   libmv. She makes a table of the following:
+
+   + Final reprojection error for no keyframes, the old keyframe methods, and
+     her new keyframe method.
+
+   + Computation time for the above methods
+  
+ * Zane has a new method for solving mosaics of images taken with a linear
+   pushbroom model, and compares it against existing solvers by extending libmv
+   with his new method.
+
+ * Tanya wants to try a new method for tracking features across frames. She
+   uses the standard libmv test suite to evaluate performance, where the
+   variable is which feature tracker (instead of KLT) is used.
+
+ * Mike has a new robust line matching technique. He 
+   uses the standard libmv test suite to evaluate performance, where the
+   variable is which feature tracker (instead of KLT) is used.
+
+Application writer use cases
+
+ * Ton is writing a matchmoving application. He feeds libmv a video
+   with no calibration data, and receives a sparse metric reconstruction of the
+   scene. He uses the libmv api to access the reconstruction data and render it
+   in blender's window.
+
+ * Ton also needs to add facilities so the user can specify constraints on
+   different parts of the reconstruction, for example, that certain points are
+   constrained to be on lines, or that certain lines are parallel.
+
+ * Sonya adds a 3D cube primitive to libmv, which improves the quality of her
+   camera solves when using libmv to reconstruct cameras and structure of
+   scenes with cubes. The bundle adjuster immediately handles the
+   new primitive by utilizing the jacobian calculation Sonya added.
+
+ * Penny watches the structure recovery as the solve progresses in her 3D
+   program.
+
+Preliminary API sketch
+----------------------
+
+External API for application writers:
+
+    class reconstruction_builder
+        ( same methods as generic_reconstruction_builder )
+
+API for extenders / researchers
+
+    // Stores correspondences across many frames
+    // otherwise known as a 'track'. Each 3d object
+    // will have a corresponding nviewmatch
+    class nviewmatch
+        bool    is_visible_in_frame(size_t)
+        bool    is_consistent()
+        bool    mark_as_outlier()
+        bool    mark_as_inlier()
+        bool    mark_as_undecided()
+        bool    mark_as_important() // for manually placed tracks
+        size_t  observations()
+        size_t  index_of_feature(size_t frame) 
+        void    add_match(size_t frame, size_t feature_index)
+        void    delete_match(size_t frame, size_t feature_index)
+        void    incorporate(nviewmatch &)
+
+    class nviewmatches
+        nviewmatch& operator[](size_t) // return corresponding nviewmatch
+        size_t  new_match() // returns index of new nviewmatch
+    
+    class feature
+        feature_type type()
+
+    class measured_features
+        size_t  add_feature_to_frame(size_t frame, feature &)
+        feature& get_feature(size_t frame, size_t feature)
+        void    mask_frame(size_t)
+        void    unmask_frame(size_t)
+        // need some method of iterating over features of a particular type
+        // not sure how to handle heterogeneous features (eg lines AND points)
+
+    template <image> // char* for now!
+    interface video_tracker
+        video_tracker(nviewmatches &, measured_features &, size_t offset=0)
+        void    add_frame(image &)
+
+    interface frame_decimator
+        frame_decimator(nviewmatches &, measured_features &)
+
+    interface radial_distortion_estimater
+        radial_distortion_estimater(nviewmatches &, measured_features &)
+        void    correct_distortion()
+
+    interface reconstruction_kernel,
+        reconstruction_kernel()
+        void    reconstruct(nviewmatches &,
+                            measured_features &,
+                            reconstruction &)
+
+    interface merge_subset_selector
+        merge_subset_selector()
+    
+    interface subset_merger
+        subset_merger()
+        add_reconstruction(reconstruction &)
+        merge_reconstructions_into(reconstruction &)
+
+    template <
+        video_tracker,
+        keypoint_detector,
+        keypoint_matcher,
+        frame_decimator,
+        radial_distortion_estimater,
+        reconstruction_kernel,
+        merge_subset_selector,
+        subset_merger,
+        camera_resecter,
+        autocalibrater,
+        track_reconnecter,
+        bundle_adjuster> 
+    class generic_reconstruction_builder
+        void    enable_sequential_correspondence_tracking()
+        void    add_frame(unsigned char *)
+        void    add_frame(unsigned char *, size_t width, size_t height)
+        void    disable_sequential_correspondence_tracking()
+        void    find_correspondences_between_all_frames()
+        size_t  current_frame_number()
+        frame  *current_frame()
+        void    add_2d_point_measurement(size_t frame, float x, float y);
+        bool    solve()
+        bool    advance_solver()
+        
+    template <reconstruction_builder>
+    class evaluation_runner
+        // runs evaluations on a particular builder... need to define things
+        // like residual calculations and whatnot; also 
+
+Example code written to the application API 
+-------------------------------------------
+
+For a video sequence::
+
+    void do_my_reconstruction()
+    {
+        mv::reconstruction_builder builder;
+        builder.enable_sequential_correspondence_tracking();
+        builder.set_frame_size(width, height, depth);
+        for (i=0; i<nframes; i++)
+            builder.add_frame(my_frames[i]);
+
+        // Solve everything at once
+        builder.solve();
+
+        OR
+
+        // Draw the reconstruction as it advances
+        while (builder.advance_solver()) {
+            draw_reconstruction(builder);
+            cout << builder.solver_stage() << endl;
+        }
+    }
+
+    void draw_reconstruction(reconstruction_builder &builder)
+    {
+        if (showing_frames) {
+            int n = builder.current_frame_number();
+            show_my_frame(n);
+            mv::frame *f = builder.current_frame();
+            for (i=0; i<f->size(); i++) {
+                // Somehow, do drawing here. Still not sure on what a good
+                // interface is.
+            }
+        }
+        if (builder.has_metric_upgrade()) {
+            // we can do 3D drawing too!
+        }
+    }
+
+For a photo collection:
+
+    void do_my_reconstruction()
+    {
+        reconstruction_builder builder;
+        for (i=0; i<nframes; i++)
+            builder.add_frame(my_frames[i], width, height);
+        builder.find_correspondences_between_all_frames()
+        builder.solve();
+    }
+
+For adding manual correspondences::
+
+    builder.add_2d_point_measurement(curframe, x, y);
+    // user clicks a different frame, sets new x and y vals
+    builder.add_2d_point_measurement(curframe, x, y);
+    builder.set_correspondence
+                                    
+For deleting a 3D point and all associated features::
+
+    builder.add_point_correspondence(... ????) // FIXME
+
+Example code written to the research API 
+----------------------------------------
+    
+
+Questions for the API:
+----------------------
+
+When there is an issue of how to accomplish something with the above API,
+record it here along with the proposed solution.
+
+    Q: How do we allow merging of both projectivereconstructions and
+    metric_reconstructions? right now, for the full reconstruction process,
+    multiple types of reconstructions must be used through one solve; at a
+    minimum, projective and metric. In a stratified solution, also affine.
+
+    A: Possibility: there is only one reconstruction class, which has a type
+    associated with it, rather than subclasses of reconstruction.
+
+    Q: What data does the subset selector need to make its decision? The set of
+    frames? the error rates in the subreconstructions? How does the builder
+    pass the set of reconstructions to the merger to decide? how does the
+    builder return the subsets?
+    
+    A: 
