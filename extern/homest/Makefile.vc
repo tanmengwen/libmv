@@ -1,0 +1,49 @@
+#
+# MS Visual C Makefile for homography estimation
+#
+# At the command prompt, type
+# nmake /f Makefile.vc
+#
+# To build a DLL, type
+# nmake CFL=/DDLL_BUILD /f Makefile.vc dll
+#
+
+CC=cl /nologo
+# CHANGE THE FOLLOWING LINE TO WHERE YOUR LEVMAR lm.h is!
+LEVMARHDR_PATH=C:\levmar-2.2
+# CHANGE THE FOLLOWING TWO LINES TO WHERE YOUR COMPILED LEVMAR & LAPACK LIBS ARE!
+LEVMARLIB_PATH=C:\levmar-2.2
+LAPACKLIBS_PATH=C:\src\lib
+INCLUDES=/I. /I$(LEVMARHDR_PATH)
+CFLAGS=$(CFL) /DWIN32 $(INCLUDES) /MD /W3 /GX /O2
+LDFLAGS=/link /subsystem:console /opt:ref /libpath:$(LEVMARLIB_PATH) /libpath:$(LAPACKLIBS_PATH)
+DLLFLAGS=/link /dll /entry:_DllMainCRTStartup@12 /subsystem:console /release /libpath:$(LEVMARLIB_PATH) /libpath:$(LAPACKLIBS_PATH)
+
+HOMEST_OBJS=calc_2Dhomog_coeffs.obj homest.obj lqs.obj min_Ax_norm.obj norm.obj buckets.obj
+HOMEST_DEMO_SRCS=calc_2Dhomog_coeffs.c homest.c lqs.c min_Ax_norm.c norm.c buckets.c
+HOMEST_DEMO_OBJS=homest_demo.obj
+HOMEST_DEMO_SRCS=homest_demo.c
+
+LIBS=levmar.lib clapack.lib blas.lib libF77.lib libI77.lib
+
+homest_demo.exe: $(HOMEST_OBJS) $(HOMEST_DEMO_OBJS)
+	$(CC) $(HOMEST_OBJS) $(HOMEST_DEMO_OBJS) $(LDFLAGS) /out:homest_demo.exe $(LIBS)
+
+# Note that when building a DLL, we make sure that we do not use any object
+# files from a previous compilation or leave such files after we are done!
+dll: clean $(HOMEST_OBJS)
+	$(CC) $(HOMEST_OBJS) $(DLLFLAGS) /out:libhomest.dll /implib:libhomest.lib $(LIBS)
+	-del $(HOMEST_OBJS)
+
+homest_demo.obj: homest.h
+homest.obj: homest.h util.h maplefuncs.h lqs.h #ransac.h
+norm.obj: util.h
+buckets.obj: util.h lqs.h
+lqs.obj: lqs.h compiler.h
+#ransac.obj: ransac.h compiler.h
+calc_2Dhomog_coeffs.obj: maplefuncs.h
+min_Ax_norm.obj: util.h
+
+clean:
+	-del $(HOMEST_OBJS) $(HOMEST_DEMO_OBJS)
+

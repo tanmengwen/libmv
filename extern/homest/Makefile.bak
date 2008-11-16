@@ -1,0 +1,110 @@
+#
+# Unix/Linux GCC Makefile for homography estimation
+#
+
+CC=gcc
+LEVMAR_PATH=/home/lourakis/levmar-src/levmar-2.2/
+INCLUDES=-I$(LEVMAR_PATH)
+CFLAGS=$(INCLUDES) -O3 -funroll-loops -Wall #-pg
+LAPACKLIBS_PATH=/usr/local/lib # WHEN USING LAPACK, CHANGE THIS TO WHERE YOUR COMPILED LIBS ARE!
+LDFLAGS=-L$(LEVMAR_PATH) -L$(LAPACKLIBS_PATH)
+
+HOMEST_DEMO_OBJS=calc_2Dhomog_coeffs.o homest_demo.o homest.o lqs.o min_Ax_norm.o norm.o buckets.o
+HOMEST_DEMO_SRCS=calc_2Dhomog_coeffs.c homest_demo.c homest.c lqs.c min_Ax_norm.c norm.c buckets.c
+AR=ar
+RANLIB=ranlib
+RM=rm -f
+MAKE=make
+MAPLE=maple
+
+LAPACKLIBS=-llapack -lblas -lf2c
+
+homest_demo: $(HOMEST_DEMO_OBJS)
+	$(CC) $(LDFLAGS) $(HOMEST_DEMO_OBJS) -o homest_demo -llevmar $(LAPACKLIBS) -lm 
+
+calc_2Dhomog_coeffs.c: homo2D.mpl
+	$(MAPLE) <  $<
+
+clean:
+	-$(RM) $(HOMEST_DEMO_OBJS) gmon.out
+
+depend:
+	makedepend $(INCLUDES) -f Makefile $(HOMEST_DEMO_SRCS)
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.
+
+calc_2Dhomog_coeffs.o: maplefuncs.h /usr/include/math.h
+calc_2Dhomog_coeffs.o: /usr/include/features.h /usr/include/sys/cdefs.h
+calc_2Dhomog_coeffs.o: /usr/include/gnu/stubs.h /usr/include/bits/huge_val.h
+calc_2Dhomog_coeffs.o: /usr/include/bits/mathdef.h
+calc_2Dhomog_coeffs.o: /usr/include/bits/mathcalls.h
+homest_demo.o: /usr/include/stdio.h /usr/include/features.h
+homest_demo.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+homest_demo.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+homest_demo.o: /usr/include/bits/types.h /usr/include/libio.h
+homest_demo.o: /usr/include/_G_config.h /usr/include/wchar.h
+homest_demo.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+homest_demo.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+homest_demo.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h homest.h
+homest.o: /usr/include/stdio.h /usr/include/features.h
+homest.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+homest.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+homest.o: /usr/include/bits/types.h /usr/include/libio.h
+homest.o: /usr/include/_G_config.h /usr/include/wchar.h
+homest.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+homest.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+homest.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h
+homest.o: /usr/include/malloc.h util.h homest.h maplefuncs.h lqs.h
+homest.o: /home/lourakis/levmar-src/levmar-2.2/lm.h
+lqs.o: /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h
+lqs.o: /usr/include/gnu/stubs.h
+lqs.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+lqs.o: /usr/include/bits/types.h /usr/include/libio.h
+lqs.o: /usr/include/_G_config.h /usr/include/wchar.h
+lqs.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+lqs.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+lqs.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h
+lqs.o: /usr/include/math.h /usr/include/bits/huge_val.h
+lqs.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+lqs.o: /usr/include/limits.h
+lqs.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/limits.h
+lqs.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/float.h lqs.h
+lqs.o: compiler.h /usr/include/sys/types.h /usr/include/time.h
+lqs.o: /usr/include/unistd.h /usr/include/bits/posix_opt.h
+lqs.o: /usr/include/bits/confname.h
+min_Ax_norm.o: /usr/include/stdio.h /usr/include/features.h
+min_Ax_norm.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+min_Ax_norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+min_Ax_norm.o: /usr/include/bits/types.h /usr/include/libio.h
+min_Ax_norm.o: /usr/include/_G_config.h /usr/include/wchar.h
+min_Ax_norm.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+min_Ax_norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+min_Ax_norm.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h
+min_Ax_norm.o: /usr/include/malloc.h /usr/include/math.h
+min_Ax_norm.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+min_Ax_norm.o: /usr/include/bits/mathcalls.h
+min_Ax_norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/float.h util.h
+norm.o: /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h
+norm.o: /usr/include/gnu/stubs.h
+norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+norm.o: /usr/include/bits/types.h /usr/include/libio.h
+norm.o: /usr/include/_G_config.h /usr/include/wchar.h
+norm.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+norm.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h
+norm.o: /usr/include/math.h /usr/include/bits/huge_val.h
+norm.o: /usr/include/bits/mathdef.h /usr/include/bits/mathcalls.h
+norm.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/float.h util.h
+buckets.o: /usr/include/stdio.h /usr/include/features.h
+buckets.o: /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h
+buckets.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stddef.h
+buckets.o: /usr/include/bits/types.h /usr/include/libio.h
+buckets.o: /usr/include/_G_config.h /usr/include/wchar.h
+buckets.o: /usr/include/bits/wchar.h /usr/include/gconv.h
+buckets.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/stdarg.h
+buckets.o: /usr/include/bits/stdio_lim.h /usr/include/stdlib.h
+buckets.o: /usr/include/malloc.h /usr/include/math.h
+buckets.o: /usr/include/bits/huge_val.h /usr/include/bits/mathdef.h
+buckets.o: /usr/include/bits/mathcalls.h
+buckets.o: /usr/lib/gcc-lib/i386-redhat-linux/2.96/include/float.h util.h
+buckets.o: lqs.h

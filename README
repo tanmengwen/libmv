@@ -1,21 +1,48 @@
-Libmv multiview reconstruction and tracking library
-===================================================
+=================
+README for libmv
+=================
 
-Libmv is a simple multiview reconstruction library.
+Libmv is a full-stack reconstruction system. 
 
-It is not ready yet. If you're interested in contributing, see:
+Libmv highlights
+================
 
-  http://code.google.com/p/libmv
+  * A complete system for reconstruction from videos
 
-Building
---------
+	No need to tie together different algorithms from different
+	packages to do simple sparse reconstruction; the work's
+	already done. It's not perfect, but hopefully it'll get there
+	sooner rather than later.
 
-Before building, make sure you have the following:
+  * An evaluation platform for investigating new algorithms
 
-* cmake 2.4 or newer
-* atlas, lapack and blas development packages. 
-    On ubuntu: apt-get install lapack3-pic lapack-dev
-    On debian/testing: apt-get install liblapack-dev liblapack-pic
+	Along with a recent Blender (patches included FIXME) it is
+	possible to use Blender to generate high-quality rendered
+	images from which to evaluate the quality of reconstruction.
 
-* Qt 4
+A Warning as of January 11th, 2008
+==================================
 
+This library is *not ready*! You have been warned!
+
+Building Libmv
+==============
+
+Use scons. You'll also need LAPACK, BLAS, and a copy of the boost sources
+1.34.x (it doesn't need to be compiled). You also need OpenEXR developent files
+and f2c.
+
+Edit the SConscript file to point to the relevant places, then run 
+
+ $ scons
+
+to build everything.
+
+There are no docs yet except for 
+
+http://www.cs.utoronto.ca/~keir/masc.pdf
+
+which is a draft of my thesis.
+
+Enjoy,
+Keir Mierle

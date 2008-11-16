@@ -1,0 +1,166 @@
+###############################################################################
+# Paths
+
+boost_path = ""
+boost_path = "/usr/local/include/boost-1_34"
+boost_libdir = '/usr/lib'
+boost_libdir = '/usr/local/lib'
+boost_python = 'boost_python-gcc41'
+
+python_includes = '/usr/include/python2.4',
+numpy_includes ='/usr/lib/python2.4/site-packages/numpy/core/include'
+
+openexr_includes = '/usr/include/OpenEXR'
+
+###############################################################################
+# Shouldn't have to change after here
+
+flags = Split('-Wall -W -O2 -fomit-frame-pointer -g -DHAVE_LAPACK') # -Werror?
+flags = Split('-Wall -W -O0 -g -pg -DHAVE_LAPACK') # -Werror?
+flags = Split('-Wall -W -O0 -g -DHAVE_LAPACK') # -Werror?
+
+comstr_obj = '[obj] $TARGET'
+comstr_lib = '[dll] $TARGET'
+comstr_bin = '[bin] $TARGET'
+
+env = Environment(
+    CPPPATH = ['include', 'test', '.',
+               'extern/klt','extern/num_util', 'extern/mimas/include',
+			   'extern/sba', 'extern/qfits/src', 'extern/homest',
+               'extern/levmar', 'extern/json',
+               boost_path, python_includes, numpy_includes, openexr_includes],
+
+    # Gets rid of lib prefix on Python .so
+    SHLIBPREFIX = "", 
+
+    # Beautify compile
+    CXXFLAGS=flags,
+#    CCFLAGS=['-pg', '-g', '-Wall','-O2', '-ffast-math'],
+    CCFLAGS=['-g', '-Wall','-O2'],
+    #LINKFLAGS=['-pg'],
+
+    # Comment these to see compile command lines.
+    CCCOMSTR=comstr_obj,
+    CXXCOMSTR=comstr_obj,
+    SHLIBCOMSTR=comstr_obj,
+    SHCXXCOMSTR=comstr_obj,
+    SHCCCOMSTR=comstr_obj,
+    LINKCOMSTR=comstr_bin,
+    SHLINKCOMSTR=comstr_lib,
+
+    LIBS=['lapack','IlmImf','Imath', 'png12']
+)
+
+#env.ParseConfig('pkg-config --cflags --libs cairo')
+env.ParseConfig('pkg-config --cflags --libs cairo-png')
+
+def prepended(x, files):
+    return [x+i for i in files.split()]
+
+import glob
+libmv_files  = prepended(
+    'src/',
+    'mv.cpp optimization.cpp em_fit.cpp rpoly.cpp linear.cpp ransac.cpp '
+    'matrix.cpp track.cpp ground_truth.cpp align.cpp camera.cpp feature.cpp '
+    'json_numeric.cc reconstruction.cc structure.cc radial.cc resection.cc '
+    'resection_reconstruction.cc keyframe.cc config.cc sixpointnview.cc '
+    'nviewtriangulate.cc robust_sixpointnview.cc')
+
+libmv_files += glob.glob("extern/mimas/lib/*.cc")
+
+num_util_files = ['extern/num_util/num_util.cpp']
+
+_mv_files = glob.glob("src/_mv.cpp");
+
+test_base = prepended('test/', 'test_runner.cc testmv.cc')
+
+klt_files = prepended(
+    'extern/klt/',
+    'convolve.c error.c klt.c klt_util.c pnmio.c pyramid.c '
+    'selectGoodFeatures.c storeFeatures.c trackFeatures.c '
+    'writeFeatures.c')
+
+sba_files = prepended(
+    'extern/sba/',
+    'sba_levmar.c sba_levmar_wrap.c sba_lapack.c sba_crsm.c sba_chkjac.c')
+
+homest_files = prepended('extern/homest/',
+	'buckets.c calc_2Dhomog_coeffs.c homest.c lqs.c norm.c min_Ax_norm.c')
+
+levmar_files = prepended('extern/levmar/',
+	'lm.c Axb.c misc.c lmlec.c lmbc.c')
+
+json = prepended('extern/json/','json.cc json_tokenizer.c')
+
+gflags = prepended('extern/google/','gflags.cc gflags_reporting.cc')
+
+base_library_files = (libmv_files + klt_files + sba_files + homest_files +
+   levmar_files + json + gflags)
+
+###############
+# Tests
+
+import os
+all_test_files = []
+def test_file(tf, datagen=False):
+    data_generator = 'test/make_%s_data.py' % tf
+    if os.path.exists(data_generator):
+        Command('test/test_%s_data.h' % tf,
+                data_generator,
+                'python $SOURCE > $TARGET')
+    bin = 'test_%s' % tf
+    ccfile = 'test_%s.cc' % tf
+    all_test_files.append('test/'+ccfile)
+    env.Program(
+        target=bin,
+        source=base_library_files + test_base + ['test/'+ccfile])
+
+# Make the tests
+map(test_file,
+    Split('align camera eval feature ground_truth json_numeric linear mv '
+          'optimization radial reconstruction resection structure '
+          'tracked_sequence uklt matrix config sixpointnview nviewtriangulate '
+          'robust_sixpointnview'))
+
+# unfinished
+#test_file("test_gric.cc")
+
+# not really tests / or not good tests / or depend on external files
+#test_file("test_io.cpp")
+#test_file("test_klt.cpp")
+#test_file("test_ransac.cpp")
+#test_file("test_em_fit.cpp") # NOT TESTS! Just experimentation
+ 
+env.Program(
+      target="all_tests",
+      source=base_library_files + test_base + all_test_files ,
+)
+
+###############
+# Utilities
+import os
+def utility(util):
+    fn = 'utils/%s.cpp' % util
+    if not os.path.exists(fn):
+        fn = 'utils/%s.cc' % util
+    env.Program(target=util,
+                source=base_library_files + [fn, 'src/mv_util.cc'])
+
+map(utility,
+    Split('bundle check_track export_blender dump_track_to_ascii '
+          'eval_reconstruction exr_to_numpy merge_subsets metric '
+          'print_reconstruction print_track print_track reconstruct resection '
+          'correct_radial_distortion track_matrix dump_config track_sequence '
+          'pick_keyframes'))
+
+##############
+# Levmar/homest demos
+#env.Program(target='homest_demo',
+#			source=base_library_files + ['extern/homest/homest_demo.c'])
+
+###############
+# Python module
+#env.SharedLibrary(target = '_mv',
+#                  source = _mv_files + base_library_files + num_util_files,
+#                  CXXFLAGS = '$CXXFLAGS -g -ftemplate-depth-100 -DBOOST_PYTHON_DYNAMIC_LIB',
+#                  LIBS = [boost_python, 'lapack'])

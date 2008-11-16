@@ -1,0 +1,54 @@
+TODO for Libmv
+==============
+
+Fix the tests
+=============
+
+Rigth now the tests are somewhat of a hodgepodge, not all
+actually proper 'tests.' I've learned more about testing since I
+started.
+
+Fix the API
+===========
+
+There are a number of API warts. In particular, the need to cast
+frequently is very bad. The code is not clean at all in this
+regard.
+
+  * A better API needs to be put in place to access the different
+    typessss directly. It should be easy to make a new
+    MeasurementVisitor which doesn't break the API but returns a
+    sensible type.
+
+Break dependancies
+==================
+
+The mv.cpp file is enormous, and should be broken down into
+smaller files; each with its own .h file. Later on a .h file
+containing the smaller ones can be made for convenience.
+
+ [_] test_io: remove dependence on needing to reconstruct by including
+     actual reconstructions as 'data' like test_tracked_sequence_data.h
+ [_] make an easier to use API to directly instantiate reconstructions in
+     code
+     [_] projective reconstructions
+         set_tracked_sequence(TrackedSequence* ts);
+         add_cam_literal(int frame, double[12])
+         add_point_feature(int frame, int track)
+ [_] fix inconsistent naming regarding frame NUMBERS and frame INDEX.
+     specifically, whether the numbering is with regards to the container index, or
+     the original file ID
+
+     * frame_orig - number w.r.t. original tracking (10-40 for example)
+     * frame_number - number w.r.t. container [0,N-1]
+
+	raw frames say 10-20
+	tracking  f->set_frame_number(size());, rather than any relation to original files.
+	multireconstruction
+    projective reconstruction
+	metric upgrade
+	fetching ground truth (back to RAW FRAMES)
+
+[ ] update reconstruct.cpp to make json
+[ ] make resection use normalization; as in, pre-scale image coords
+
