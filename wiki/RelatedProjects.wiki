@@ -17,6 +17,7 @@ There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/cal
 
 
 = 3D Reconstruction Libraries and Tools =
+  * [http://phototour.cs.washington.edu/bundler/ Bundler] - This is the code used in Microsoft's Photosynth project (or at least, was the first implementation).
   * [http://code.google.com/p/openvis3d/ OpenVis3D]
   * [http://www.mip.informatik.uni-kiel.de/~wwwadmin/Software/Doc/BIAS/html/ BIAS]
   * [http://ti.arc.nasa.gov/visionworkbench/ NASA Vision Workbench]
