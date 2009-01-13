@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Some available methods for wide baseline matching.
 
 To support stereo from wide baseline images (i.e. what a typical user would have when shooting from a handheld still camera rather than a video camera), libmv needs to have at least one strategy for wide baseline matching. There are several possibilities. The obvious one that everyone knows is SIFT, and is the most popular. There are several implementations. The others include SURF, DAISY, GLOH, and others.
 
