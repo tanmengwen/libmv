@@ -2,7 +2,7 @@
 
 === Correspondences ===
 ==== KLT ====
-  * [http://www.ces.clemson.edu/~stb/klt/ The Implementation.]
+  * [http://www.ces.clemson.edu/~stb/klt/ An implementation in C.]
   * J. Shi and C. Tomasi.  Good Features to Track.  In IEEE Conference on Computer Vision and Pattern Recognition, pages 593-600, 1994. ([http://www.ces.clemson.edu/~stb/klt/shi-tomasi-good-features-cvpr1994.pdf PDF])
 
 === Multiview Geometry ===
