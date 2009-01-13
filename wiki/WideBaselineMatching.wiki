@@ -1,0 +1,8 @@
+#summary One-sentence summary of this page.
+
+To support stereo from wide baseline images (i.e. what a typical user would have when shooting from a handheld still camera rather than a video camera), libmv needs to have at least one strategy for wide baseline matching. There are several possibilities. The obvious one that everyone knows is SIFT, and is the most popular. There are several implementations. The others include SURF, DAISY, GLOH, and others.
+
+ * SIFT - [http://libsift.sourceforge.net/ libsiftfast]. Unclear license terms.
+ * SURF - [http://jmkirby.co.uk/index.html OpenSURF]. GPL, based on OpenCV.
+ * DAISY - [http://cvlab.epfl.ch/research/surface/dense_matching/ daisy-1.3]. GPL, original. This is pretty promising. The algorithm doesn't look too hard to implement; conceivably it could be reimplemented from [http://cvlab.epfl.ch/publications/publications/2008/TolaLF08.pdf the paper (pdf)].
+ * [http://www.vlfeat.org/ VLFeat] - A library with many common matching algorithms. This would be great, but is GPL.
