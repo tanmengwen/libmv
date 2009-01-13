@@ -8,3 +8,10 @@ To support stereo from wide baseline images (i.e. what a typical user would have
  * SURF - [http://jmkirby.co.uk/index.html OpenSURF]. GPL, based on OpenCV.
  * DAISY - [http://cvlab.epfl.ch/research/surface/dense_matching/ daisy-1.3]. GPL, original. This is pretty promising. The algorithm doesn't look too hard to implement; conceivably it could be reimplemented from [http://cvlab.epfl.ch/publications/publications/2008/TolaLF08.pdf the paper (pdf)].
  * [http://www.vlfeat.org/ VLFeat] - A library with many common matching algorithms. This would be great, but is GPL.
+
+=== Approximate nearest neighbour matching ===
+
+Traditionally best-bin-first kdtrees are used for this, but increasingly LSH is used.
+
+ * [http://code.google.com/p/lshkit/ lshkit] is a GPL'd LSH implementation, but it appears to be more research focused and not yet mature.
+ * [http://www.cs.umd.edu/~mount/ANN/ ANN] is LGPL'd, but not particularly fast. It is probably sufficient for now and can be replaced later.
