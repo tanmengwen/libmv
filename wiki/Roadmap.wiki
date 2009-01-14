@@ -9,3 +9,12 @@ First release of libmv. Primary goal is to get _something_ released that people 
  * Contains a single executable for reconstructing from 2 uncalibrated images.
  * The output is a blender script, containing two cameras at the appropriate position, and the cloud of reconstructed points.
  * Builds on Linux, Windows, Mac.
+
+Internally:
+
+ * Has basic USURF implementation.
+ * Has basic non-sparse bundle adjustment.
+
+= libmv 0.0.2 =
+
+ * Dense reconstruction via plane sweep algorithm.
