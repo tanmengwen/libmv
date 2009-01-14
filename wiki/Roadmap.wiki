@@ -4,8 +4,8 @@ To inspire development, we're going to do alpha releases without full functional
 
 = libmv 0.0.1 =
 
-First release of libmv.
+First release of libmv. Primary goal is to get _something_ released that people can play with, even if it is extremely basic.
 
  * Contains a single executable for reconstructing from 2 uncalibrated images.
- * The output is a blender script.
+ * The output is a blender script, containing two cameras at the appropriate position, and the cloud of reconstructed points.
  * Builds on Linux, Windows, Mac.
