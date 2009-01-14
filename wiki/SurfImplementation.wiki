@@ -1,0 +1,4 @@
+#summary Notes about libmv's SURF implementation.
+
+ * [http://www.vision.ee.ethz.ch/~aneubeck/ Fast non-maximal suppression]
+ * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
