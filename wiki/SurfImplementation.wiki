@@ -2,3 +2,4 @@
 
  * [http://www.vision.ee.ethz.ch/~aneubeck/ Fast non-maximal suppression]
  * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
+ * [http://www.jmkirby.co.uk/surf.pdf Detailed notes about OpenSURF's implementation].
