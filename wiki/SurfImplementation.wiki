@@ -1,5 +1,7 @@
 #summary Notes about libmv's SURF implementation.
 
  * [http://www.vision.ee.ethz.ch/~aneubeck/ Fast non-maximal suppression]
+ * [http://www.vision.ee.ethz.ch/~surf/ SURF author homepage]
+ * [ftp://ftp.vision.ee.ethz.ch/publications/articles/eth_biwi_00517.pdf SURF paper (pdf)]
  * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
  * [http://www.jmkirby.co.uk/surf.pdf Detailed notes about OpenSURF's implementation].
