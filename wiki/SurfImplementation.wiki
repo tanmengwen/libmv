@@ -4,4 +4,4 @@
  * [http://www.vision.ee.ethz.ch/~surf/ SURF author homepage]
  * [ftp://ftp.vision.ee.ethz.ch/publications/articles/eth_biwi_00517.pdf SURF paper (pdf)]
  * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
- * [http://www.cs.bris.ac.uk/Publications/pub_master.jsp?id=2000970 Detailed notes about OpenSURF's implementation].[http://www.jmkirby.co.uk/surf.pdf pdf] or [http://www.cs.bris.ac.uk/Publications/Papers/2000970.pdf pdf].
+ * [http://www.cs.bris.ac.uk/Publications/pub_master.jsp?id=2000970 Detailed notes about OpenSURF's implementation]. Or, see the [http://www.jmkirby.co.uk/surf.pdf pdf] (also [http://www.cs.bris.ac.uk/Publications/Papers/2000970.pdf pdf]).
