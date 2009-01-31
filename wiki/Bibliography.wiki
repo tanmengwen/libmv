@@ -7,6 +7,7 @@
 
 === Multiview Geometry ===
   * R. I. Hartely and A. Zisserman.  Multiple View Geometry in Computer Vision.  Second Edition.  Cambridge University Press, ISBN: 0521540518, 2004.
+  * Paper on [http://homepage.mac.com/sigfpe/paper.pdf automatic differentiation], which we may want to implement in Eigen.
 
 === Focal Length Estimation ===
   * R. I. Hartley.  Extraction of focal lengths from the fundamental matrix.  Technical Repport, 1993 ([http://axiom.anu.edu.au/~hartley/Papers/focal-lengths/focal.pdf PDF])
