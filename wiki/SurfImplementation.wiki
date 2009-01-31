@@ -1,7 +1,19 @@
-#summary Notes about libmv's SURF implementation.
+#summary Description of libmv's SURF implementation.
 
  * [http://www.vision.ee.ethz.ch/~aneubeck/ Fast non-maximal suppression]
  * [http://www.vision.ee.ethz.ch/~surf/ SURF author homepage]
  * [ftp://ftp.vision.ee.ethz.ch/publications/articles/eth_biwi_00517.pdf SURF paper (pdf)]
  * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
  * [http://www.cs.bris.ac.uk/Publications/pub_master.jsp?id=2000970 Detailed notes about OpenSURF's implementation]. Or, see the [http://www.jmkirby.co.uk/surf.pdf pdf] (also [http://www.cs.bris.ac.uk/Publications/Papers/2000970.pdf pdf]).
+
+== Code location ==
+
+ * image/blob_response.h - Hessian response (interest point detection).
+ * image/integral_image.h - The summed-area-table.
+ * image/non_maximal_suppression.h - Find local maxima in an Array3Df.
+
+==== Stuff that's not finished ====
+
+ * image/surf.h - Overall algorithm; calls other pieces. Does interest point detection at different scales but doesn't calculate descriptors.
+ * image/surf_description.h - (not started) Calculate a surf description given an image, scale, and location.
+ * image/kdtree.h - (not started) N-dimensional matching. May switch to LSH, depending.
