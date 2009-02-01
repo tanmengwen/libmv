@@ -6,6 +6,7 @@
  * From the paper, there are overlapping filters performed at different octaves; by having a translation table it is possible to avoid recomputing some levels in the pyramid.
  * [http://www.cs.bris.ac.uk/Publications/pub_master.jsp?id=2000970 Detailed notes about OpenSURF's implementation]. Or, see the [http://www.jmkirby.co.uk/surf.pdf pdf] (also [http://www.cs.bris.ac.uk/Publications/Papers/2000970.pdf pdf]).
  * [http://www.comp.leeds.ac.uk/bmvc2008/proceedings/2002/papers/92/full_92.pdf Brown & Lowe paper describing how to refining local maxima in scalespace].
+ * [http://www.robots.ox.ac.uk/~vgg/research/affine/ Test data sets (graffiti)].
 
 == Code location ==
 
