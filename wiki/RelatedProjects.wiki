@@ -23,3 +23,4 @@ There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/cal
   * [http://ti.arc.nasa.gov/visionworkbench/ NASA Vision Workbench]
   * [http://cvlab.epfl.ch/software/bazar/html/group__garfeild.html GARFEILD] keypoint matching.
   * [http://labts.troja.mff.cuni.cz/~machl5bm/insight3d/ Insight3D] - Probably the most related to libmv, Insight3D is a modelling from wide-baseline photos package. GPLv2.
+  * [http://bardsley.org.uk/category/research/ A series of blog posts about 3D reconstruction and the like].
