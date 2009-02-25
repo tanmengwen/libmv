@@ -18,8 +18,10 @@
    * Compute metric reconstruction
    * Visualize it
  * Simple gui for KLT tracking
- * Write more image io stuff.
- * Create a doxyfile and check that doxygen output looks ok.
+ * Write more image io stuff
+ * Create a doxyfile and check that doxygen output looks ok
+ * Move K_From_AbsoluteConic to autocalibration.h
+ * Implement matrix fliping functions and use them in K_From_AbsoluteConic
 
 
 = Done =
