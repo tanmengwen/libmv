@@ -9,9 +9,9 @@
 = To do =
 
  * Two view reconstruction gui:
-   * Set up a basic application enabling to open 2 images
-   * Compute surf on each image
-   * Display surf detections
+   * ~~Set up a basic application enabling to open 2 images~~
+   * ~~Compute surf on each image~~
+   * ~~Display surf detections~~
    * Find candidate matches using kdtree
    * Compute robust matches and fundamental matrix
    * Compute cameras' internal parameters
@@ -20,14 +20,20 @@
  * Simple gui for KLT tracking
  * Write more image io stuff
  * Create a doxyfile and check that doxygen output looks ok
- * Move K_From_AbsoluteConic to autocalibration.h
  * Implement matrix fliping functions and use them in K_From_AbsoluteConic
 
 
 = Done =
 This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
 
+
 ==== Wednesday, February 25th, 2009 ====
+ * Started the two view reconstruction gui.
+   * load and display images.
+   * move them.
+   * compute and display USURF features.
+
+==== Tuesday, February 24th, 2009 ====
  * Finished kdtree knn search.
 
 ==== Wednesday, August 13th, 2008 ====
