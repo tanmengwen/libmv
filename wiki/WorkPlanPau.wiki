@@ -3,36 +3,30 @@
 
 = Currently working on =
  * Basic multiview reconstruction algorithms.
- * Improving ImageLibrary.
- * Implementing KLT for the CorrespondenceLibrary.
+ * Simple guis for testing current code.
 
 
 = To do =
 
- * Two view reconstruction algos:
-   * ~~8-point algorithm for the fundamental matrix.~~
-   * ~~Non-linear MLE of the fundamental matrix.~~ Lets just bundle adjust the structure, motion and camera parameters.
-   * ~~Focal from fundamental, Hartley method.~~
-   * ~~Add failure handling to focal from fundamental.~~
-   * Add more data sets for testing.
-   * ~~Recover R and t from F and K.~~
-   * Triangulate structure.
- * Three view reconstruction:
-   * Look what Keir did in libmv1.
-   * Port it.
- * Bundle adjustment:
-   * Look what Keir did in libmv1.
-   * Port it.
- * ~~Arrange the multiview functions:~~
-   * ~~Put functions in their adequate files (ex. P_From_KRt should not be in fundamental.h).~~
-   * Decide a naming convention for the functions.
- * ~~Set up cmake files to call test data generators.~~
+ * Two view reconstruction gui:
+   * Set up a basic application enabling to open 2 images
+   * Compute surf on each image
+   * Display surf detections
+   * Find candidate matches using kdtree
+   * Compute robust matches and fundamental matrix
+   * Compute cameras' internal parameters
+   * Compute metric reconstruction
+   * Visualize it
+ * Simple gui for KLT tracking
  * Write more image io stuff.
  * Create a doxyfile and check that doxygen output looks ok.
 
 
 = Done =
 This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+
+==== Wednesday, February 25th, 2009 ====
+ * Finished kdtree knn search.
 
 ==== Wednesday, August 13th, 2008 ====
  * Motion from essential matrix.
