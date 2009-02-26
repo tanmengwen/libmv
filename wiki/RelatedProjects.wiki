@@ -26,3 +26,5 @@ There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/cal
   * [http://code.google.com/p/ehci/ EHCI] - Realtime 3D head tracking.
   * [http://bardsley.org.uk/category/research/ A series of blog posts about 3D reconstruction and the like].
   * [http://code.google.com/p/pixelstruct/ pixelstruct] - A visualization tool for synths made with Bundler. Looks quite similar to what we need.
+  * [http://www.doc.ic.ac.uk/~ajd/software.html Andrew Davison's SLAM]
+  * [http://www.robots.ox.ac.uk/~gk/ Georg Klein's SLAM]
