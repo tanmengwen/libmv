@@ -19,3 +19,4 @@ Traditionally best-bin-first kdtrees are used for this, but increasingly LSH is 
 
  * [http://code.google.com/p/lshkit/ lshkit] is a GPL'd LSH implementation, but it appears to be more research focused and not yet mature.
  * [http://www.cs.umd.edu/~mount/ANN/ ANN] is LGPL'd, but not particularly fast. It is probably sufficient for now and can be replaced later.
+ * [http://books.nips.cc/papers/files/nips17/NIPS2004_0187.pdf Spill Trees (pdf)] - Similar to kdtrees but uses a margin instead of a splitting plane, where points go on both sides. Has performance similar to LSH but is simple to implement.
