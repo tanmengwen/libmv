@@ -13,6 +13,8 @@ To support stereo from wide baseline images (i.e. what a typical user would have
  * DAISY - [http://cvlab.epfl.ch/research/surface/dense_matching/ daisy-1.3]. GPL, original. This is pretty promising. The algorithm doesn't look too hard to implement; conceivably it could be reimplemented from [http://cvlab.epfl.ch/publications/publications/2008/TolaLF08.pdf the paper (pdf)].
  * [http://www.vlfeat.org/ VLFeat] - A library with many common matching algorithms. This would be great, but is GPL.
 
+*As of March 2009, libmv has an original SURF implementation. The components are reusable and can be swapped in and out with other detectors as well.*
+
 === Approximate nearest neighbour matching ===
 
 Traditionally best-bin-first kdtrees are used for this, but increasingly LSH is used.
