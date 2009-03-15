@@ -8,12 +8,15 @@
 
 = To do =
 
+ * Autocalibration:
+   * Two views: find what works best between Hartley, Sturm and Pollefeys (linear to find a 2d solution space + quadratic to fix the ambiguity).
+   * N-views: fix implementation of Pollefeys linear method.
  * Two view reconstruction gui:
    * ~~Set up a basic application enabling to open 2 images~~
    * ~~Compute surf on each image~~
    * ~~Display surf detections~~
-   * Find candidate matches using kdtree
-   * Compute robust matches and fundamental matrix
+   * ~~Find candidate matches using kdtree~~
+   * ~~Compute robust matches and fundamental matrix~~
    * Compute cameras' internal parameters
    * Compute metric reconstruction
    * Visualize it
@@ -24,7 +27,8 @@
 
 
 = Done =
-This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)
+This was really too redundant with svn commits and I will no longer update it.
+~~This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)~~
 
 
 ==== Wednesday, February 25th, 2009 ====
