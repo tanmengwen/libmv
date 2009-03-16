@@ -17,9 +17,12 @@
    * ~~Display surf detections~~
    * ~~Find candidate matches using kdtree~~
    * ~~Compute robust matches and fundamental matrix~~
-   * Compute cameras' internal parameters
-   * Compute metric reconstruction
-   * Visualize it
+   * ~~Compute cameras' internal parameters~~
+   * ~~Compute metric reconstruction~~
+   * ~~Visualize it~~
+   * Bundle adjust the metric reconstruction
+   * Try Sturm04 method for estimating a common focal length
+   * Add the images to the camera background image in blender
  * Simple gui for KLT tracking
  * Write more image io stuff
  * Create a doxyfile and check that doxygen output looks ok
