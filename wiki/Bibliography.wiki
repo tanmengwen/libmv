@@ -1,6 +1,5 @@
 #summary Some of the techniques used in libmv
 
-
 === KLT ===
   * [http://www.ces.clemson.edu/~stb/klt/ An implementation in C.]
   * J. Shi and C. Tomasi.  Good Features to Track.  In IEEE Conference on Computer Vision and Pattern Recognition, pages 593-600, 1994. ([http://www.ces.clemson.edu/~stb/klt/shi-tomasi-good-features-cvpr1994.pdf PDF])
@@ -14,7 +13,7 @@
   * P. Sturm, Z.L. Cheng, P.C.Y. Chen and A.N. Poo.  Focal length calibration from two views: method and analysis of singular cases.  Computer Vision and Image Understanding, Volume 99, Issue 1, July 2005, Pages 58-95 ([http://perception.inrialpes.fr/Publications/2005/SCCP05/SturmZhengChenPoo-cviu05.pdf PDF])
   * H. Stewénius, D. Nistér, F. Kahl and F. Schaffalitzky.  A Minimal Solution for Relative Pose with Unknown Focal Length.  CVPR 2005.  ([http://cmp.felk.cvut.cz/~martid1/articles/Martinec-CVPR2007.pdf PDF])
   * [http://phototour.cs.washington.edu/focal.html Estimating the focal length of a photo from EXIF tags], by Noah Snavely.
-  
+  * J. Repko, M. Pollefeys. [http://www.cs.unc.edu/~marc/pubs/Repko3DIM05.pdf 3D Models from Extended Uncalibrated Video Sequences: Addressing Key-frame Selection and Projective Drift].
 
 === Reconstruction Registration ===
   * D. Martinec and T. Pajdla. Robust Rotation and Translation Estimation in Multiview Reconstruction. CVPR 2007. ([http://cmp.felk.cvut.cz/~martid1/articles/Martinec-CVPR2007.pdf PDF], [http://cmp.felk.cvut.cz/~martid1/demoCVPR07/ web])
