@@ -14,6 +14,8 @@ As part of this minimization, it is necessary to solve a sparse symmetric linear
 
 In libmv1, [http://www.ics.forth.gr/~lourakis/sba/ Sparse Bundle Adjustment] was used. Unfortunately, SBA is limited to cost functions with a particular structure (one kind of cameras and one kind of structure), and does not allow for the common situation of bundling a common focal length across all cameras.
 
+Another project, [http://code.google.com/p/gpo Google C++ Pose Optimizer], looks promising (it is for solving a large sparse nonlinear system) but fails because the sparsity structure is fixed, as with SBA. However, it does have a better license (apache).
+
 == Value to other projects ==
 
 A general sparse minimizer will be useful in many other projects. We should try to have no dependencies beyond our matrix/vector classes and a sparse minimization system.
