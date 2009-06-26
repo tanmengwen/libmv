@@ -16,6 +16,8 @@ In libmv1, [http://www.ics.forth.gr/~lourakis/sba/ Sparse Bundle Adjustment] was
 
 Another project, [http://code.google.com/p/gpo Google C++ Pose Optimizer], looks promising (it is for solving a large sparse nonlinear system) but fails because the sparsity structure is fixed, as with SBA. However, it does have a better license (apache).
 
+*Update: We have chosen SSBA as our bundler for now, until something more general comes along. It is in `third_party/ssba`.*
+
 == Value to other projects ==
 
 A general sparse minimizer will be useful in many other projects. We should try to have no dependencies beyond our matrix/vector classes and a sparse minimization system.
