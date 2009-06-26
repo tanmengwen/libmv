@@ -17,9 +17,9 @@ Local modifications: None.
   # Make sure there is a `LICENSE` file with the terms of the license. If there isn't one, find the relevant license text and put it in the file `LICENSE`.
   # Check the files in.
     * *It is important to check in a pristine version of the upstream sources for creating patches.*
-  # Create a `sconstruct` that builds the relevant files.
+  # Create a `CMakeLists.txt` that builds the relevant files.
     * This may involve editing the source. If it does, update the `README.libmv`.
-  # Check in the `sconstruct`, and (if any) updates to `README.libmv` and the sources.
+  # Check in the `CMakeLits.txt`, and (if any) updates to `README.libmv` and the sources.
 
 == Modifying third_party code ==
 
