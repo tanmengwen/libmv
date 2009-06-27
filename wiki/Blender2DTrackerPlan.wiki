@@ -1,0 +1,19 @@
+#summary Why and how to create a 2D tracker for Blender
+#labels blender
+
+= Only 2d? =
+
+The primary goal of libmv is to create a full matchmoving component for Blender. However, a matchmover is a large project. Creating a full matchmover and integrating it with a single massive merge is likely to cause headaches for all involved. A better approach is to build the functionality incrementally.
+
+While there are many parts in a matchmoving program, most of them naturally fall into two categories: 2D and 3D. Before moving to a 3D reconstruction, first 2D tracks must be made of the video to be reconstructed. There are a variety of ways of tracking in 2D. The most basic method is manual tracking, where in each frame the tracked point is moved by the user into the right position. This method works, but is laborious. At the more advanced level, there are automatic methods that use image information (such as a distinct marking on a car) to track something on the screen. In between, there are semi-automatic methods where the user guides the automatic tracking process.
+
+Some example uses of 2D tracking without 3D:
+
+  * [http://www.youtube.com/watch?v=tHkWOFqFpZo&feature=related 2D tracking with after effects]
+  * [http://www.youtube.com/watch?v=ckbJ_FPBQBQ&feature=related More 2D tracking with After Effects]
+  * [http://www.youtube.com/watch?v=zTC0aVT2Ogc&NR=1 Commercial using both 2D and 3D tracking to insert text]
+
+To see a possible 2D tracking interface, check out these tutorials from syntheyes.
+
+  * http://www.ssontech.com/content/trkintro.htm
+  * http://www.ssontech.com/content/lookdark.htm
