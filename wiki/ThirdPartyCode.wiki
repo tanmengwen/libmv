@@ -19,7 +19,7 @@ Local modifications: None.
     * *It is important to check in a pristine version of the upstream sources for creating patches.*
   # Create a `CMakeLists.txt` that builds the relevant files.
     * This may involve editing the source. If it does, update the `README.libmv`.
-  # Check in the `CMakeLits.txt`, and (if any) updates to `README.libmv` and the sources.
+  # Check in the `CMakeLists.txt`, and (if any) updates to `README.libmv` and the sources.
 
 == Modifying third_party code ==
 
