@@ -11,7 +11,7 @@ Bring simple 2D tracking capabilities to Blender.
 
 === Non-goals ===
   * Automatic selection of track points.
-  * Any kind of 3D support (that's for later). The tracking will only be useful for things moving in the plane of the 
+  * Any kind of 3D support (that's for later). The tracking will only be useful for things moving in the video plane.
   * Tracking anything other than points (for example, no line tracking).
 
 = Only 2d? =
