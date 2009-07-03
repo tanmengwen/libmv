@@ -30,3 +30,28 @@ To see a possible 2D tracking interface, check out these tutorials from syntheye
 
   * http://www.ssontech.com/content/trkintro.htm
   * http://www.ssontech.com/content/lookdark.htm
+
+= Proposed usage =
+
+Here's what I suggest for workflow. I'd like for experts in blender or in tracking to comment on this.
+
+  * Open blender.
+  * Open the video to track and select it.
+  * Open the tracking dialog
+    * Select the 'add tracker' button.
+    * Click on something to track (e.g., a person's nose)
+    * A small box is placed around the track point, indicating that the tracker is placed.
+    * Click the 'track across frames' button and watch the tracker move with the object in the video.
+    * Scrub through the video; note that on frame 25 the tracker gets lost
+    * Drag the tracker to the correct position in frame 25
+    * Advance to frame 26, and correct the position again.
+    * With the tracker selected, press 're-track selected' in the tracker dialog. Watch as the tracker tracks correctly through the remainder of the sequence.
+  * Click the 'export tracks to empties and make camera' button, which recreates the scene in blender. The track becomes an empty with IPO curves to make its movement match the scene movement. The camera is static, but positioned so that it the empty projects to the same position it is in the video.
+  * Switch to 3D view, make a monkey.
+  * Parent the monkey to the empty that was created by the tracker.
+  * Compose the render with the video; render; watch the monkey move around with the video (in 2D!)
+
+There are a number of open question.
+
+  * Where do the data structures for the tracker live? On one hand, they can probably be normal blender objects if tracking is a one-shot process where the movie is tracked, and the results baked out to empties 
+  
