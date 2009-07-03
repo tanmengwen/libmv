@@ -11,7 +11,7 @@ Bring simple 2D tracking capabilities to Blender.
 
 === Non-goals ===
   * Automatic selection of track points.
-  * Any kind of 3D support (that's for later).
+  * Any kind of 3D support (that's for later). The tracking will only be useful for things moving in the plane of the 
   * Tracking anything other than points (for example, no line tracking).
 
 = Only 2d? =
@@ -33,7 +33,7 @@ To see a possible 2D tracking interface, check out these tutorials from syntheye
 
 = Proposed usage =
 
-Here's what I suggest for workflow. I'd like for experts in blender or in tracking to comment on this.
+Here's what I suggest for workflow. I'd like for experts in blender or in tracking to comment on this. 
 
   * Open blender.
   * Open the video to track and select it.
@@ -53,5 +53,10 @@ Here's what I suggest for workflow. I'd like for experts in blender or in tracki
 
 There are a number of open question.
 
-  * Where do the data structures for the tracker live? On one hand, they can probably be normal blender objects if tracking is a one-shot process where the movie is tracked, and the results baked out to empties 
+  * Where do the data structures for the tracker live? On one hand, they can probably be normal blender objects if tracking is a one-shot process where the movie is tracked, and the results baked out to empties, with no support for saving the intermediate tracks. Alternately, it would be nice to support editing the tracks after they are put into 3D. I am not sure what the right approach is here; comments from blender coders welcome.
+  * Should the compositing steps be done automatically to make it easier for new users?
+  * Where should the tracker dialog go? Should it be a dialog or a new button panel?
+  * Should there be a separate tracking window which shows the video, the trackers, and the scrubber?
+  * Syntheyes shows a closeup of the selected tracker to make it easier to manually adjust a tracker. This is a great idea, we should do the same. But where should this go? In the button panel?
+  * Is this the most useful functional subset of 2D tracking?
   
