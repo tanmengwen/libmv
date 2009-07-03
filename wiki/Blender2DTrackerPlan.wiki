@@ -1,6 +1,19 @@
 #summary Why and how to create a 2D tracker for Blender
 #labels blender
 
+= Objective = 
+
+Bring simple 2D tracking capabilities to Blender.
+
+= Goals =
+
+  * Support semi-automatic tracking of video in blender, such that rendered items can match the movement of moving elements in a video.
+
+=== Non-goals ===
+  * Automatic selection of track points.
+  * Any kind of 3D support (that's for later).
+  * Tracking anything other than points (for example, no line tracking).
+
 = Only 2d? =
 
 The primary goal of libmv is to create a full matchmoving component for Blender. However, a matchmover is a large project. Creating a full matchmover and integrating it with a single massive merge is likely to cause headaches for all involved. A better approach is to build the functionality incrementally.
