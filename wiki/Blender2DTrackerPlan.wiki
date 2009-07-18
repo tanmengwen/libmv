@@ -1,6 +1,8 @@
 #summary Why and how to create a 2D tracker for Blender
 #labels blender
 
+*Note: The content of this page has moved to [http://wiki.blender.org/index.php/Dev:Source/Blender/Projects/MotionTracker2D the Blender wiki]. However, please make comments here because the Blender wiki doesn't have a comment system (and the comments don't get mirrored to the libmv list).*
+
 = Objective = 
 
 Bring simple 2D tracking capabilities to Blender.
