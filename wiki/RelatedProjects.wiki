@@ -30,4 +30,4 @@ There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/cal
   * [http://www.doc.ic.ac.uk/~ajd/software.html Andrew Davison's SLAM]
   * [http://www.robots.ox.ac.uk/~gk/ Georg Klein's SLAM]
   * [http://code.google.com/p/fvision2008/ fvision2008] - Similar to libmv; uses OpenCV underneath. 
-  * [http://code.google.com/p/uniclop/] - This project attempts to create an easy to use online self calibration software.
+  * [http://code.google.com/p/uniclop/ uniclop] - This project attempts to create an easy to use online self calibration software.
