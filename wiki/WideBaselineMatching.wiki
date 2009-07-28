@@ -9,6 +9,7 @@ To support stereo from wide baseline images (i.e. what a typical user would have
  * SIFT - [http://www.cs.wustl.edu/~rstancha/oss.php OpenCV based C++ library]. License unclear. Unmaintained.
  * SIFT - [http://ilab.usc.edu/toolkit/home.shtml iLab Neuromorphic Vision C++ Toolkit] has an implementation. GPL'd.
  * SIFT - [http://www.cs.man.ac.uk/~liuja/ JIFT]. Unclear license terms.
+ * Affine-SIFT - [http://mw.cmla.ens-cachan.fr/megawave/algo/asift/ ASIFT] Support large viewpoint. But it take more times rather than a single SIFT extraction (the cost is 2.25 * SIFT).
  * SURF - [http://jmkirby.co.uk/index.html OpenSURF]. GPL, based on OpenCV.
  * DAISY - [http://cvlab.epfl.ch/research/surface/dense_matching/ daisy-1.3]. GPL, original. This is pretty promising. The algorithm doesn't look too hard to implement; conceivably it could be reimplemented from [http://cvlab.epfl.ch/publications/publications/2008/TolaLF08.pdf the paper (pdf)].
  * [http://www.vlfeat.org/ VLFeat] - A library with many common matching algorithms. This would be great, but is GPL.
