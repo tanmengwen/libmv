@@ -2,15 +2,20 @@
 
 
 = Currently working on =
- * Basic multiview reconstruction algorithms.
+ * The reconstruction data structure.
  * Simple guis for testing current code.
 
 
 = To do =
 
+ * Reconstruction structure
+   * Define the FeatureSet, Structure, Reconstruction, ...
+   * Fix Kd-tree implementation:
+     * Avoid moving the original points
+     * Add min/max bounds to nodes to correctly approximate the L2 distance when prunning
  * Autocalibration:
    * Two views: find what works best between Hartley, Sturm and Pollefeys (linear to find a 2d solution space + quadratic to fix the ambiguity).
-   * N-views: fix implementation of Pollefeys linear method.
+   * ~~N-views: fix implementation of Pollefeys linear method~~
  * Two view reconstruction gui:
    * ~~Set up a basic application enabling to open 2 images~~
    * ~~Compute surf on each image~~
@@ -20,100 +25,9 @@
    * ~~Compute cameras' internal parameters~~
    * ~~Compute metric reconstruction~~
    * ~~Visualize it~~
-   * Bundle adjust the metric reconstruction
+   * ~~Bundle adjust the metric reconstruction~~
    * Try Sturm04 method for estimating a common focal length
    * Add the images to the camera background image in blender
  * Simple gui for KLT tracking
- * Write more image io stuff
- * Create a doxyfile and check that doxygen output looks ok
+ * Check if doxygen's output looks ok
  * Implement matrix fliping functions and use them in K_From_AbsoluteConic
-
-
-= Done =
-This was really too redundant with svn commits and I will no longer update it.
-~~This is very redundant with the svn commits, but moving things from above to bellow is pretty satisfying :-)~~
-
-
-==== Wednesday, February 25th, 2009 ====
- * Started the two view reconstruction gui.
-   * load and display images.
-   * move them.
-   * compute and display USURF features.
-
-==== Tuesday, February 24th, 2009 ====
- * Finished kdtree knn search.
-
-==== Wednesday, August 13th, 2008 ====
- * Motion from essential matrix.
- * Port TriangulateDLT.
-
-==== Tuesday, August 12th, 2008 ====
- * Essential matrix computation.
-
-==== Monday, August 11th, 2008 ====
- * Separated data sets for test.
- * Fixed TwoViewReconstruction test.  First correspondences to focal length example.
-
-==== Saturday, August 9th, 2008 ====
- * Fixed a bug in fundamental_test.cc
- * Made FundamentalFromCorrespondence return a "confidence" value.
- * Arranged fundamental files a bit.
-
-==== Friday, August 8th, 2008 ====
- * Finished Hartley's focal from fundamental.
-
-==== Thursday, August 7th, 2008 ====
- * Added inefficient implementation of Determinant and Inverse functions.
- * Added matrix stacking functions.
- * Wrote P_from_KRt and KRT_from_P functions.
-
-==== Wednesday, August 6th, 2008 ====
- * Set up cmake files to call test data generators.
- * Improved the 8-point algorithm.
- * Moved things numeric.
-
-==== Tuesday,  August 5th, 2008 ====
- * Implemented the 8-point algorithm.
-
-==== End of July ====
- * Wrote the multiscale version of KLT.
-
-==== Saturday,  July 12th, 2008 ====
- * Added io support for color PPM.
- * Added output to Lenna tracking test/example.
- * Added pre-smoothing for the tracking examples.
- * Wrote a note on why images *must* be smoothed before tracking.
-
-==== Friday,  July 11th, 2008 ====
- * Wrote KLT derivation to facilitate and document the implementation.
- * Implemented the basic version of KLT feature tracking.
- * Made Qt4 work on the mac.
-
-==== Thursday,  July 10th, 2008 ====
- * Switched to cmake.
-
-==== Tuesday, July 8th, 2008 ====
- * Wrote a good features to track detector.
- * Integral images based on Convolve.
- * Fixed sconstruct files to work under Mac OS X.
-
-==== Monday, July 7th, 2008 ====
- * Implemented a Gaussian image pyramid.
-
-==== Wednesday, July 2th, 2008 ====
- * Wrote specific functions for low dimensional arrays.
- * Wrote an Image class extending ArrayND<T, 3>.
- * pgm read/write.
- * linear and nearest neighbor interpolation.
-
-==== Tuesday, July 1th, 2008 ====
- * Wasted my day fighting with C++ templates.
- * Understood the meaning of "pragmatic use of templates" in VXL's documentation.
- * Removed smart pointers from ArrayND.  Only one array can own the data now.
- * Wrote ArrayND tests.
-
-==== Monday, June 30th, 2008 ====
- * Write ImageLibrary goals and non-goals.
- * Write a minimal example of Image class.
- * Write the Tuple class for representing multidimensional indices.
- * Write the ArrayND class with basic access functionality.
