@@ -1,0 +1,39 @@
+#What Pierre is been working on in libmv.
+
+= Currently working on =
+
+- Minimal solution for panoramic stitching : 
+http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
+
+- Make TVR crash proof (avoid crash when we click on a menu not in the good order).
+
+- Write a Fast Corner Detector (Edward Rosten) Wrapper for Libmv.
+
+= Task State =
+* ~~Done~~
+
+* Todo/Comment
+
+== Minimal solution for panoramic stitching ==
+
+ * ~~understand the 2 point algorithm and code/test it~~
+  * An error have been found in a calculus detail of the paper.
+ * Todo :
+  * Understand and code the 3 point solution. (not an obligation).
+  * Write down the robust estimation.
+
+== Feature extraction ==
+
+ * Write down the Fast Corner Detector wrapper for libmv
+  * Add basic rotation invariant estimation.
+  * Use basic sampling grid for the descriptor (8*8 sparse sampling).
+  * If times use the HIPS descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
+
+== Interface ==
+
+ * design a basic interface that can an equivalent of TVR for multiview purpose.
+  * Must support from 2 to N views.
+  * Make a Panoramic or SFM (structure from motion) mode.
+
+== Design ==
+ * Write down a generic feature localization/extraction feature.
