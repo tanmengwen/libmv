@@ -1,4 +1,4 @@
-#What Pierre is been working on in libmv.
+#summary What Pierre is been working on in libmv.
 
 = Currently working on =
 
