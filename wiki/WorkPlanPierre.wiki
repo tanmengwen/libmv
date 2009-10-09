@@ -9,6 +9,8 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 - Write a Fast Corner Detector (Edward Rosten) Wrapper for Libmv.
 
+- Integrate Daisy descriptor (A Fast Local Descriptor for Dense Matching).
+
 = Task State =
 * ~~Done~~
 
