@@ -7,7 +7,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 - Make TVR crash proof (avoid crash when we click on a menu not in the good order).
 
-- Write a Fast Corner Detector (Edward Rosten) Wrapper for Libmv.
+- Basic descriptor to make FAST usable.
 
 - Integrate Daisy descriptor (A Fast Local Descriptor for Dense Matching).
 
@@ -15,6 +15,9 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 * ~~Done~~
 
 * Todo/Comment
+
+== Multiview ==
+ * Write down a 2d affine motion estimation.
 
 == Minimal solution for panoramic stitching ==
 
@@ -24,10 +27,11 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * Understand and code the 3 point solution. (not an obligation).
   * Write down the robust estimation.
 
-== Feature extraction ==
+== Feature extraction \ Descriptor ==
 
- * Write down the Fast Corner Detector wrapper for libmv
+ * ~~ Write down the Fast Corner Detector wrapper for libmv (Keir help a lot) ~~
   * Add basic rotation invariant estimation.
+  * ~~ A basic oriented patch descriptor ~~
   * Use basic sampling grid for the descriptor (8*8 sparse sampling).
   * If times use the HIPS descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
 
