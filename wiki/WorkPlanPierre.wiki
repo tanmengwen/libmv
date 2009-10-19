@@ -53,3 +53,5 @@ Visual Geometry Group : http://www.robots.ox.ac.uk/~vgg/data/
 Amsterdam Library of Object Images (ALOI) : http://staff.science.uva.nl/~aloi/
 
 EPFL cvlab : http://cvlab.epfl.ch/data/index.php
+
+Zubud Dataset : http://www.vision.ee.ethz.ch/datasets/index.en.html
