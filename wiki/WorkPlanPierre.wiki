@@ -43,3 +43,9 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 == Design ==
  * Write down a generic feature localization/extraction feature.
+
+== Image database == (Academic)
+Ponce Group : http://www-cvr.ai.uiuc.edu/ponce_grp/data/
+Visual Geometry Group : http://www.robots.ox.ac.uk/~vgg/data/
+Amsterdam Library of Object Images (ALOI) : http://staff.science.uva.nl/~aloi/
+EPFL cvlab : http://cvlab.epfl.ch/data/index.php
