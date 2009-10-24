@@ -6,6 +6,26 @@ It is extremely important that a project has a style guide, and that it is follo
 
 *We follow the Google coding conventions. See the [http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml Google C++ Style Guide] for more details.* Below are some of the things in the style guide, mainly around formatting.
 
+== Commit messages ==
+
+{{{
+One line summary.
+
+Longer explanation if one is necessary; perhaps explain 
+why the change was necessary or other details about the change.
+
+- Feel free to add.
+- Bulleted sections.
+- But NOT on the first line.
+}}}
+
+Do NOT put any hyphen or punctuation in front of the summary line:
+{{{
+- Don't make messages like this! BAD!
+- They look really bad when you go to updates on Google code.
+}}}
+Notice that the first line has a '-' which appears in the one line summary for changes on code.google.com. This is why the first line should not have such punctuation characters.
+
 == Comments ==
 
 All comments must be full sentences. This means at the very least, they all start with a capital letter and end with a period.
