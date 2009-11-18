@@ -2,6 +2,8 @@
 
 = Currently working on =
 
+- Test FLANN (Fast Library for Approximate Nearest Neighbors) for integration in libmv.
+
 - Minimal solution for panoramic stitching : 
 http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
@@ -19,7 +21,8 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * robust to translation,
   * robust to rotation,
   * robust to scale (Fast is not Scale invariant).
-  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). The Yape code is in OpenCV so the licence must be BSD. It could be a cool Scale invariant feature localization.
+  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). 
+  * We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector).
 
 == Minimal solution for panoramic stitching ==
 
@@ -40,6 +43,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * ~~ Use basic sampling grid for the descriptor (8*8 sparse sampling). ~~
   * If times use a quantizer to compress descriptor size :
    * use a HIPS like descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
+ * Look to FLANN (Fast Library for Approximate Nearest Neighbors) to replace libmv putative matches research.
  * Make KDTREE use a generic distance method. In order to use ( L2/ L1 / CEMD distance).
  * ? KDTREE Best Bin First BBF ? (in order to find N neighbors).
 
