@@ -16,13 +16,9 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 * Todo/Comment
 
 == Multiview ==
- * ~~ Write down a 2d affine motion estimation. ~~
- * Write a short test to assert invariance of detector.
-  * robust to translation,
-  * robust to rotation,
-  * robust to scale (Fast is not Scale invariant).
-  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). 
-  * We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector).
+ * ~~ Add seven points fundamental matrix estimation. ~~
+ * ~~ Write down a tool to render image warping given two image => homography_warping.cc. ~~
+ * Add Orsa robust matching (http://www.math-info.univ-paris5.fr/~moisan/epipolar/). A Ransac like but without hard threshold to check inliers/outliers at model verification time.
 
 == Minimal solution for panoramic stitching ==
 
@@ -46,6 +42,14 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
  * ~~ Look to FLANN (Fast Library for Approximate Nearest Neighbors) to replace libmv putative matches research. ~~
  * Make KDTREE use a generic distance method. In order to use ( L2/ L1 / CEMD distance).
  * ? KDTREE Best Bin First BBF ? (in order to find N neighbors).
+
+ * ~~ Write down a 2d affine motion estimation. ~~
+ * Write a short test to assert invariance of detector.
+  * robust to translation,
+  * robust to rotation,
+  * robust to scale (Fast is not Scale invariant).
+  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). 
+  * We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector).
 
 == Interface ==
 
