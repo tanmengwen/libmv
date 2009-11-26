@@ -43,7 +43,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * ~~ Use basic sampling grid for the descriptor (8*8 sparse sampling). ~~
   * If times use a quantizer to compress descriptor size :
    * use a HIPS like descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
- * Look to FLANN (Fast Library for Approximate Nearest Neighbors) to replace libmv putative matches research.
+ * ~~ Look to FLANN (Fast Library for Approximate Nearest Neighbors) to replace libmv putative matches research. ~~
  * Make KDTREE use a generic distance method. In order to use ( L2/ L1 / CEMD distance).
  * ? KDTREE Best Bin First BBF ? (in order to find N neighbors).
 
