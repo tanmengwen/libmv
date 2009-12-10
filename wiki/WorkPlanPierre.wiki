@@ -73,3 +73,6 @@ EPFL cvlab : http://cvlab.epfl.ch/data/index.php
 Zubud Dataset : http://www.vision.ee.ethz.ch/datasets/index.en.html
 
 Notre Dame de Paris (dataset 715 images) : http://phototour.cs.washington.edu/datasets/
+
+Image Stitching database (homography between images with Ground Through):
+http://math.ipm.ac.ir/vision/VDownloads.html
