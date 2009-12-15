@@ -22,3 +22,7 @@
 
 === Dense reconstruction ===
   * C. Zach, M. Sormann, and K. Karner.  High-performance multi-view reconstruction.  In International Symposium on 3D Data Processing, Visualization and Transmission (3DPVT), 2006 ([http://www.icg.tugraz.at/Members/zach/my_publications/3dpvt2006a.pdf PDF])
+
+=== Camera resectioning ===
+
+ * A. Ansar K. Daniilidis, "Linear Pose Estimation from Points or Lines," IEEE Trans. Pattern Analysis and Machine Intelligence, 25: 578-589, 2003, ([http://www-robotics.jpl.nasa.gov/publications/Adnan_Ansar/ansar&daniilidis03pami.pdf PDF])
