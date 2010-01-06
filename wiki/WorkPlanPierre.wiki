@@ -2,12 +2,21 @@
 
 = Currently working on =
 
-- Test FLANN (Fast Library for Approximate Nearest Neighbors) for integration in libmv.
+- ~~ Test FLANN (Fast Library for Approximate Nearest Neighbors) for integration in libmv. ~~
+ * Make a Flann wrapper that work as the same of libmv KDTree class.
 
 - Minimal solution for panoramic stitching : 
 http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
+ * ~~ 2 Points solution shared focal length (minimal case).~~
+ * ~~ 2 Points solution shared focal length (least square fitted on N points).~~
+ * 3 Points solution != focal length.
 
-- Add basic rotation invariance for FAST detector.
+- Write a short test to assert invariance of detector.
+ * Compute repeatability of detection over an image sequence with known transformation.
+
+- Add basic rotation invariance :
+ * for FAST detector.
+ * for STAR detector.
 
 - Make TVR crash proof (avoid crash when we click on a menu not in the good order).
 
@@ -48,12 +57,12 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * robust to translation,
   * robust to rotation,
   * robust to scale (Fast is not Scale invariant).
-  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). 
-  * We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector).
+  * ~~We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). ~~
+  * ~~ We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector). ~~
 
 == Interface ==
 
- * design a basic interface that can an equivalent of TVR for multiview purpose.
+ * design a basic interface that can be an equivalent of TVR for multiview purpose.
   * Must support from 2 to N views.
   * Make a Panoramic or SFM (structure from motion) mode.
 
