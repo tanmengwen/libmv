@@ -8,7 +8,9 @@
 - Minimal solution for panoramic stitching : 
 http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
  * ~~ 2 Points solution shared focal length (minimal case).~~
- * ~~ 2 Points solution shared focal length (least square fitted on N points).~~
+ * 2 Points solution shared focal length (least square fitted on N points)
+  * focal
+  * ~~ rotation ~~
  * 3 Points solution != focal length.
 
 - Write a short test to assert invariance of detector.
