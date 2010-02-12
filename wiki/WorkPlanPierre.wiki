@@ -15,9 +15,12 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 - Write a short test to assert invariance of detector.
  * Compute repeatability of detection over an image sequence with known transformation.
+  * ~~ compute position repeatability and accuracy. ~~
+  * compute rotation repeatability and accuracy.
+  * compute scale repeatability and accuracy.
 
 - Add basic rotation invariance :
- * for FAST detector.
+ * ~~ for FAST detector. ~~
  * for STAR detector.
 
 - Make TVR crash proof (avoid crash when we click on a menu not in the good order).
@@ -60,7 +63,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * robust to rotation,
   * robust to scale (Fast is not Scale invariant).
   * ~~We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). ~~
-  * ~~ We must take a look to StartDetector from OpenCV 2.0 (Surf like patent free keypoint detector). ~~
+  * ~~ We must take a look to StartDetector from OpenCV 2.0 (Surf like but patent free keypoint detector). ~~
 
 == Interface ==
 
