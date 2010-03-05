@@ -3,7 +3,7 @@
 = Currently working on =
 
 - ~~ Test FLANN (Fast Library for Approximate Nearest Neighbors) for integration in libmv. ~~
- ~~ * Make a Flann wrapper that work as the same of libmv KDTree class. ~~
+ * ~~ Make a Flann wrapper that work as the same of libmv KDTree class. ~~
 
 - Minimal solution for panoramic stitching : 
 http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
