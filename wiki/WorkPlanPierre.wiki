@@ -3,7 +3,7 @@
 = Currently working on =
 
 - ~~ Test FLANN (Fast Library for Approximate Nearest Neighbors) for integration in libmv. ~~
- * Make a Flann wrapper that work as the same of libmv KDTree class.
+ ~~ * Make a Flann wrapper that work as the same of libmv KDTree class. ~~
 
 - Minimal solution for panoramic stitching : 
 http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
@@ -21,7 +21,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 - Add basic rotation invariance :
  * ~~ for FAST detector. ~~
- * for STAR detector.
+ * for STAR detector. (WIP)
 
 - Make TVR crash proof (avoid crash when we click on a menu not in the good order).
 
@@ -53,17 +53,24 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * ~~ Use basic sampling grid for the descriptor (8*8 sparse sampling). ~~
   * If times use a quantizer to compress descriptor size :
    * use a HIPS like descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
+
+== Feature descriptor matching ==
  * ~~ Look to FLANN (Fast Library for Approximate Nearest Neighbors) to replace libmv putative matches research. ~~
  * Make KDTREE use a generic distance method. In order to use ( L2/ L1 / CEMD distance).
  * ? KDTREE Best Bin First BBF ? (in order to find N neighbors).
 
+ * ~~ - Write down a generic Arrays matcher class :
+  * Could be used to perform Linear match (test all putatives distances and select the best one).
+  * Could be used to perform Hierarchical matching (libmv KDTree)
+  * Could be used to perform Hierarchical matching (Flann KDTree) ~~
+
  * ~~ Write down a 2d affine motion estimation. ~~
- * Write a short test to assert invariance of detector.
+ * ~~ Write a short test to assert invariance of detector (done via detector repeatability).
   * robust to translation,
   * robust to rotation,
   * robust to scale (Fast is not Scale invariant).
-  * ~~We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab). ~~
-  * ~~ We must take a look to StartDetector from OpenCV 2.0 (Surf like but patent free keypoint detector). ~~
+  * We must take a look to YAPE (Yet Another Point Extractor) from LePetit Group (CVLab).
+  * We must take a look to StartDetector from OpenCV 2.0 (Surf like but patent free keypoint detector). ~~
 
 == Interface ==
 
