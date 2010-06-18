@@ -1,5 +1,4 @@
-#summary One-sentence summary of this page.
-What Julien is been working on in libmv.
+#summary What Julien is been working on in libmv.
 
 = 2D features Tracker =
   * replace the matcher pointer by an Enum in the tracker class.
