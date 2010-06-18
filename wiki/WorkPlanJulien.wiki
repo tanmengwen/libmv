@@ -5,9 +5,11 @@
   * find a solution to the Featureset delete issue
 
 = SLAM =
-[A visual real-time SLAM for large scale displacement, IVC'09] 
+Mouragnon, _et al_, A visual real-time SLAM for large scale displacement, IVC'09
 
 M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lhuillier
+
+*Overview*
   * Camera Tracking
     * 2D Tracking
       * Windowed tracker NxM px mask
@@ -17,14 +19,14 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
       * Non-linear pose refinement (resection)
     * Keyframe detection
       * Enough correspondences in the N last views, enough inliers, ...
-  * Mapper (only for keyframes)
+  * Mapping (only for keyframes)
     * Triangulation
       * Linear 3D points triangulation of inliers
     * Refinement
       * global/local Bundle Adjustment
 
 = PTAM =
-[A visual real-time SLAM for small workspace ISMAR'07]
+Klein _et al_, A visual real-time SLAM for small workspace, ISMAR'07
 
 PDF : http://www.robots.ox.ac.uk/~gk/publications/KleinMurray2007ISMAR.pdf
 
@@ -32,4 +34,4 @@ Slides : http://www.robots.ox.ac.uk/~gk/publications/Slides_KleinMurray2007ISMAR
 
 G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
 
-..A variant of SLAM.
+..which is variant of SLAM.
