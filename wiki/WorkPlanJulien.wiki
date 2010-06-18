@@ -24,7 +24,11 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
       * global/local Bundle Adjustment
 
 = PTAM =
-[A visual real-time SLAM for small workspace, ISMAR'07] 
+[A visual real-time SLAM for small workspace ISMAR'07]
+
+PDF : http://www.robots.ox.ac.uk/~gk/publications/KleinMurray2007ISMAR.pdf
+
+Slides : http://www.robots.ox.ac.uk/~gk/publications/Slides_KleinMurray2007ISMAR.pdf
 
 G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
 
