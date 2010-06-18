@@ -1,0 +1,31 @@
+#summary One-sentence summary of this page.
+What Julien is been working on in libmv.
+
+= 2D features Tracker =
+  * replace the matcher class by an Enum in the tracker class.
+
+= SLAM =
+[A visual real-time SLAM for large scale displacement, IVC'09] 
+
+M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lhuillier
+  * Camera Tracking
+    * 2D Tracking
+      * Windowed tracker NxMpx mask
+      * Local tracking (only track in the N last views)
+    * Robut pose estimation
+      * Linear Pose estimation (3 or 5 points) + RANSAC ( detect & remove outliers)
+      * Non-linear pose refinement (resection)
+    * Keyframe detection
+      * Enough correspondences in the N last views, enough inliers, ...
+  * Mapper (only for keyframes)
+    * Triangulation
+      * Linear 3D points triangulation of inliers
+    * Refinement
+      * global/local Bundle Adjustment
+
+= PTAM =
+[A visual real-time SLAM for small workspace, ISMAR'07] 
+
+G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
+
+..A variant of SLAM.
