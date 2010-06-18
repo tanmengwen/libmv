@@ -2,7 +2,8 @@
 What Julien is been working on in libmv.
 
 = 2D features Tracker =
-  * replace the matcher class by an Enum in the tracker class.
+  * replace the matcher pointer by an Enum in the tracker class.
+  * find a solution to the Featureset delete issue
 
 = SLAM =
 [A visual real-time SLAM for large scale displacement, IVC'09] 
@@ -10,10 +11,10 @@ What Julien is been working on in libmv.
 M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lhuillier
   * Camera Tracking
     * 2D Tracking
-      * Windowed tracker NxMpx mask
+      * Windowed tracker NxM px mask
       * Local tracking (only track in the N last views)
-    * Robut pose estimation
-      * Linear Pose estimation (3 or 5 points) + RANSAC ( detect & remove outliers)
+    * Robust pose estimation
+      * Linear pose estimation (3 or 5 points) + RANSAC (detect & remove outliers)
       * Non-linear pose refinement (resection)
     * Keyframe detection
       * Enough correspondences in the N last views, enough inliers, ...
