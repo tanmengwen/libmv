@@ -2,10 +2,10 @@
 
 = General =
 *Tracker*
-  * remove the useless template TImage. We will define a pyramid image tracker class.
+  * ~~remove the useless template TImage.~~ -We will define a pyramid image tracker class.-
   * replace the matcher pointer by an Enum.
   * find a way to make the tracker class to be the owner of the detector/describer classes, keeping in mind that the user should be able to choose its detector/describer (+parameters) : _use template/functors ?_
-  * find a solution to the Featureset delete issue : _a structure/class with the matches and a vector/list of Features ?_
+  * ~~find a solution to the Featureset delete issue:~~ _a structure/class with the matches and a vector/list of Features ?_
   * Only match the new featureSet with one of the descriptor (and not all) of known features : a feature has approximately the same descriptor in every images
   * ~~make a robust Traker (epipolar filtering)~~ _see nvr, as a new  function/class ?_
   * make a robust Traker for planar scene (homography filtering) _see nvr, a PlanarTracker class ?_
