@@ -6,7 +6,7 @@
   * find a way to make the tracker class to be the owner of the detector/describer classes, keeping in mind that the user should be able to choose its detector/describer (+parameters) : _use template/functors ?_
   * find a solution to the Featureset delete issue : _a structure/class with the matches and a vector/list of Features ?_
   * Only match the new featureSet with one of the descriptor (and not all) of known features : a feature has approximately the same descriptor in every images
-  * make a robust Traker (epipolar filtering) _see nvr, as a new  function/class ?_
+  * ~~make a robust Traker (epipolar filtering)~~ _see nvr, as a new  function/class ?_
   * make a robust Traker for planar scene (homography filtering) _see nvr, a PlanarTracker class ?_
   * extend the Tracker to handle pyramid images (intra/inter-level features matching)
 
@@ -27,13 +27,13 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
     * 2D Tracking
       * Windowed tracker NxM px mask
       * Local tracking (only track in the N last views)
-    * Robust pose estimation
+    * Robust pose estimation(resection)
       * Linear pose estimation (3 or 5 points) + RANSAC (detect & remove outliers)
-      * Non-linear pose refinement (resection)
+      * Non-linear pose refinement 
     * Keyframe detection
       * Enough correspondences in the N last views, enough inliers, ...
   * Mapping (only for keyframes)
-    * Triangulation
+    * Triangulation (intersection)
       * Linear 3D points triangulation of inliers
     * Refinement
       * global/local Bundle Adjustment
@@ -55,8 +55,8 @@ G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
 ..a variant of SLAM.
 
   * a camera motion model
-  * 2D features reprojection
+  * 2D predicted features reprojection
   * image pyramid (4 levels)
-  * affine warp patch (describer)
+  * affine warp patch (predicted descriptors)
   * coarse resection
-  * and so on...
+  * and various other stuffs 
