@@ -15,13 +15,17 @@
   * add a mask system so that we can associate a mask to an image. Every feature detectors should then only detect features in the visible zone.
   * add a mask system ? in the matching process in order to handle predicted features (ellipsoid, rectangle, ...)
 
-= SLAM =
+= SLAM (large scale) =
 
 *References*
 
-Mouragnon, _et al_, A visual real-time SLAM for large scale displacement, IVC'09
+- Mouragnon, _et al_, A visual real-time SLAM for large scale displacement, IVC'09
 
 M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lhuillier
+
+- Hauke Strasdat, J. M. M. Montiel, and Andrew J. Davison: Scale Drift-Aware Large Scale Monocular SLAM , Robotics: Science and Systems, 2010 http://www.doc.ic.ac.uk/~ajd/Publications/strasdat_etal_rss2010.pdf
+
+LGPL source code: http://www.openslam.org/robotvision.html
 
 *Overview*
   * Camera Tracking
@@ -39,7 +43,7 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
     * Refinement
       * global/local Bundle Adjustment
 
-= PTAM =
+= PTAM (small workspace) =
 
 *References*
 
