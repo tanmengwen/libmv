@@ -10,6 +10,7 @@
   * ~~make a robust Traker (epipolar filtering)~~ _see nvr, as a new  function/class ?_
   * make a robust Traker for planar scene (homography filtering) _see nvr, a PlanarTracker class ?_
   * extend the Tracker to handle pyramid images (intra/inter-level features matching)
+  * see the OpenTL architecture http://www.opentl.org/architecture.html
 
 *Masks*
   * add a mask system so that we can associate a mask to an image. Every feature detectors should then only detect features in the visible zone.
@@ -25,7 +26,7 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
 
 - Hauke Strasdat, J. M. M. Montiel, and Andrew J. Davison: Scale Drift-Aware Large Scale Monocular SLAM , Robotics: Science and Systems, 2010 http://www.doc.ic.ac.uk/~ajd/Publications/strasdat_etal_rss2010.pdf
 
-LGPL source code: http://www.openslam.org/robotvision.html
+LGPL source code (mainly a sparse bundle adjustment): http://www.openslam.org/robotvision.html
 
 *Overview*
   * Camera Tracking
