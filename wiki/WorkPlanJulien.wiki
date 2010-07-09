@@ -1,7 +1,7 @@
 #summary What Julien is been working on in libmv.
 
 = General =
-*Tracker*
+== Tracker ==
   * ~~remove the useless template TImage.~~ -We will define a pyramid image tracker class.-
   * replace the matcher pointer by an Enum.
   * find a way to make the tracker class to be the owner of the detector/describer classes, keeping in mind that the user should be able to choose its detector/describer (+parameters) : _use template/functors ?_
@@ -9,16 +9,18 @@
   * Only match the new featureSet with one of the descriptor (and not all) of known features : a feature has approximately the same descriptor in every images
   * ~~make a robust Traker (epipolar filtering)~~ _see nvr, as a new  function/class ?_
   * make a robust Traker for planar scene (homography filtering) _see nvr, a PlanarTracker class ?_
-  * extend the Tracker to handle pyramid images (intra/inter-level features matching)
   * see the OpenTL architecture http://www.opentl.org/architecture.html
+=== Image pyramid ===
+  * extend the Tracker in order to handle images pyramid (intra/inter-level features matching)
+  * how can we store the association of a feature with a pyramid level (and not an image)?
 
-*Masks*
+=== Masks ===
   * add a mask system so that we can associate a mask to an image. Every feature detectors should then only detect features in the visible zone.
   * add a mask system ? in the matching process in order to handle predicted features (ellipsoid, rectangle, ...)
 
 = SLAM (large scale) =
 
-*References*
+== References ==
 
 - Mouragnon, _et al_, A visual real-time SLAM for large scale displacement, IVC'09
 
@@ -28,7 +30,7 @@ M. Lhuillier's homepage: http://wwwlasmea.univ-bpclermont.fr/Personnel/Maxime.Lh
 
 LGPL source code (mainly a sparse bundle adjustment): http://www.openslam.org/robotvision.html
 
-*Overview*
+== Overview ==
   * Camera Tracking
     * 2D Tracking
       * Windowed tracker NxM px mask
@@ -46,7 +48,7 @@ LGPL source code (mainly a sparse bundle adjustment): http://www.openslam.org/ro
 
 = PTAM (small workspace) =
 
-*References*
+== References ==
 
 Klein _et al_, A visual real-time SLAM for small workspace, ISMAR'07
 
@@ -56,13 +58,15 @@ Slides : http://www.robots.ox.ac.uk/~gk/publications/Slides_KleinMurray2007ISMAR
 
 G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
 
-*Overview*
+== Overview ==
 
 ..a variant of SLAM.
 
+  * FAST-10 detector / Patch 8x8px based detector
+  * image pyramid (4 levels)
   * a camera motion model
   * 2D predicted features reprojection
-  * image pyramid (4 levels)
-  * affine warp patch (predicted descriptors)
-  * coarse resection
+  * affine warp patch (predicted "descriptors")
+  * coarse resection (reproject 50 best points)
+  * no RANSAC but M-estimator (Tuckey) with 10 iterations WLS
   * and various other stuffs 
