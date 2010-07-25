@@ -21,7 +21,7 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
 
 - Add basic rotation invariance :
  * ~~ for FAST detector. ~~
- * for STAR detector. (WIP)
+ * ~~ for STAR detector. (WIP) ~~
 
 - Make TVR crash proof (avoid crash when we click on a menu not in the good order).
 
@@ -43,17 +43,22 @@ http://people.cs.ubc.ca/~mbrown/minimal/minimal.html
   * ~~ Write down the robust estimation. => HomographyFromCorrespondences2PointRobust. ~~
    * Seems to be quite unstable, the focal length cannot be estimated in all the case. Also I don't have a method to get the focal length from N correspondences.
 
-== Feature extraction \ Descriptor ==
+== Feature extraction \ Detector ==
+ * ~~ Write down the *FAST Corner Detector* wrapper for libmv (Keir helps a lot) ~~
+  * ~~ Add basic rotation invariant estimation. ~~
+ * ~~ Write down the *STAR blob Detector* (based on OpenCV code. It's a SURF like patented free) ~~
+  * ~~ Add basic rotation invariant estimation. ~~
+ * ~~ Write down the *MSER detector* (based on OpenCV code) ~~
+  * ~~ Add rotated ellipse drawing. ~~
 
- * ~~ Write down the Fast Corner Detector wrapper for libmv (Keir help a lot) ~~
-  * Add basic rotation invariant estimation.
- * ~~ Integrate Daisy descriptor (A Fast Local Descriptor for Dense Matching). (Keir helps a lot) ~~
- * ~~ Basic descriptor to make FAST usable. (Simpliest descriptor a 8*8 patch)~~
+== Feature extraction \ Descriptor ==
+ * ~~ Integrate *Daisy* descriptor (A Fast Local Descriptor for Dense Matching). (Keir helps a lot) ~~
+ * ~~ Basic descriptor to make *FAST* usable. (*Simpliest* descriptor a 8*8 patch)~~
   * ~~ A basic oriented patch descriptor ~~
   * ~~ Use basic sampling grid for the descriptor (8*8 sparse sampling). ~~
   * If times use a quantizer to compress descriptor size :
    * use a HIPS like descriptor http://mi.eng.cam.ac.uk/~sjt59/hips.html
-  * Add dissociated dipole descriptor (20 values and seems as reliable as SIFT)
+  * Add dissociated *dipole descriptor* (20 values and seems as reliable as SIFT)
    * ~~ Naive implementation in image space gives very good result for panoramic purpose ~~
 
 == Feature descriptor matching ==
