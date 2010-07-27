@@ -10,6 +10,7 @@
   * ~~make a robust Traker (epipolar filtering)~~ _see nvr, as a new  function/class ?_
   * make a robust Traker for planar scene (homography filtering) _see nvr, a PlanarTracker class ?_
   * add a parameter (?) to the feature detection in order to detect only the N best corners (proceed a feature filtering based on the features scores)
+  * add a prediction step (based on a 2D or 3D movement model)
   * see the OpenTL architecture http://www.opentl.org/architecture.html
 
 === Image pyramid ===
@@ -64,11 +65,11 @@ G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
 
 ..a variant of SLAM.
 
-  * FAST-10 detector / Patch 8x8px based detector
+  * FAST-10 detector / Patch 8x8px based descriptor
   * image pyramid (4 levels)
   * a camera motion model
   * 2D predicted features reprojection
-  * affine warp patch (predicted "descriptors")
+  * Affine warp patch (predicted "descriptors")
   * coarse resection (reproject 50 best points)
   * no RANSAC but M-estimator (Tuckey) with 10 iterations WLS
   * and various other stuffs 
