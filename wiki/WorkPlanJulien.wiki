@@ -71,5 +71,5 @@ G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
   * 2D predicted features reprojection
   * Affine warp patch (predicted "descriptors")
   * coarse resection (reproject 50 best points)
-  * no RANSAC but M-estimator (Tuckey) with 10 iterations WLS
+  * no RANSAC but M-estimator (Tukey) with 10 iterations WLS
   * and various other stuffs 
