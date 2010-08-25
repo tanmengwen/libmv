@@ -68,3 +68,4 @@
  * Tracker.
 
 = tools =
+ * Reading JPEG EXIF meta data.
