@@ -29,7 +29,7 @@ There is and extensive list of links [http://www.vision.caltech.edu/bouguetj/cal
   * [http://bardsley.org.uk/category/research/ A series of blog posts about 3D reconstruction and the like].
   * [http://www.doc.ic.ac.uk/~ajd/software.html Andrew Davison's SLAM]
   * [http://www.robots.ox.ac.uk/~gk/ Georg Klein's SLAM]
-  * [http://code.google.com/p/fvision2008/ fvision2008] - Similar to libmv; uses OpenCV underneath. 
+  * [http://code.google.com/p/fvision2008/ fvision2008] - Similar to libmv; uses OpenCV underneath. (Deprecated)
   * [http://code.google.com/p/fvision2010/ fvision2010] - Similar to libmv; uses OpenCV underneath.
   * [http://code.google.com/p/uniclop/ uniclop] - This project attempts to create an easy to use online self calibration software.
   * [http://www.fit3d.info/] - FIT3D is a Matlab Toolbox that will allow to obtain a complete 3D model from a set of calibrated images.
