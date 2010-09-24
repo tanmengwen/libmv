@@ -1,22 +1,22 @@
-#Tips to compile QT related libmv project on windows.
+#Tips to compile Qt related libmv project on windows.
 
 = Introduction =
 
 Some project in libmv have a Graphical interface (TVR, Nview).
-This Graphical Interface use the QT library from Nokia (http://qt.nokia.com/).
+This Graphical Interface use the Qt library from Nokia (http://qt.nokia.com/).
 
 
 = Details =
 
-First you have to download the QT libraries and source code for your compiler.
+First you have to download the Qt libraries and source code for your compiler.
 
 visual studio 2008 => http://qt.nokia.com/downloads/windows-cpp-vs2008
 
-If you use another compiler you have to download the source and compile QT by yourself : http://qt.nokia.com/downloads/sdk-windows-cpp
+If you use another compiler you have to download the source and compile Qt by yourself : http://qt.nokia.com/downloads/sdk-windows-cpp
 
-Once QT is installed on your machine at the location QTPATH => example C:/lib/QT
+Once Qt is installed on your machine at the location QTPATH => example C:/lib/Qt
 
-You could configure the CMake build system to use QT.
+You could configure the CMake build system to use Qt.
 
  # Edit the libmv/src/CMakeList.txt and comment NOT WIN32 things like the following :
   {{{
@@ -25,7 +25,7 @@ You could configure the CMake build system to use QT.
   #ENDIF (NOT WIN32)
    }}}
  # In the CMakeGui interface edit the variable path QT_QMAKE_EXCUTABLE with yours :
-  C:/lib/QT/bin/qmake.exe
+  C:/lib/Qt/bin/qmake.exe
  # Run Configure, Generate.
  # Compile your visual project file. (named tvr, nview)
 
