@@ -1,6 +1,12 @@
 #summary What Julien is been working on in libmv.
 
 = General =
+== Reconstruction ==
+  * Robust euclidean resection (3 points or EPnP algorithm)
+  * Bundle and pose adjustment (we need a generic sparse nonlinear optimizer)
+see also :
+http://www.ros.org/browse/details.php?name=sba
+
 == Tracker ==
   * ~~remove the useless template TImage.~~ -We will define a pyramid image tracker class.-
   * replace the matcher pointer by an Enum.
