@@ -25,5 +25,6 @@
 
 === Camera resectioning ===
 
- * A. Ansar K. Daniilidis, "Linear Pose Estimation from Points or Lines," IEEE Trans. Pattern Analysis and Machine Intelligence, 25: 578-589, 2003, ([http://www-robotics.jpl.nasa.gov/publications/Adnan_Ansar/ansar&daniilidis03pami.pdf PDF])
+ * A. Ansar, K. Daniilidis, "Linear Pose Estimation from Points or Lines," IEEE Trans. Pattern Analysis and Machine Intelligence, 25: 578-589, 2003, ([http://www-robotics.jpl.nasa.gov/publications/Adnan_Ansar/ansar&daniilidis03pami.pdf PDF])
  * Horn B. K. P.: Closed-form solution of absolute orientation using unit quaternions. Journal of the Optical Society of America 4, 4 (1987).([http://people.csail.mit.edu/bkph/papers/Absolute_Orientation.pdf PDF])
+ * V. Lepetit, F. Moreno-Noguer and P. Fua, EPnP: An Accurate O(n) Solution to the PnP Problem, IJCV 2009. vol. 81, no. 2 ([http://cvlab.epfl.ch/~lepetit/papers/lepetit_ijcv08.pdf PDF])
