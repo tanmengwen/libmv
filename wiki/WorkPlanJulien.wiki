@@ -2,10 +2,18 @@
 
 = General =
 == Reconstruction ==
-  * Robust euclidean resection (3 points or EPnP algorithm)
+  * Implement a function that selects the best image couple in order to estimate the motion (using a criteria based on the homography and number of matches) 
+  * then apply a graph traversal method
+  * Implement a retriangulation function
+=== Calibrated ===
+  * ~~Robust euclidean resection (3 points or EPnP algorithm)~~
+  * Rename the function EuclideanCameraResection to CalibratedCameraResection
   * Bundle and pose adjustment (we need a generic sparse nonlinear optimizer)
 see also :
 http://www.ros.org/browse/details.php?name=sba
+=== Uncalibrated ===
+  * Implement a UncalibratedCameraResection function
+  * Implement a MetricRectification function (to upgrade an projective reconstruction into an euclidean one)
 
 == Tracker ==
   * ~~remove the useless template TImage.~~ -We will define a pyramid image tracker class.-
