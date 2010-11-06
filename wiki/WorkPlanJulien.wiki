@@ -2,19 +2,21 @@
 
 = General =
 == Reconstruction ==
-  * Implement a function that selects the best image couple in order to estimate the motion (using a criteria based on the homography and number of matches) 
-  * then apply a graph traversal method
-  * Implement a retriangulation function
-=== Calibrated ===
-  * ~~Robust euclidean resection (3 points or EPnP algorithm)~~
-  * Rename the function EuclideanCameraResection to CalibratedCameraResection
-  * Bundle and pose adjustment (we need a generic sparse nonlinear optimizer)
-see also :
-http://www.ros.org/browse/details.php?name=sba
-=== Uncalibrated ===
-  * Implement a UncalibratedCameraResection function
-  * Implement a MetricRectification function (to upgrade an projective reconstruction into an euclidean one)
+=== General ===
+  * Improve this reconstruction process. (remove all the TODO, write some reconstruction tests)
+  * Handle lens distortions.
+  * We need a projective bundle adjustment in order to minimize cumulated errors in the uncalibrated process
+  * We also need a pose refinement process (calibrated/uncalibrated), and why not a structure refinement one.
+For this three last optimizations, we cannot use ssba. Maybe we should have our own generic (pose|structure|bundle) nonlinear solver. 
+Besides, Eigen3 will provide an interesting nonlinear optimization module that we could use for this...
+  * Switch to Eigen 3.
+  * A better UI, with a 3D view should be nice too.
+  * Update the wiki
+  * Write some unit tests
+=== Match moving for videos ===
+  * Creates a GUI dedicated to videos (split nview)
 
+<wiki:comment>
 == Tracker ==
   * ~~remove the useless template TImage.~~ -We will define a pyramid image tracker class.-
   * replace the matcher pointer by an Enum.
@@ -87,3 +89,4 @@ G. Klein's homepage: http://www.robots.ox.ac.uk/~gk/PTAM
   * coarse resection (reproject 50 best points)
   * no RANSAC but M-estimator (Tukey) with 10 iterations WLS
   * and various other stuffs 
+</wiki:comment>
