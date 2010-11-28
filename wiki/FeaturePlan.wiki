@@ -6,24 +6,24 @@ We're going to release libmv and need to know which features are needed for whic
  * Do some releases (starting from 0.1?, since the amount of work done since the 0.0.2 is huge) and packages (tar.gz, other)
 
 == Feature list ==
-|| *Status* || *Feature Description* || *Priority* || *Release* || *contact?* ||
-|| DRAFT || General calibrated reconstruction from video  || high || 0.1 || julien ||
-|| TODO || Keyframe selection method   || high || 0.1 || julien ||
-|| DRAFT || VERY robust initial reconstruction   || high || 0.1 || julien ||
-|| TODO || Make install for third parties || medium || 0.1 ||  ||
-|| TODO || Point structure optimization  || medium || 0.1.X ||  ||
-|| TODO || Camera optimization  || medium || 0.1.X ||  ||
-|| TODO || Write reconstruction unit test  || medium || 0.1 || julien ||
-|| STARTED || Switch to Eigen 3  || medium || 0.1.X || julien ||
-|| TODO || Define/rewrite interfaces with Blender? || medium || 0.1.X ||  ||
-|| TODO || Apply radial distorsion correction || medium || 0.2? ||   ||
-|| TODO || Nonlinear Optimization library  || medium || 0.2? ||  ||
-|| TODO || General uncalibrated reconstruction from video || low || 0.3 ||  ||
-|| TODO || Precise metric rectification || low || 0.3 ||  ||
-|| TODO || Fast window traker || low || 0.3? ||  ||
-|| TODO || PROSAC robust estimation || low || ||  ||
-|| TODO || Camera calibration tool || low ||  ||  ||
-|| TODO || A 3D view for nview || low ||  ||  ||
+|| *Status* || *Library* || *Feature Description* || *Priority* || *Release* || *contact?* ||
+|| DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
+|| TODO || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
+|| DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
+|| TODO || third parties || Make install for third parties || medium || 0.1 ||  ||
+|| TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
+|| TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
+|| TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
+|| STARTED || all || Switch to Eigen 3  || medium || 0.1.X || julien ||
+|| TODO ||  || Define/rewrite interfaces with Blender? || medium || 0.1.X ||  ||
+|| TODO || reconstruction || Apply radial distorsion correction || medium || 0.2? ||   ||
+|| TODO || optimize? || Nonlinear Optimization library  || medium || 0.2? ||  ||
+|| TODO || reconstruction || General uncalibrated reconstruction from video || low || 0.3 ||  ||
+|| TODO || reconstruction || Precise metric rectification || low || 0.3 ||  ||
+|| TODO || correspondence || Fast window traker || low || 0.3? ||  ||
+|| TODO || robust_estimation || PROSAC robust estimation || low || ||  ||
+|| TODO || camera || Camera calibration tool || low ||  ||  ||
+|| TODO || ui/nview || A 3D view for nview || low ||  ||  ||
 
 *Status convention*
 
