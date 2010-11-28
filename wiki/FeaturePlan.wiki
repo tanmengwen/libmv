@@ -1,4 +1,4 @@
-#Must to have features list
+#summary Must to have features list
 == Introduction ==
 We're going to release libmv and need to know which features are needed for which release.
 
