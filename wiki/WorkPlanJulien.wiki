@@ -7,6 +7,7 @@
 || DRAFT || General calibrated reconstruction from video  || high || 0.1 || julien ||
 || TODO || Keyframe selection method   || high || 0.1 || julien ||
 || DRAFT || VERY robust initial reconstruction   || high || 0.1 || julien ||
+|| TODO || Make install for third parties || medium || 0.1 ||  ||
 || TODO || Point structure optimization  || medium || 0.1.X ||  ||
 || TODO || Camera optimization  || medium || 0.1.X ||  ||
 || TODO || Write reconstruction unit test  || medium || 0.1 || julien ||
