@@ -39,16 +39,27 @@
   * Fundamental matrix 8 points.
 
  * NView Tensor
-  * SixPointNView.
+  * 6Pt - NView.
 
  * Robust estimation
   * Ransac.
 
  * Camera pose 
   * 5Pt solver,
-  * Resection.
+  * 8Pt solver,
+  * Projective resection,
+  * Euclidean resection 
+   * Ansar and Daniilidis method,
+   * EPnP.
 
- * Triangulation.
+ * Triangulation
+  * 2 View triangulation (projective)
+  * N View triangulation (projective)
+   * Classic? method
+   * Algebraic method
+
+ * Euclidean Bundle Adjustment
+  * Wrapper to _simple sparse ba_
 
 = correspondence =
  * ArrayMatcher (Nearest Neighbor search)
