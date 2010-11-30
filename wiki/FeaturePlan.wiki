@@ -8,9 +8,10 @@ We're going to release libmv and need to know which features are needed for whic
 == Feature list ==
 || *Status* || *Library* || *Feature Description* || *Priority* || *Release* || *contact?* ||
 || DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
-|| STARTED || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
+|| DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
 || DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
-|| TODO || third parties || Make install for third parties || medium || 0.1 ||  ||
+|| TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
+|| TODO || all || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
 || TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
 || TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
@@ -29,6 +30,6 @@ We're going to release libmv and need to know which features are needed for whic
 *Status convention*
  * TODO: not yet implemented
  * STARTED: an initial implementation has been started (in the SVN or not)
- *  DRAFT: a first version of the feature is in the SVN (and may contains bugs)
- *GOOD: an avanced version of the feature is in the SVN (with unit test)
- * DONE: the feature is done and has no bug (we hope)
+ * DRAFT: a first version of the feature is in the SVN (and may contains bugs)
+ * GOOD: an advanced version of the feature is in the SVN (with unit test)
+ * DONE: the feature is done and has no bug (with hope)
