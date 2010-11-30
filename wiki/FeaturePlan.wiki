@@ -2,16 +2,15 @@
 == Introduction ==
 We're going to release libmv and need to know which features are needed for which release.
 
-== Releases - TODO ==
- * Do some releases (starting from 0.1?, since the amount of work done since the 0.0.2 is huge) and packages (tar.gz, other)
+The next release will be the 0.1 (since I think the amount of work done since the 0.0.2 is huge) and packages will be made.
 
 == Feature list ==
-|| *Status* || *Library* || *Feature Description* || *Priority* || *Release* || *contact?* ||
+|| *Status* || *Component* || *Feature Description* || *Priority* || *Release* || *contact?* ||
 || DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
 || DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
 || DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
 || TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
-|| TODO || all || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
+|| TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
 || TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
 || TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
@@ -26,10 +25,15 @@ We're going to release libmv and need to know which features are needed for whic
 || TODO || robust_estimation || PROSAC robust estimation || low || ||  ||
 || TODO || camera || Camera calibration tool || low ||  ||  ||
 || TODO || ui/nview || A 3D view for nview || low ||  ||  ||
+|| IDEA || libmv || Switch to mercurial/git? || low ||  ||  ||
+|| IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
 
 *Status convention*
+ * IDEA: not yet fully discussed
  * TODO: not yet implemented
  * STARTED: an initial implementation has been started (in the SVN or not)
  * DRAFT: a first version of the feature is in the SVN (and may contains bugs)
  * GOOD: an advanced version of the feature is in the SVN (with unit test)
  * DONE: the feature is done and has no bug (with hope)
+
+==Features Details==
