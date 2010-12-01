@@ -11,9 +11,9 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
 || TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
 || TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
+|| TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
 || TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
 || TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
-|| TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
 || STARTED || all || Switch to Eigen 3  || medium || 0.1.X || julien ||
 || TODO || contrib || Define/rewrite interfaces with Blender || medium || 0.1.X ||  ||
 || DRAFT || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium || 0.1.X ||  ||
@@ -22,10 +22,12 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || TODO || reconstruction || General uncalibrated reconstruction from video || low || 0.3 ||  ||
 || TODO || reconstruction || Precise metric rectification || low || 0.3 ||  ||
 || TODO || correspondence || Fast/Guided window traker || low || 0.3? ||  ||
+|| TODO || correspondence || ImagePyramid tracker || low || 0.3? ||  ||
 || TODO || correspondence || F+H traker [Torr98] || low || 0.3? ||  ||
 || TODO || robust_estimation || PROSAC robust estimation, GroupSAC? || low || ||  ||
 || TODO || camera || Camera calibration tool || low ||  ||  ||
 || TODO || ui/nview || A 3D view for nview || low ||  ||  ||
+|| IDEA || correspondence || KLT: make it use the new components? || low ||  ||  ||
 || IDEA || libmv || Switch to mercurial/git? || low ||  ||  ||
 || IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
 || IDEA || libmv || Python binding || low ||  ||  ||
