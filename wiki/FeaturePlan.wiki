@@ -5,7 +5,7 @@ We're going to release libmv and need to know which features are needed for whic
 The next release will be the 0.1 (since I think the amount of work done since the 0.0.2 is huge) and packages will be made.
 
 == Features and Todo list ==
-|| *Status* || *Component* || *Feature Description* || *Priority* || *Release* || *contact?* ||
+|| *Status* || *Component* || *Feature Description* || *Priority* || *Release* || *who* ||
 || DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
 || DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
 || DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
@@ -15,7 +15,7 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
 || STARTED || all || Switch to Eigen 3  || medium || 0.1.X || julien ||
-|| TODO ||  || Define/rewrite interfaces with Blender? || medium || 0.1.X ||  ||
+|| TODO || contrib || Define/rewrite interfaces with Blender || medium || 0.1.X ||  ||
 || DRAFT || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium || 0.1.X ||  ||
 || TODO || reconstruction || Apply radial distorsion correction || medium || 0.2? ||   ||
 || TODO || optimize? || Nonlinear Optimization library  || medium || 0.2? ||  ||
