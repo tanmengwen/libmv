@@ -23,11 +23,12 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || TODO || reconstruction || Precise metric rectification || low || 0.3 ||  ||
 || TODO || correspondence || Fast/Guided window traker || low || 0.3? ||  ||
 || TODO || correspondence || F+H traker [Torr98] || low || 0.3? ||  ||
-|| TODO || robust_estimation || PROSAC robust estimation || low || ||  ||
+|| TODO || robust_estimation || PROSAC robust estimation, GroupSAC? || low || ||  ||
 || TODO || camera || Camera calibration tool || low ||  ||  ||
 || TODO || ui/nview || A 3D view for nview || low ||  ||  ||
 || IDEA || libmv || Switch to mercurial/git? || low ||  ||  ||
 || IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
+|| IDEA || libmv || Python binding || low ||  ||  ||
 
 *Status convention*
  * IDEA: not yet fully discussed
