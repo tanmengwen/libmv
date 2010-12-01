@@ -1,4 +1,4 @@
-#Tips to compile Qt related libmv project on windows.
+#summary Tips to compile Qt related libmv project on windows.
 
 = Introduction =
 
