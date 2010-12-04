@@ -1,4 +1,4 @@
-#summary Must to have features and todo list
+#summary Must to have features and idea/todo list
 == Introduction ==
 We're going to release libmv and need to know which features are needed for which release.
 
@@ -8,7 +8,7 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || *Status* || *Component* || *Feature Description* || *Priority* || *Release* || *who* ||
 || DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
 || DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
-|| DRAFT || reconstruction || VERY robust initial reconstruction   || high || 0.1 || julien ||
+|| DRAFT || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || 0.1 || julien ||
 || TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
 || TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
@@ -31,6 +31,7 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || IDEA || libmv || Switch to mercurial/git? || low ||  ||  ||
 || IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
 || IDEA || libmv || Python binding || low ||  ||  ||
+|| IDEA || libmv || Online API documentation || low ||  ||  ||
 
 *Status convention*
  * IDEA: not yet fully discussed
