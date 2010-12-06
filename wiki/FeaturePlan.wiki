@@ -12,6 +12,7 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
 || TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
+|| TODO || correspondence || ImagePyramid tracker || medium || 0.1.X ||  ||
 || TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
 || TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
 || STARTED || all || Switch to Eigen 3  || medium || 0.1.X || julien ||
@@ -23,7 +24,6 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || TODO || reconstruction || General uncalibrated reconstruction from video || low || 0.3 ||  ||
 || TODO || reconstruction || Precise metric rectification || low || 0.3 ||  ||
 || TODO || correspondence || Fast/Guided window traker || low || 0.3? ||  ||
-|| TODO || correspondence || ImagePyramid tracker || low || 0.3? ||  ||
 || TODO || correspondence || F+H traker [Torr98] || low || 0.3? ||  ||
 || TODO || robust_estimation || PROSAC robust estimation, GroupSAC? || low || ||  ||
 || TODO || camera || Camera calibration tool || low ||  ||  ||
