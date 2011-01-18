@@ -33,6 +33,7 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
 || IDEA || libmv || Python binding || low ||  ||  ||
 || IDEA || libmv || Online API documentation || low ||  ||  ||
+|| IDEA || libmv || Choose a serialization lib (json?) || low ||  ||  ||
 
 *Status convention*
  * IDEA: not yet fully discussed
