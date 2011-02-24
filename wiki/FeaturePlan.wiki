@@ -9,8 +9,9 @@ The next release will be the 0.1 (since I think the amount of work done since th
 || DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
 || DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
 || DRAFT || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || 0.1 || julien ||
-|| TODO || third parties || Installation rules for third parties (headers/lib) || medium || 0.1 ||  ||
+|| TODO || third parties || Installation rules for third parties (headers/lib) || low|| 0.1 ||  ||
 || TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
+|| TODO || correspondence || Write tracker unit test  || high || 0.1 || julien ||
 || TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
 || TODO || correspondence || ImagePyramid tracker || medium || 0.1.X ||  ||
 || TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
