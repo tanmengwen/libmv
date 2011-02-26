@@ -36,10 +36,10 @@ Before this release, we will produce several unstable versions.
 || reconstruction || Keyframe selection method   || high || julien || _not yet finished_ || DRAFT ||
 || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
 || correspondence || Write tracker unit test  || high || julien || _ _ || TODO ||
-|| reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || TODO ||
+|| reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
-|| third parties || Installation rules for third parties (headers/lib) || low ||  || _ _ || TODO ||
-|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || TODO ||
+|| third parties || Installation rules for third parties (headers) || low ||  || _ _ || DRAFT ||
+|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || DRAFT ||
 || libmv || Make a changelog  || low ||  || _ _ || TODO ||
 
 === Version 2.0 ===
@@ -72,7 +72,7 @@ Before this release, we will produce several unstable versions.
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
-|| wiki || Merge Roadmap with FeaturesPlan || low ||  || _ _ || TODO ||
+|| wiki || Merge Roadmap with FeaturePlan || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _ _ || TODO ||
 
 === To be decided ===
