@@ -2,47 +2,93 @@
 == Introduction ==
 We're going to release libmv and need to know which features are needed for which release.
 
-The next release will be the 0.1 (since I think the amount of work done since the 0.0.2 is huge) and packages will be made.
+The basic idea is to have something like this:
+
+* Libmv v0.X:*
+  * Initial match moving algorithms with known camera  intrinsics
+  * Unstable API 
+
+* Libmv v1.0:*
+  * Efficient match moving with known camera  intrinsics
+  * Stable API 
+  * Blender interface?
+  * "Complete" Unit tests
+
+* Libmv v2.0:*
+  * Match moving with unknown camera intrinsics
+  * Generic Bundle Adjustment library (SSBA doesn't handle projective BA)
+
+* Libmv vX.0* (X>2):
+  * Miscellaneous things (images set reconstruction, RA, SLAM, etc.)
+  * Add here your great computer vision application!
+
+
+The *next major release will be 1.0* and *packages will be made*. 
+
+Before this release, we will produce several unstable versions.
 
 == Features and Todo list ==
-|| *Status* || *Component* || *Feature Description* || *Priority* || *Release* || *who* ||
-|| DRAFT || reconstruction || General calibrated reconstruction from video  || high || 0.1 || julien ||
-|| DRAFT || reconstruction || Keyframe selection method   || high || 0.1 || julien ||
-|| DRAFT || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || 0.1 || julien ||
-|| TODO || third parties || Installation rules for third parties (headers/lib) || low|| 0.1 ||  ||
-|| TODO || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low || 0.1 ||  ||
-|| TODO || correspondence || Write tracker unit test  || high || 0.1 || julien ||
-|| TODO || reconstruction || Write reconstruction unit test  || medium || 0.1 || julien ||
-|| TODO || correspondence || ImagePyramid tracker || medium || 0.1.X ||  ||
-|| TODO || multiview || Point structure optimization  || medium || 0.1.X ||  ||
-|| TODO || multiview || Camera optimization  || medium || 0.1.X ||  ||
-|| STARTED || all || Switch to Eigen 3  || medium || 0.1.X || julien ||
-|| TODO || contrib || Define/rewrite interfaces with Blender || medium || 0.1.X ||  ||
-|| DRAFT || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium || 0.1.X ||  ||
-|| TODO || reconstruction || Apply radial distorsion correction || medium || 0.2? ||   ||
-|| TODO || optimize? || Nonlinear Optimization library  || medium || 0.2? ||  ||
-|| TODO || ui/nview || Find the focal length (in px) with the Exif data || low || 0.2? ||  ||
-|| TODO || reconstruction || General uncalibrated reconstruction from video || low || 0.3 ||  ||
-|| TODO || reconstruction || Precise metric rectification || low || 0.3 ||  ||
-|| DRAFT || correspondence || Fast window traker (circle:draft, ellipse:todo) || low || 0.3? ||  ||
-|| TODO || correspondence || Guided traker (with tracks prediction) || low || 0.3? ||  ||
-|| TODO || correspondence || F+H traker [Torr98] || low || 0.3? ||  ||
-|| TODO || robust_estimation || PROSAC robust estimation, GroupSAC? || low || ||  ||
-|| TODO || camera || Camera calibration tool || low ||  ||  ||
-|| TODO || ui/nview || A 3D view for nview || low ||  ||  ||
-|| IDEA || correspondence || KLT: make it use the new components? || low ||  ||  ||
-|| IDEA || libmv || Switch to mercurial/git? || low ||  ||  ||
-|| IDEA || libmv || Project management tool (Redmine?) || low ||  ||  ||
-|| IDEA || libmv || Python binding || low ||  ||  ||
-|| IDEA || libmv || Online API documentation || low ||  ||  ||
-|| IDEA || libmv || Choose a serialization lib (json?) || low ||  ||  ||
+
+=== Version 1.0 ===
+
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comments*  || *Status* ||
+|| reconstruction || General calibrated reconstruction from video  || high ||  julien || _doesn't work yet (due to keyframe selection?)_ || DRAFT ||
+|| reconstruction || Keyframe selection method   || high || julien || _not yet finished_ || DRAFT ||
+|| reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
+|| third parties || Installation rules for third parties (headers/lib) || low ||  || _ _ || TODO ||
+|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || TODO ||
+|| correspondence || Write tracker unit test  || high || julien || _ _ || TODO ||
+|| reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || TODO ||
+|| contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
+
+=== Version 2.0 ===
+
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| reconstruction || General uncalibrated reconstruction from video || high  ||  || _ _ || TODO ||
+|| reconstruction || Precise metric rectification || medium  ||  || _ _ || TODO ||
+|| optimize? || Nonlinear Optimization library  || high ||  || _ _ || TODO ||
+|| multiview || Point structure optimization  || medium  ||  || _ _ || TODO ||
+|| multiview || Camera optimization  || medium  ||  || _ _ || TODO ||
+
+=== Version 3.0 ===
+
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| reconstruction || Reconstruction of an Images set || high ||  || _ _ || TODO ||
+|| reconstruction || Apply radial distorsion correction || high ||  || _ _ || TODO ||
+|| ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _ || TODO ||
+|| correspondence || ImagePyramid tracker || medium  ||  || _ _ || TODO ||
+|| correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_ || DRAFT ||
+|| correspondence || Guided traker (with tracks prediction) || low ||  || _ _ || TODO ||
+|| correspondence || F+H traker [Torr98] || low ||  || _ _ || TODO ||
+
+=== When we have time ===
+
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| third parties || Switch to Eigen 3  || high  || julien/pierre || _ _ || STARTED ||
+|| correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
+|| robust_estimation || Create a robust estimation lib || low ||  || _ _ || TODO ||
+|| robust_estimation || Add PROSAC robust estimation +GroupSAC? || low ||  || _ _ || TODO ||
+|| tools || Camera calibration tool || low  ||  || _ _ || TODO ||
+|| ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
+|| third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
+|| wiki || Merge Roadmap with FeaturesPlan || low ||  || _ _ || TODO ||
+|| wiki || Update the wiki! || medium ||  || _ _ || TODO ||
+
+=== To be decided ===
+
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| correspondence || KLT: make it use the new components? || low  ||  || _ _ || IDEA ||
+|| libmv || Switch to mercurial/git? || low  ||  || _ _ || IDEA ||
+|| libmv || Project management tool (Redmine?) || low ||  || _ _ || IDEA ||
+|| libmv || Python binding || low  ||  || _ _ || IDEA ||
+|| libmv || Online API documentation || low  ||  || _ _ || IDEA ||
+
+`*`_Feel free to add yourself!!_
 
 *Status convention*
  * IDEA: not yet fully discussed
  * TODO: not yet implemented
  * STARTED: an initial implementation has been started (in the SVN or not)
- * DRAFT: a first version of the feature is in the SVN (and may contains bugs)
- * GOOD: an advanced version of the feature is in the SVN (with unit test)
- * DONE: the feature is done and has no bug (with hope)
-
-==Features Details==
+ * DRAFT: a first version of the feature is in the SVN
+ * GOOD: an advanced version of the feature is in the SVN (it works but may contains bugs)
+ * DONE: the feature is done and has unit tests and documentation
