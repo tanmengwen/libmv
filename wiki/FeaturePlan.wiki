@@ -35,11 +35,12 @@ Before this release, we will produce several unstable versions.
 || reconstruction || General calibrated reconstruction from video  || high ||  julien || _doesn't work yet (due to keyframe selection?)_ || DRAFT ||
 || reconstruction || Keyframe selection method   || high || julien || _not yet finished_ || DRAFT ||
 || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
-|| third parties || Installation rules for third parties (headers/lib) || low ||  || _ _ || TODO ||
-|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || TODO ||
 || correspondence || Write tracker unit test  || high || julien || _ _ || TODO ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || TODO ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
+|| third parties || Installation rules for third parties (headers/lib) || low ||  || _ _ || TODO ||
+|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || TODO ||
+|| libmv || Make a changelog  || low ||  || _ _ || TODO ||
 
 === Version 2.0 ===
 
