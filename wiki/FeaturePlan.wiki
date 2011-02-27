@@ -35,12 +35,13 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || General calibrated reconstruction from video  || high ||  julien || _doesn't work yet (due to keyframe selection?)_ || DRAFT ||
 || reconstruction || Keyframe selection method   || high || julien || _not yet finished_ || DRAFT ||
 || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
-|| correspondence || Write tracker unit test  || high || julien || _ _ || TODO ||
+|| correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
-|| third parties || Installation rules for third parties (headers) || low ||  || _ _ || DRAFT ||
+|| third parties || Installation rules for third parties (headers) || low ||  || _in src/CMake/Installation.cmake_ || DRAFT ||
 || libmv || Make libmv build for Mac OS  || medium ||  || _ _ || TODO ||
-|| libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || DRAFT ||
+|| libmv || Packaging scripts using CPack  || low ||  || _in src/CMake/Packaging.cmake_ || STARTED ||
+|| libmv || Make a documentation rule using cmake (doxygen, man) || low ||  || _in src/CMake/Documentation.cmake_ || STARTED ||
 || libmv || Make a changelog  || low ||  || _ _ || TODO ||
 
 === Version 2.0 ===
@@ -58,7 +59,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || Reconstruction of an Images set || high ||  || _ _ || TODO ||
 || reconstruction || Apply radial distorsion correction || high ||  || _ _ || TODO ||
 || ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _ || TODO ||
-|| correspondence || ImagePyramid tracker || medium  ||  || _ _ || TODO ||
+|| correspondence || ImagePyramid tracker || medium  ||  || _ _ || STARTED ||
 || correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_ || DRAFT ||
 || correspondence || Guided traker (with tracks prediction) || low ||  || _ _ || TODO ||
 || correspondence || F+H traker [Torr98] || low ||  || _ _ || TODO ||
@@ -69,6 +70,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || third parties || Switch to Eigen 3  || high  || julien/pierre || _ _ || STARTED ||
 || third parties || Update third parties (glog, gflag, etc.) || low ||  || _ _ || TODO ||
 || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
+|| correspondence || Plan tracker (for plan based augmented reality) || low  ||  || _ _ || GOOD ||
 || robust_estimation || Create a robust estimation lib || low ||  || _ _ || TODO ||
 || robust_estimation || Add PROSAC robust estimation +GroupSAC? || low ||  || _ _ || TODO ||
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
@@ -95,4 +97,4 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
  * STARTED: an initial implementation has been started (in the SVN or not)
  * DRAFT: a first version of the feature is in the SVN
  * GOOD: an advanced version of the feature is in the SVN (it works but may contains bugs)
- * DONE: the feature is done and has unit tests and documentation
+ * *DONE*: the feature is done and has unit tests and documentation
