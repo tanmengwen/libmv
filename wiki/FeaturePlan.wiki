@@ -4,7 +4,7 @@ We're going to release libmv and need to know which features are needed for whic
 
 The basic idea is to have something like this:
 
-* Libmv v0.X:*
+* Libmv v0.Y:*
   * Initial match moving algorithms with known camera  intrinsics
   * Unstable API 
 
@@ -19,13 +19,13 @@ The basic idea is to have something like this:
   * Generic Bundle Adjustment library (SSBA doesn't handle projective BA)
 
 * Libmv vX.0* (X>2):
-  * Miscellaneous things (images set reconstruction, RA, SLAM, etc.)
+  * Miscellaneous things (images set reconstruction, AR, SLAM, etc.)
   * Add here your great computer vision application!
 
 
 The *next major release will be 1.0* and *packages will be made*. 
 
-Before this release, we will produce several unstable versions.
+Before this release, we will produce several unstable versions (0.Y), where Y will be increased each time that a feature (defined in the following tables) reach the DONE state.
 
 == Features and Todo list ==
 
@@ -67,6 +67,7 @@ Before this release, we will produce several unstable versions.
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || third parties || Switch to Eigen 3  || high  || julien/pierre || _ _ || STARTED ||
+|| third parties || Update third parties (glog, gflag, etc.) || low ||  || _ _ || TODO ||
 || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || robust_estimation || Create a robust estimation lib || low ||  || _ _ || TODO ||
 || robust_estimation || Add PROSAC robust estimation +GroupSAC? || low ||  || _ _ || TODO ||
@@ -74,7 +75,7 @@ Before this release, we will produce several unstable versions.
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || libmv || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
-|| wiki || Merge Roadmap with FeaturePlan || low ||  || _ _ || TODO ||
+|| wiki || Merge roadmap with FeaturePlan || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _ _ || TODO ||
 
 === To be decided ===
