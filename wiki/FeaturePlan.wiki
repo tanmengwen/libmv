@@ -39,6 +39,7 @@ Before this release, we will produce several unstable versions.
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
 || third parties || Installation rules for third parties (headers) || low ||  || _ _ || DRAFT ||
+|| libmv || Make libmv build for Mac OS  || medium ||  || _ _ || TODO ||
 || libmv || Packaging scripts using CPack (.tar.gz|.deb?|.rpm?)  || low ||  || _ _ || DRAFT ||
 || libmv || Make a changelog  || low ||  || _ _ || TODO ||
 
@@ -72,6 +73,7 @@ Before this release, we will produce several unstable versions.
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
+|| libmv || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
 || wiki || Merge Roadmap with FeaturePlan || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _ _ || TODO ||
 
