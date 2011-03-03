@@ -38,9 +38,9 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
-|| third parties || Installation rules for third parties (headers) || low ||  || _in src/CMake/Installation.cmake_ || DRAFT ||
+|| third parties || Installation rules for third parties (headers) || low ||  || _need to be tested in win/mac_ || GOOD ||
 || libmv || Make libmv build for Mac OS  || medium ||  || _ _ || TODO ||
-|| libmv || Packaging scripts using CPack  || low ||  || _in src/CMake/Packaging.cmake_ || STARTED ||
+|| libmv || Packaging scripts using CPack  || low ||  || _linux: done, win:to be tested, mac: todo_ || GOOD ||
 || libmv || Make a documentation rule using cmake (doxygen, man) || low ||  || _in src/CMake/Documentation.cmake_ || STARTED ||
 || libmv || Make a changelog  || low ||  || _ _ || TODO ||
 
