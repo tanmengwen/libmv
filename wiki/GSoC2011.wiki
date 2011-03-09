@@ -4,11 +4,19 @@
 = Google Summer of Code 2011 (GSoC2011) =
 
 We are going to apply for GSoC this year.
-The objective is to propose to one (or more) student(s) to integrate libmv into blender.
+
+The main objective is to propose to one (or more) student(s) to integrate libmv into blender.
 
 = Project description and objectives =
 
+
 = Who we are looking for =
+We are looking for students who
+  * have a background in match moving (camera tracking) 
+  * already know C++, python and Blender
+
+  * Having an experience in developing Blender components is a big plus
+  * Having an experience with one of the main existing commercial software (Boujou, PFTrack, MatchMover, etc.) is a plus.
 
 = Applying for Libmv GSoC 2011  =
 In order to apply to Libmv GSoC 2011, you should
@@ -16,10 +24,10 @@ In order to apply to Libmv GSoC 2011, you should
   * Apply to the [http://socghop.appspot.com/gsoc/student/apply/google/gsoc2011 official Google SoC 2011]
   * Send us your application (to libmv-devel_AT_googlegroups.com) 
 
-Your application (to libmv) must contain the following informations:
+This application must contain the following informations:
   * Name
   * Email address
-  * Background (courses taken: Maths, Computer programming, Match moving, etc)
+  * Background (courses taken: UI, Computer programming, Match moving, etc)
   * Skills (c++, blender etc)
   * Experience (Work and open source)
   * A link to one of your code that you are proud of.
