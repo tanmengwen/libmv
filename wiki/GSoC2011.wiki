@@ -1,4 +1,4 @@
-#summary Libmv GSoC 2011
+#summary Libmv Google Summer of Code 2011 ideas
 #labels blender
 
 = Google Summer of Code 2011 (GSoC2011) =
