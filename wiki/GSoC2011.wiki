@@ -25,6 +25,11 @@ The major objectives are
 
 For more information on this integration see [libmvBlenderInterface] and [Blender2DTrackerPlan] (note that these pages will be updated with the new design of libmv, but they show the main idea).
 
+*Important notes* 
+Since libmv is still under development: 
+  * the API will be modified/improved in order to fit with the project requirements. You will participate on both sides: libmv and blender.
+  * the results of the camera tracking (and 2D tracking) will depend on the quality of our algorithms. An accurate camera trajectory estimation is *NOT* an objective of this projet (but is an objective of libmv ;) )
+
 = Who we are looking for =
 We are looking for students who
   * have a background in match moving (camera tracking) 
