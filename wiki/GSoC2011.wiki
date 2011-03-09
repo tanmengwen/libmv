@@ -7,8 +7,23 @@ We are going to apply for GSoC this year.
 
 The main objective is to propose to one (or more) student(s) to integrate libmv into blender.
 
-= Project description and objectives =
+= Project objectives =
+This projet will be an initial integration of libmv into Blender. 
 
+Libmv has now many components dedicated or not to camera tracking. 
+The main idea is to provide a basic camera tracking component into Blender using libmv. 
+Note that we do not want to have all functionalities that other commercial software propose. 
+But at the end of the project, anybody should be able to load a footage (images) in Blender and compute the camera trajectory using libmv.
+
+The major objectives are
+  * Load images in blender and send them to libmv
+  * Call the libmv's 2D tracking process and retreive the 2D tracks
+  * Display the 2D tracks on images
+  * Allow the user to delete wrong tracks and add new ones
+  * Call the libmv's camera tracking process
+  * Display the estimated camera 3D trajectory
+
+For more information on this integration see [libmvBlenderInterface] and [Blender2DTrackerPlan] (note that these pages will be updated with the new design of libmv, but they show the main idea).
 
 = Who we are looking for =
 We are looking for students who
@@ -24,7 +39,7 @@ In order to apply to Libmv GSoC 2011, you should
   * Apply to the [http://socghop.appspot.com/gsoc/student/apply/google/gsoc2011 official Google SoC 2011]
   * Send us your application (to libmv-devel_AT_googlegroups.com) 
 
-This application must contain the following informations:
+This application must contain the following information:
   * Name
   * Email address
   * Background (courses taken: UI, Computer programming, Match moving, etc)
