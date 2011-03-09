@@ -5,9 +5,9 @@
 
 We are going to apply for GSoC this year.
 
-The main objective is to propose to one (or more) student(s) to integrate libmv into blender.
+The main project idea is to propose to one (or more) student(s) to integrate libmv into blender.
 
-= Project ideas and objectives =
+= Project idea and objectives =
 This projet will be an initial integration of libmv into Blender. 
 
 Libmv has now many components dedicated or not to camera tracking. 
