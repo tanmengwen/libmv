@@ -43,8 +43,9 @@ We are looking for students who
   * Having an experience with one of the main existing commercial software (Boujou, PFTrack, MatchMover, etc.) is a plus.
 
 == Idea 2: Bundle Adjustment Library ==
-The next major technologies of libmv (camera calibration and self-calibration, camera and point optimization, etc.) need to have a Bundle Adjustment (BA) framework.
-This project will actively use Eigen library (linear, nonlinear, sparse optimization) and you will certainly contribute to it.
+The next major technologies of libmv (camera calibration and self-calibration, camera and/or point optimization etc.) need to have a Bundle Adjustment (BA) framework.
+Since SSBA doesn't support for instance the projective optimization or others specific optimizations, we propose to create a new BA library. 
+This project will actively use Eigen library (linear, nonlinear, sparse optimization) and you will certainly contribute to Eigen.
 === Project objectives ===
 The major objectives are
   * A generic BA with numerical derivatives
