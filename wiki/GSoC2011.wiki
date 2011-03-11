@@ -18,7 +18,7 @@ The main idea is to provide a basic camera tracking component into Blender using
 Note that we do not want to have all functionalities that other commercial software propose. 
 But at the end of the project, anybody should be able to load a footage (images) in Blender and compute the camera trajectory using libmv.
 === Project objectives ===
-The major objectives are
+The major objectives would be
   * Load images in blender and send them to libmv
   * Call the libmv's 2D tracking process and retreive the 2D tracks
   * Display the 2D tracks on images
@@ -32,7 +32,7 @@ For more information on this integration see [libmvBlenderInterface] and [Blende
 *Important notes* 
 Since libmv is still under development: 
   * the API will be modified/improved in order to fit with the project requirements. You will participate on both sides: libmv and blender.
-  * the results of the camera tracking (and 2D tracking) will depend on the quality of our algorithms. An accurate camera trajectory estimation is *NOT* an objective of this projet (but is an objective of libmv ;) )
+  * the results of the camera tracking (and 2D tracking) will depend on the quality of our algorithms. A very accurate camera trajectory estimation is *NOT* an objective of this projet (but is an objective of libmv ;) )
 
 === Who we are looking for ===
 We are looking for students who
@@ -77,7 +77,10 @@ In order to apply to Libmv GSoC 2011, you should
 
 This application must contain the following information:
   * Name
-  * Email address
+  * Location
+  * Email address/irc nickname
+  * Project description (what are you going to do?) 
+  * Project schedule (what you expect to have ready for mid-term and final evaluation? )
   * Background (courses taken: UI, Computer programming, Match moving, etc)
   * Skills (c++, blender etc)
   * Experience (Work and open source)
