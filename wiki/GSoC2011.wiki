@@ -47,7 +47,7 @@ The next major technologies of libmv (camera calibration and self-calibration, c
 Since SSBA doesn't support for instance the projective optimization or others specific optimizations, we propose to create a new BA library. 
 This project will actively use Eigen library (linear, nonlinear, sparse optimization) and you will certainly contribute to Eigen.
 === Project objectives ===
-The major objectives are
+The major objectives would be
   * A generic BA with numerical derivatives
   * A BA with analitical derivatives (camera extrinsics + intrinsics + 3D points)
   * A sparse BA (sparse resolution, camera extrinsics + 3D points)
@@ -60,22 +60,22 @@ We are looking for students who
 
   * Having an experience in nonliear optimization is a big plus
 
-== Idea 3: Augmented Reality or SLAM ==
-Yes, why not!
+== Idea 3: Augmented Reality or SLAM or any other great SfM/CV algo ==
+Yes, why not! Feel free to propose your project!
 === Project objectives ===
 The major objectives are TBD
 === Who we are looking for ===
 We are looking for students who
   * have a background in computer vision
   * already know C++
-  
+
 = Applying for Libmv GSoC 2011  =
 In order to apply to Libmv GSoC 2011, you should
   * Read the project description and make sure your background is appropriate
   * Apply to the [http://socghop.appspot.com/gsoc/student/apply/google/gsoc2011 official Google SoC 2011]
-  * Send us your application (to libmv-devel_AT_googlegroups.com) 
+  * Send us your ideas and application (to libmv-devel_AT_googlegroups.com) 
 
-This application must contain the following information:
+The application must contain the following information:
   * Name
   * Location
   * Email address/irc nickname
