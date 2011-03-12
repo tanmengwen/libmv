@@ -1,26 +1,31 @@
 #summary Must to have features and idea/todo list
+Content
+<wiki:toc max_depth="3" />
 == Introduction ==
 We're going to release libmv and need to know which features are needed for which release.
 
 The basic idea is to have something like this:
 
-* Libmv v0.Y:*
+* Libmv 0.Y:*
   * Initial match moving algorithms with known camera  intrinsics
   * Unstable API 
 
-* Libmv v1.0:*
-  * Efficient match moving with known camera  intrinsics
+* Libmv 1.0:*
+  * Efficient match moving with known camera intrinsics
   * Stable API 
   * Blender interface?
   * "Complete" Unit tests
 
-* Libmv v2.0:*
+* Libmv 2.0:*
   * Match moving with unknown camera intrinsics
   * Generic Bundle Adjustment library (SSBA doesn't handle projective BA)
 
-* Libmv vX.0* (X>2):
-  * Miscellaneous things (images set reconstruction, AR, SLAM, etc.)
-  * Add here your great computer vision application!
+* Libmv 3.0:*
+  * Reconstruction from an image set (unordered)?
+  * Dense 3D reconstruction?
+
+* Libmv X.0* (X>3):
+  * Add here your great computer vision application (AR?, SLAM?, etc.)!
 
 
 The *next major release will be 1.0* and *packages will be made*. 
@@ -33,9 +38,11 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comments*  || *Status* ||
 || reconstruction || General calibrated reconstruction from video  || high ||  julien || _doesn't work yet (due to keyframe selection?)_ || DRAFT ||
-|| reconstruction || Keyframe selection method   || high || julien || _not yet finished_ || DRAFT ||
+|| reconstruction || Keyframe selection method   || high || julien || _ _ || DRAFT ||
 || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
 || correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
+|| multiview || Camera optimization (euclidean) || high  ||  || _ _ || TODO ||
+|| multiview || Point structure optimization (euclidean) || medium  ||  || _ _ || TODO ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
 || third parties || Installation rules for third parties (headers) || low ||  || _need to be tested in win/mac_ || GOOD ||
@@ -50,14 +57,14 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || General uncalibrated reconstruction from video || high  ||  || _ _ || TODO ||
 || reconstruction || Precise metric rectification || medium  ||  || _ _ || TODO ||
 || optimize? || Nonlinear Optimization library  || high ||  || _ _ || TODO ||
-|| multiview || Point structure optimization  || medium  ||  || _ _ || TODO ||
-|| multiview || Camera optimization  || medium  ||  || _ _ || TODO ||
+|| multiview || Camera optimization (projective)  || medium  ||  || _ _ || TODO ||
+|| multiview || Point structure optimization (projective)  || medium  ||  || _ _ || TODO ||
+|| reconstruction || Radial distorsion correction || high ||  || _ _ || TODO ||
 
 === Version 3.0 ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || reconstruction || Reconstruction of an Images set || high ||  || _ _ || TODO ||
-|| reconstruction || Apply radial distorsion correction || high ||  || _ _ || TODO ||
 || ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _ || TODO ||
 || correspondence || ImagePyramid tracker || medium  ||  || _ _ || STARTED ||
 || correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_ || DRAFT ||
@@ -77,7 +84,8 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || libmv || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
-|| wiki || Merge roadmap with FeaturePlan || low ||  || _ _ || TODO ||
+|| wiki || Merge [roadmap] with [FeaturePlan] || low ||  || _ _ || TODO ||
+|| wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _ _ || TODO ||
 
 === To be decided ===
