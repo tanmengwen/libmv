@@ -785,7 +785,6 @@ namespace kutility
    template<class T> inline
    void layered_gradient( T* data, int h, int w, int layer_no, T* layers, T* workspace=0, int lwork=0 )
    {
-      (void) workspace;
       int data_size = h * w;
       assert(layers!=NULL);
       memset(layers,0,sizeof(T)*data_size*layer_no);
