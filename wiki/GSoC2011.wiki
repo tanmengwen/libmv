@@ -1,7 +1,7 @@
 #summary Libmv Google Summer of Code 2011 ideas
-#labels blender
+#labels gsoc
 
-= Google Summer of Code 2011 (GSoC2011) =
+= Google Summer of Code 2011 (GSoC2011) ideas =
 
 We are going to apply for GSoC this year.
 
@@ -60,10 +60,22 @@ We are looking for students who
 
   * Having an experience in nonliear optimization is a big plus
 
-== Idea 3: Augmented Reality or SLAM or any other great SfM/CV algo ==
-Yes, why not! Feel free to propose your project!
+== Idea 3: Tracker improvement ==
+Improve our 2D tracker!
 === Project objectives ===
-The major objectives are TBD
+The major objectives would be
+  * Clean the matching process (use classes)
+  * Add a mask system during the feature detection
+  * Add a mask system during the feature matching
+  * Add/improve the image pyramid tracker
+  * Create a predictive tracker (motion prediction -> features prediction)
+=== Who we are looking for ===
+We are looking for students who
+  * have a background in computer vision
+  * already know C++
+
+== Idea 4: Augmented Reality or SLAM or any other great SfM/CV algo ==
+Yes, why not! Feel free to propose your project!
 === Who we are looking for ===
 We are looking for students who
   * have a background in computer vision
