@@ -66,7 +66,7 @@ INCLUDE_DIRECTORIES(
   third_party/daisy/include
   third_party/gtest
   third_party/gtest/include
-  third_party/eigen-3.0
+  third_party/eigen
   third_party/ssba
   third_party/glog/src
   third_party/OpenExif/src
