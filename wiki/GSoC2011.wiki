@@ -37,8 +37,8 @@ Since libmv is still under development:
 
 === Who we are looking for ===
 We are looking for students who
-  * have a background in match moving (camera tracking) 
-  * already know C++, python and Blender
+  * have a background in computer vision 
+  * already know C++ and Blender
 
   * Having an experience in developing Blender components is a big plus
   * Having an experience with one of the main existing commercial software (Boujou, PFTrack, MatchMover, etc.) is a plus.
@@ -75,7 +75,14 @@ We are looking for students who
   * have a background in computer vision
   * already know C++
 
-== Idea 4: Augmented Reality or SLAM or any other great SfM/CV algo ==
+== Idea 4: Reconstruction from unordered images / dense 3D reconstruction ==
+Improve our reconstruction from unordered images and/or create a dense reconstruction of the scene!
+=== Who we are looking for ===
+We are looking for students who
+  * have a background in computer vision
+  * already know C++
+
+== Idea 5: Augmented Reality or SLAM or any other great SfM/CV algo ==
 Yes, why not! Feel free to propose your project!
 === Who we are looking for ===
 We are looking for students who
