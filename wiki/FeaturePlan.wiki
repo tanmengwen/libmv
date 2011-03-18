@@ -59,7 +59,8 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || optimize? || Nonlinear Optimization library  || high ||  || _ _ || TODO ||
 || multiview || Camera optimization (projective)  || medium  ||  || _ _ || TODO ||
 || multiview || Point structure optimization (projective)  || medium  ||  || _ _ || TODO ||
-|| reconstruction || Radial distorsion correction || high ||  || _ _ || TODO ||
+|| camera || Radial distorsion correction || high ||  || _ _ || TODO ||
+|| camera || Radial distorsion estimation from lines || low ||  || _ _ || TODO ||
 
 === Version 3.0 ===
 
@@ -84,7 +85,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || libmv || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
-|| wiki || Merge [roadmap] with [FeaturePlan] || low ||  || _ _ || TODO ||
+|| wiki || Merge [Roadmap] with [FeaturePlan] || low ||  || _ _ || TODO ||
 || wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _ _ || TODO ||
 
