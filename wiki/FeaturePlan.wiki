@@ -37,9 +37,9 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 === Version 1.0 ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comments*  || *Status* ||
-|| reconstruction || General calibrated reconstruction from video  || high ||  julien || _doesn't work yet (due to keyframe selection?)_ || DRAFT ||
-|| reconstruction || Keyframe selection method   || high || julien || _ _ || DRAFT ||
-|| reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _ _ || DRAFT ||
+|| reconstruction || General calibrated reconstruction from video  || high ||  julien || _ _ || DRAFT/GOOD ||
+|| reconstruction || Keyframe selection method   || high || julien || _ _ || GOOD ||
+|| reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _2 views seem enough?_ || GOOD? ||
 || correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
 || multiview || Camera optimization (euclidean) || high  ||  || _ _ || TODO ||
 || multiview || Point structure optimization (euclidean) || medium  ||  || _ _ || TODO ||
