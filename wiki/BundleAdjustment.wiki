@@ -1,0 +1,29 @@
+#summary Describe our needs on the bundle adjustment library
+#labels bundleadjustment
+
+= Introduction =
+
+This page describes our needs for the nonlinear least square (SfM dedicated) library.
+
+We need to have our own sparse BA and even more: we need a custom optimization lib, including a BA.
+We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stables, but working?)!
+
+Where: in _src/optimization_?
+Dependencies: no? camera/multiview?
+Parameters: vector only? matrices? classes (camera/structure/...)?
+
+= Functionalities needed =
+  * Functionality one
+  * Functionality two
+  * ...
+
+= Possibles signatures =
+  * Camera(s) only
+    * {{{OptimizeCamera(Mat43 *cam)}}}
+    * ...
+  * Structure(s) only
+    * {{{OptimizeStructure(Vec *structure)}}}
+    * ..
+  * Cameras and Structures (Bundle Adjustment)
+    * {{{BundleAdjust(...)}}}
+    * ...
