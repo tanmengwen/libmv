@@ -41,8 +41,8 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || Keyframe selection method   || high || julien || _ _ || GOOD ||
 || reconstruction || Robust initial reconstruction, maybe with 3 views?   || medium || julien || _2 views seem enough?_ || GOOD? ||
 || correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
-|| multiview || Camera optimization (euclidean) || high  ||  || _ _ || TODO ||
-|| multiview || Point structure optimization (euclidean) || medium  ||  || _ _ || TODO ||
+|| multiview || Camera optimization (euclidean) (see [BundleAdjustment]) || high  ||  || _ _ || TODO ||
+|| multiview || Point structure optimization (euclidean) (see [BundleAdjustment]) || medium  ||  || _ _ || TODO ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
 || third parties || Installation rules for third parties (headers) || low ||  || _need to be tested in win/mac_ || GOOD ||
@@ -56,9 +56,9 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || reconstruction || General uncalibrated reconstruction from video || high  ||  || _ _ || TODO ||
 || reconstruction || Precise metric rectification || medium  ||  || _ _ || TODO ||
-|| optimize? || Nonlinear Optimization library  || high ||  || _ _ || TODO ||
-|| multiview || Camera optimization (projective)  || medium  ||  || _ _ || TODO ||
-|| multiview || Point structure optimization (projective)  || medium  ||  || _ _ || TODO ||
+|| optimize? || Nonlinear Optimization library (see [BundleAdjustment])  || high ||  || _ _ || TODO ||
+|| multiview || Camera optimization (projective) (see [BundleAdjustment])  || medium  ||  || _ _ || TODO ||
+|| multiview || Point structure optimization (projective) (see [BundleAdjustment]) || medium  ||  || _ _ || TODO ||
 || camera || Radial distorsion correction || high ||  || _ _ || TODO ||
 || camera || Radial distorsion estimation from lines || low ||  || _ _ || TODO ||
 
