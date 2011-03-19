@@ -3,7 +3,7 @@
 
 = Google Summer of Code 2011 (GSoC2011) ideas =
 
-We are going to apply for GSoC this year.
+Alas, we haven't been accepted to GSoC this year, but the GSoC ideas remain valid! If you are motivated to do some great Structure-from-Motion applications in libmv, feel free to contact us! 
 
 The main project idea is to propose to one (or more) student(s) to improve libmv's technologies and integrate it into blender.
 <wiki:toc max_depth="2" />
