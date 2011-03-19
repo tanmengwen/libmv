@@ -8,18 +8,26 @@ This page describes our needs for the nonlinear least square (SfM dedicated) lib
 We need to have our own sparse BA and even more: we need a custom optimization lib, including a BA.
 We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stables, but working?)!
 
-Where: in _src/optimization_?
-Dependencies: no? camera/multiview?
-Parameters: vector only? matrices? classes (camera/structure/...)?
-
 = Functionalities needed =
-  * Functionality one
-  * Functionality two
+  * optimize the cameras parameters only (pose optimization: one camera or several, intrinsics and/or extrinsics with/without distortions, maybe using different parametrization of angles etc.)
+  * optimize structure parameters: we currently use 3D points but one day we will handle lines for instance
+  * a BA with numerical and analytical derivatives
+  * a sparse BA since we need to be able to optimize thousand of cameras!
+  * a BA that can easily accept constraints for stereo vision, partly fixed scene, etc.
+  * we can even think about an extension to generic camera too (catadioptric, fisheye, etc.).
   * ...
 
-= Possibles signatures =
+= Implementation details =
+
+== How to do ==
+  * Where: in _src/optimization_?
+  * Dependencies: no? camera/multiview libs?
+  * Parameters: vector only? matrices? classes (camera/structure/...)?
+
+== Possibles signatures ==
   * Camera(s) only
-    * {{{OptimizeCamera(Mat43 *cam)}}}
+    * {{{OptimizeCamera(Vec12 *cam)}}}?
+    * {{{OptimizeCamera(Mat43 *cam)}}}?
     * ...
   * Structure(s) only
     * {{{OptimizeStructure(Vec *structure)}}}
