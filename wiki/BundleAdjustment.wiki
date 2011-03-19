@@ -14,7 +14,7 @@ We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stab
   * a BA with numerical and analytical derivatives
   * a sparse BA since we need to be able to optimize thousand of cameras!
   * a BA that can easily accept constraints for stereo vision, partly fixed scene, etc.
-  * we can even think about an extension to generic camera too (catadioptric, fisheye, etc.).
+  * we can even think about an extension to generic camera too (catadioptric, fisheye, etc.). Instead of minimizing the reprojection error we may support rays.
   * ...
 
 = Implementation details =
