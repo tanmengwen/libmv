@@ -49,10 +49,10 @@
 
 using std::string;
 
-GLOG_DEFINE_int32(v, 0, "Show all VLOG(m) messages for m <= this."
+DEFINE_int32(v, 0, "Show all VLOG(m) messages for m <= this."
 " Overridable by --vmodule.");
 
-GLOG_DEFINE_string(vmodule, "", "per-module verbose level."
+DEFINE_string(vmodule, "", "per-module verbose level."
 " Argument is a comma-separated list of <module name>=<log level>."
 " <module name> is a glob pattern, matched against the filename base"
 " (that is, name ignoring .cc/.h./-inl.h)."

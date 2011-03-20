@@ -37,8 +37,8 @@
 // Pretty much everybody needs to #include this file so that they can
 // log various happenings.
 //
-#ifndef _LOGGING_H_
-#define _LOGGING_H_
+#ifndef _WIN_LOGGING_H_
+#define _WIN_LOGGING_H_
 
 #include <errno.h>
 #include <string.h>
@@ -60,7 +60,8 @@
 // Annoying stuff for windows -- makes sure clients can import these functions
 #ifndef GOOGLE_GLOG_DLL_DECL
 # if defined(_WIN32) && !defined(__CYGWIN__)
-#   define GOOGLE_GLOG_DLL_DECL  __declspec(dllimport)
+//#   define GOOGLE_GLOG_DLL_DECL  __declspec(dllimport)
+#   define GOOGLE_GLOG_DLL_DECL   // libmv is statically linking.
 # else
 #   define GOOGLE_GLOG_DLL_DECL
 # endif
@@ -82,9 +83,7 @@
 #include <inttypes.h>           // a third place for uint16_t or u_int16_t
 #endif
 
-#if 0
-#include <gflags/gflags.h>
-#endif
+#include "third_party/gflags/gflags.h"
 
 namespace google {
 
@@ -413,7 +412,7 @@ DECLARE_bool(stop_logging_if_full_disk);
 #ifdef NDEBUG
 #define COMPACT_GOOGLE_LOG_DFATAL COMPACT_GOOGLE_LOG_ERROR
 #elif GOOGLE_STRIP_LOG <= 3
-#define COMPACT_GOOGLE_LOG_DFATAL google::LogMessage( \
+#define COMPACT_GOOGLE_LOG_DFATAL LogMessage( \
       __FILE__, __LINE__, google::FATAL)
 #else
 #define COMPACT_GOOGLE_LOG_DFATAL google::NullStreamFatal()
@@ -485,9 +484,6 @@ namespace google {
 // Initialize google's logging library. You will see the program name
 // specified by argv0 in log outputs.
 GOOGLE_GLOG_DLL_DECL void InitGoogleLogging(const char* argv0);
-
-// Shutdown google's logging library.
-GOOGLE_GLOG_DLL_DECL void ShutdownGoogleLogging();
 
 // Install a function which will be called after LOG(FATAL).
 GOOGLE_GLOG_DLL_DECL void InstallFailureFunction(void (*fail_func)());
@@ -659,7 +655,7 @@ DEFINE_CHECK_OP_IMPL(_GT, > )
 // file is included).  Save the current meaning now and use it 
 // in the macro.
 typedef std::string _Check_string;
-#define CHECK_OP_LOG(name, op, val1, val2, log)                         \
+#define CHECK_OP_LOG(name, op, val1, val2, log) \
   while (google::_Check_string* _result =                \
          google::Check##name##Impl(                      \
              google::GetReferenceableValue(val1),        \
@@ -670,12 +666,11 @@ typedef std::string _Check_string;
 #else
 // In optimized mode, use CheckOpString to hint to compiler that
 // the while condition is unlikely.
-#define CHECK_OP_LOG(name, op, val1, val2, log)                         \
-  while (google::CheckOpString _result =                 \
-         google::Check##name##Impl(                      \
-             google::GetReferenceableValue(val1),        \
-             google::GetReferenceableValue(val2),        \
-             #val1 " " #op " " #val2))                                  \
+#define CHECK_OP_LOG(name, op, val1, val2, log) \
+  while (google::CheckOpString _result = \
+         google::Check##name##Impl(GetReferenceableValue(val1), \
+                           GetReferenceableValue(val2), \
+                           #val1 " " #op " " #val2)) \
     log(__FILE__, __LINE__, _result).stream()
 #endif  // STATIC_ANALYSIS, !NDEBUG
 
@@ -896,7 +891,6 @@ enum PRIVATE_Counter {COUNTER};
 #define DCHECK_LT(val1, val2) CHECK_LT(val1, val2)
 #define DCHECK_GE(val1, val2) CHECK_GE(val1, val2)
 #define DCHECK_GT(val1, val2) CHECK_GT(val1, val2)
-#define DCHECK_NOTNULL(val) CHECK_NOTNULL(val)
 #define DCHECK_STREQ(str1, str2) CHECK_STREQ(str1, str2)
 #define DCHECK_STRCASEEQ(str1, str2) CHECK_STRCASEEQ(str1, str2)
 #define DCHECK_STRNE(str1, str2) CHECK_STRNE(str1, str2)
@@ -950,8 +944,6 @@ enum PRIVATE_Counter {COUNTER};
 #define DCHECK_GT(val1, val2) \
   while (false) \
     CHECK_GT(val1, val2)
-
-#define DCHECK_NOTNULL(val) (val)
 
 #define DCHECK_STREQ(str1, str2) \
   while (false) \
@@ -1190,7 +1182,7 @@ inline void LogAtLevel(int const severity, std::string const &msg) {
 // version since there are two advantages: 1. this version outputs the
 // file name and the line number where this macro is put like other
 // LOG macros, 2. this macro can be used as C++ stream.
-#define LOG_AT_LEVEL(severity) google::LogMessage(__FILE__, __LINE__, severity).stream()
+#define LOG_AT_LEVEL(severity) LogMessage(__FILE__, __LINE__, severity).stream()
 
 // A small helper for CHECK_NOTNULL().
 template <typename T>
@@ -1507,4 +1499,4 @@ GOOGLE_GLOG_DLL_DECL void InstallFailureWriter(
 
 }
 
-#endif // _LOGGING_H_
+#endif // _WIN_LOGGING_H_

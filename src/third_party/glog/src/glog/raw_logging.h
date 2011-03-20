@@ -35,8 +35,9 @@
 
 #ifndef BASE_RAW_LOGGING_H_
 #define BASE_RAW_LOGGING_H_
-
-#include <time.h>
+#if defined(_MSC_VER)
+#  include "windows/glog/raw_logging.h"
+#else
 
 namespace google {
 
@@ -178,8 +179,12 @@ GOOGLE_GLOG_DLL_DECL void RawLog__(LogSeverity severity,
 // Hack to propagate time information into this module so that
 // this module does not have to directly call localtime_r(),
 // which could allocate memory.
-GOOGLE_GLOG_DLL_DECL void RawLog__SetLastTime(const struct tm& t, int usecs);
+//
+// TODO(keir): Investigate thisflaw with upstream glog.
+//extern "C" struct ::tm;
+GOOGLE_GLOG_DLL_DECL void RawLog__SetLastTime(const struct ::tm& t, int usecs);
 
 }
 
+#endif  // defined(_MSC_VER)
 #endif  // BASE_RAW_LOGGING_H_
