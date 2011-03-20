@@ -22,10 +22,10 @@
 
 #include "libmv/correspondence/import_matches_txt.h"
 #include "libmv/correspondence/tracker.h"
+#include "libmv/logging/logging.h"
 #include "libmv/reconstruction/reconstruction.h"
 #include "libmv/reconstruction/export_blender.h"
 #include "libmv/reconstruction/export_ply.h"
-#include "libmv/tools/tool.h"
 
 using namespace libmv;
 

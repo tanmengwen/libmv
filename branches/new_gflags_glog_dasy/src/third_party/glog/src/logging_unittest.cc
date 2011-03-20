@@ -43,7 +43,6 @@
 
 #include <iomanip>
 #include <iostream>
-#include <memory>
 #include <queue>
 #include <sstream>
 #include <string>
@@ -58,10 +57,6 @@
 #include "googletest.h"
 
 DECLARE_string(log_backtrace_at);  // logging.cc
-
-#ifdef HAVE_LIB_GFLAGS
-#include <gflags/gflags.h>
-#endif
 
 #ifdef HAVE_LIB_GMOCK
 #include <gmock/gmock.h>
@@ -173,10 +168,6 @@ static void BM_vlog(int n) {
 BENCHMARK(BM_vlog);
 
 int main(int argc, char **argv) {
-#ifdef HAVE_LIB_GFLAGS
-  ParseCommandLineFlags(&argc, &argv, true);
-#endif
-
   // Test some basics before InitGoogleLogging:
   CaptureTestStderr();
   LogWithLevels(FLAGS_v, FLAGS_stderrthreshold,
@@ -226,8 +217,6 @@ int main(int argc, char **argv) {
   TestWrapper();
   TestErrno();
   TestTruncate();
-
-  ShutdownGoogleLogging();
 
   fprintf(stdout, "PASS\n");
   return 0;
@@ -558,10 +547,6 @@ void TestDCHECK() {
   DCHECK_LE(1, 2);
   DCHECK_GT(2, 1);
   DCHECK_LT(1, 2);
-
-  auto_ptr<int64> sptr(new int64);
-  int64* ptr = DCHECK_NOTNULL(sptr.get());
-  CHECK_EQ(ptr, sptr.get());
 }
 
 void TestSTREQ() {
@@ -593,10 +578,10 @@ TEST(CheckNOTNULL, Simple) {
   void *ptr = static_cast<void *>(&t);
   void *ref = CHECK_NOTNULL(ptr);
   EXPECT_EQ(ptr, ref);
-  CHECK_NOTNULL(reinterpret_cast<char *>(ptr));
-  CHECK_NOTNULL(reinterpret_cast<unsigned char *>(ptr));
-  CHECK_NOTNULL(reinterpret_cast<int *>(ptr));
-  CHECK_NOTNULL(reinterpret_cast<int64 *>(ptr));
+  CHECK_NOTNULL(reinterpret_cast<char *>(&t));
+  CHECK_NOTNULL(reinterpret_cast<unsigned char *>(&t));
+  CHECK_NOTNULL(reinterpret_cast<int *>(&t));
+  CHECK_NOTNULL(reinterpret_cast<int64 *>(&t));
 }
 
 TEST(DeathCheckNN, Simple) {
@@ -1043,7 +1028,7 @@ TEST(Strerror, logging) {
   CHECK_EQ(posix_strerror_r(errcode, buf, 0), -1);
   CHECK_EQ(buf[0], 'A');
   CHECK_EQ(posix_strerror_r(errcode, NULL, buf_size), -1);
-#if defined(OS_MACOSX) || defined(OS_FREEBSD) || defined(OS_OPENBSD)
+#if defined(OS_MACOSX) || defined(OS_FREEBSD)
   // MacOSX or FreeBSD considers this case is an error since there is
   // no enough space.
   CHECK_EQ(posix_strerror_r(errcode, buf, 1), -1);

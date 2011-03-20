@@ -21,7 +21,6 @@
 #include "testing/testing.h"
 #include "libmv/logging/logging.h"
 #include "libmv/multiview/affine_2d.h"
-
 namespace {
 using namespace libmv;
 
@@ -36,7 +35,7 @@ TEST(Affine2DTest, TranslationX) {
 
   Mat3 AffineMat;
   EXPECT_TRUE(Affine2D_FromCorrespondencesLinear(x1, x2, &AffineMat));
-  //VLOG(1) << "Mat Affine2D "<< std::endl <<AffineMat;
+  VLOG(1) << "Mat Affine2D "<< std::endl <<AffineMat;
   Mat3 ground_truth;
   ground_truth << 1,0,1,
                  0,1,0,
@@ -55,7 +54,7 @@ TEST(Affine2DTest, TranslationXY) {
 
   Mat3 affine_mat;
   EXPECT_TRUE(Affine2D_FromCorrespondencesLinear(x1, x2, &affine_mat));
-  //VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
+  VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
   Mat3 ground_truth;
   ground_truth << 1,0,1,
                  0,1,1,
@@ -82,7 +81,7 @@ TEST(Affine2DTest, Rotation45) {
 
   Mat3 affine_mat;
   EXPECT_TRUE(Affine2D_FromCorrespondencesLinear(x1, x2, &affine_mat));
-  //VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
+  VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
   EXPECT_MATRIX_NEAR(affine_mat, rot, 1e-8);
 }
 
@@ -106,7 +105,7 @@ TEST(Affine2DTest, Rotation45AndTranslationXY) {
 
   Mat3 affine_mat;
   EXPECT_TRUE(Affine2D_FromCorrespondencesLinear(x1, x2, &affine_mat));
-  //VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
+  VLOG(1) << "Mat Affine2D "<< std::endl << affine_mat;
   EXPECT_MATRIX_NEAR(affine_mat, rot, 1e-8);
 }
 

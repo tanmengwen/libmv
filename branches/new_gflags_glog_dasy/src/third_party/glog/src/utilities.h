@@ -44,10 +44,6 @@
 # define OS_MACOSX
 #elif defined(__FreeBSD__)
 # define OS_FREEBSD
-#elif defined(__NetBSD__)
-# define OS_NETBSD
-#elif defined(__OpenBSD__)
-# define OS_OPENBSD
 #else
 // TODO(hamaji): Add other platforms.
 #endif
@@ -75,7 +71,7 @@
 #include <string>
 
 #if defined(OS_WINDOWS)
-# include "port.h"
+#  include "windows/port.h"
 #endif
 
 #include "config.h"

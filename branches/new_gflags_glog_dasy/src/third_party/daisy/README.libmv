@@ -1,7 +1,7 @@
 Project: Daisy
 URL: http://cvlab.epfl.ch/~tola/daisy.html
 License: BSD
-Upstream version: 1.8.1, released October 11, 2009
+Upstream version: 1.8.0, released 18-August-2009
 
 Local modifications:
 * Remove native makefile original build system.

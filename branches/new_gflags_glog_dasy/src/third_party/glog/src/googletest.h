@@ -71,7 +71,7 @@ _END_GOOGLE_NAMESPACE_
 #undef GOOGLE_GLOG_DLL_DECL
 #define GOOGLE_GLOG_DLL_DECL
 
-static inline string GetTempDir() {
+static string GetTempDir() {
 #ifndef OS_WINDOWS
   return "/tmp";
 #else
@@ -85,20 +85,13 @@ static inline string GetTempDir() {
 // The test will run in glog/vsproject/<project name>
 // (e.g., glog/vsproject/logging_unittest).
 static const char TEST_SRC_DIR[] = "../..";
-#elif !defined(TEST_SRC_DIR)
-# warning TEST_SRC_DIR should be defined in config.h
+#else
 static const char TEST_SRC_DIR[] = ".";
 #endif
 
-DEFINE_string(test_tmpdir, GetTempDir(), "Dir we use for temp files");
-DEFINE_string(test_srcdir, TEST_SRC_DIR,
-              "Source-dir root, needed to find glog_unittest_flagfile");
-DEFINE_bool(run_benchmark, false, "If true, run benchmarks");
-#ifdef NDEBUG
-DEFINE_int32(benchmark_iters, 100000000, "Number of iterations per benchmark");
-#else
-DEFINE_int32(benchmark_iters, 100000, "Number of iterations per benchmark");
-#endif
+DECLARE_string(test_tmpdir);
+DECLARE_string(test_srcdir);
+DECLARE_int32(benchmark_iters);
 
 #ifdef HAVE_LIB_GTEST
 # include <gtest/gtest.h>
@@ -181,7 +174,7 @@ vector<void (*)()> g_testlist;  // the tests to run
   void Test_##a##_##b::RunTest()
 
 
-static inline int RUN_ALL_TESTS() {
+static int RUN_ALL_TESTS() {
   vector<void (*)()>::const_iterator it;
   for (it = g_testlist.begin(); it != g_testlist.end(); ++it) {
     (*it)();
@@ -198,7 +191,7 @@ _START_GOOGLE_NAMESPACE_
 
 static bool g_called_abort;
 static jmp_buf g_jmp_buf;
-static inline void CalledAbort() {
+static void CalledAbort() {
   g_called_abort = true;
   longjmp(g_jmp_buf, 1);
 }
@@ -242,11 +235,7 @@ class BenchmarkRegisterer {
   }
 };
 
-static inline void RunSpecifiedBenchmarks() {
-  if (!FLAGS_run_benchmark) {
-    return;
-  }
-
+static void RunSpecifiedBenchmarks() {
   int iter_cnt = FLAGS_benchmark_iters;
   puts("Benchmark\tTime(ns)\tIterations");
   for (map<string, void (*)(int)>::const_iterator iter = g_benchlist.begin();
@@ -320,21 +309,21 @@ static CapturedStream * s_captured_streams[STDERR_FILENO+1];
 // Redirect a file descriptor to a file.
 //   fd       - Should be STDOUT_FILENO or STDERR_FILENO
 //   filename - File where output should be stored
-static inline void CaptureTestOutput(int fd, const string & filename) {
+static void CaptureTestOutput(int fd, const string & filename) {
   CHECK((fd == STDOUT_FILENO) || (fd == STDERR_FILENO));
   CHECK(s_captured_streams[fd] == NULL);
   s_captured_streams[fd] = new CapturedStream(fd, filename);
 }
-static inline void CaptureTestStderr() {
+static void CaptureTestStderr() {
   CaptureTestOutput(STDERR_FILENO, FLAGS_test_tmpdir + "/captured.err");
 }
 // Return the size (in bytes) of a file
-static inline size_t GetFileSize(FILE * file) {
+static size_t GetFileSize(FILE * file) {
   fseek(file, 0, SEEK_END);
   return static_cast<size_t>(ftell(file));
 }
 // Read the entire content of a file as a string
-static inline string ReadEntireFile(FILE * file) {
+static string ReadEntireFile(FILE * file) {
   const size_t file_size = GetFileSize(file);
   char * const buffer = new char[file_size];
 
@@ -357,7 +346,7 @@ static inline string ReadEntireFile(FILE * file) {
 }
 // Get the captured stdout (when fd is STDOUT_FILENO) or stderr (when
 // fd is STDERR_FILENO) as a string
-static inline string GetCapturedTestOutput(int fd) {
+static string GetCapturedTestOutput(int fd) {
   CHECK(fd == STDOUT_FILENO || fd == STDERR_FILENO);
   CapturedStream * const cap = s_captured_streams[fd];
   CHECK(cap)
@@ -377,12 +366,12 @@ static inline string GetCapturedTestOutput(int fd) {
   return content;
 }
 // Get the captured stderr of a test as a string.
-static inline string GetCapturedTestStderr() {
+static string GetCapturedTestStderr() {
   return GetCapturedTestOutput(STDERR_FILENO);
 }
 
 // Check if the string is [IWEF](\d{4}|DATE)
-static inline bool IsLoggingPrefix(const string& s) {
+static bool IsLoggingPrefix(const string& s) {
   if (s.size() != 5) return false;
   if (!strchr("IWEF", s[0])) return false;
   for (int i = 1; i <= 4; ++i) {
@@ -396,7 +385,7 @@ static inline bool IsLoggingPrefix(const string& s) {
 // Example:
 //     I0102 030405 logging_unittest.cc:345] RAW: vlog -1
 //  => IDATE TIME__ logging_unittest.cc:LINE] RAW: vlog -1
-static inline string MungeLine(const string& line) {
+static string MungeLine(const string& line) {
   std::istringstream iss(line);
   string before, logcode_date, time, thread_lineinfo;
   iss >> logcode_date;
@@ -428,7 +417,7 @@ static inline string MungeLine(const string& line) {
           MungeLine(rest));
 }
 
-static inline void StringReplace(string* str,
+static void StringReplace(string* str,
                           const string& oldsub,
                           const string& newsub) {
   size_t pos = str->find(oldsub);
@@ -437,7 +426,7 @@ static inline void StringReplace(string* str,
   }
 }
 
-static inline string Munge(const string& filename) {
+static string Munge(const string& filename) {
   FILE* fp = fopen(filename.c_str(), "rb");
   CHECK(fp != NULL) << filename << ": couldn't open";
   char buf[4096];
@@ -445,7 +434,7 @@ static inline string Munge(const string& filename) {
   while (fgets(buf, 4095, fp)) {
     string line = MungeLine(buf);
     char null_str[256];
-    sprintf(null_str, "%p", static_cast<void*>(NULL));
+    sprintf(null_str, "%p", (void*) NULL);
     StringReplace(&line, "__NULLP__", null_str);
     // Remove 0x prefix produced by %p. VC++ doesn't put the prefix.
     StringReplace(&line, " 0x", " ");
@@ -469,13 +458,13 @@ static inline string Munge(const string& filename) {
   return result;
 }
 
-static inline void WriteToFile(const string& body, const string& file) {
+static void WriteToFile(const string& body, const string& file) {
   FILE* fp = fopen(file.c_str(), "wb");
   fwrite(body.data(), 1, body.size(), fp);
   fclose(fp);
 }
 
-static inline bool MungeAndDiffTestStderr(const string& golden_filename) {
+static bool MungeAndDiffTestStderr(const string& golden_filename) {
   CapturedStream* cap = s_captured_streams[STDERR_FILENO];
   CHECK(cap) << ": did you forget CaptureTestStderr()?";
 
@@ -529,7 +518,14 @@ class Thread {
   virtual ~Thread() {}
 
   void SetJoinable(bool joinable) {}
-#if defined(OS_WINDOWS) || defined(OS_CYGWIN)
+#if defined(HAVE_PTHREAD)
+  void Start() {
+    pthread_create(&th_, NULL, &Thread::InvokeThread, this);
+  }
+  void Join() {
+    pthread_join(th_, NULL);
+  }
+#elif defined(OS_WINDOWS) || defined(OS_CYGWIN)
   void Start() {
     handle_ = CreateThread(NULL,
                            0,
@@ -541,13 +537,6 @@ class Thread {
   }
   void Join() {
     WaitForSingleObject(handle_, INFINITE);
-  }
-#elif defined(HAVE_PTHREAD)
-  void Start() {
-    pthread_create(&th_, NULL, &Thread::InvokeThread, this);
-  }
-  void Join() {
-    pthread_join(th_, NULL);
   }
 #else
 # error No thread implementation.
@@ -570,7 +559,7 @@ class Thread {
 #endif
 };
 
-static inline void SleepForMilliseconds(int t) {
+static void SleepForMilliseconds(int t) {
 #ifndef OS_WINDOWS
   usleep(t * 1000);
 #else
