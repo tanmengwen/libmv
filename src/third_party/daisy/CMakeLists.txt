@@ -33,6 +33,11 @@ set(daisy_srcs
     src/general.cpp
     src/interaction.cpp
 )
+if (CMAKE_SYSTEM MATCHES "Darwin-10.6.0")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
+endif (CMAKE_SYSTEM MATCHES "Darwin-10.6.0")
+
+MESSAGE("Hello world! ${CMAKE_SYSTEM} ")
 
 add_library(daisy ${daisy_srcs} )
 

@@ -73,10 +73,8 @@ typedef unsigned int uint;
 #endif
 
 #ifdef WIN32
-#ifdef USE_OPENMP
 #include "omp.h"
-#endif
-#define isnan(x) (_isnan(x))
+#define isnan(x) ((x) != (x))
 #pragma warning( disable : 4996 )
 #ifndef NOMINMAX
 #define NOMINMAX
