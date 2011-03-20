@@ -44,15 +44,22 @@
 using namespace GOOGLE_NAMESPACE;
 
 void* DieInThread(void*) {
-  fprintf(stderr, "0x%lx is dying\n", pthread_self());
+  // We assume pthread_t is an integral number or a pointer, rather
+  // than a complex struct.  In some environments, pthread_self()
+  // returns an uint64 but in some other environments pthread_self()
+  // returns a pointer.  Hence we use C-style cast here, rather than
+  // reinterpret/static_cast, to support both types of environments.
+  fprintf(stderr, "0x%lx is dying\n", (long)pthread_self());
   // Use volatile to prevent from these to be optimized away.
   volatile int a = 0;
   volatile int b = 1 / a;
-  return 0;
+  fprintf(stderr, "We should have died: b=%d\n", b);
+  return NULL;
 }
 
 void WriteToStdout(const char* data, int size) {
-  write(STDOUT_FILENO, data, size);
+  int ignored = write(STDOUT_FILENO, data, size);
+  (void) ignored;
 }
 
 int main(int argc, char **argv) {

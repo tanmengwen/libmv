@@ -41,6 +41,9 @@
 #ifdef HAVE_UCONTEXT_H
 # include <ucontext.h>
 #endif
+#ifdef HAVE_SYS_UCONTEXT_H
+# include <sys/ucontext.h>
+#endif
 #include <algorithm>
 
 _START_GOOGLE_NAMESPACE_
@@ -66,7 +69,7 @@ const struct {
 
 // Returns the program counter from signal context, NULL if unknown.
 void* GetPC(void* ucontext_in_void) {
-#if defined(HAVE_UCONTEXT_H) && defined(PC_FROM_UCONTEXT)
+#if (defined(HAVE_UCONTEXT_H) || defined(HAVE_SYS_UCONTEXT_H)) && defined(PC_FROM_UCONTEXT)
   if (ucontext_in_void != NULL) {
     ucontext_t *context = reinterpret_cast<ucontext_t *>(ucontext_in_void);
     return (void*)context->PC_FROM_UCONTEXT;
@@ -139,7 +142,8 @@ class MinimalFormatter {
 
 // Writes the given data with the size to the standard error.
 void WriteToStderr(const char* data, int size) {
-  write(STDERR_FILENO, data, size);
+  int ignored = write(STDERR_FILENO, data, size);
+  (void) ignored;
 }
 
 // The writer function can be changed by InstallFailureWriter().

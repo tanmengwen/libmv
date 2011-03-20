@@ -44,6 +44,9 @@
 #elif defined(HAVE_SYS_SYSCALL_H)
 #include <sys/syscall.h>                 // for syscall()
 #endif
+#ifdef HAVE_SYSLOG_H
+# include <syslog.h>
+#endif
 
 #include "base/googleinit.h"
 
@@ -63,8 +66,8 @@ _END_GOOGLE_NAMESPACE_
 #include "symbolize.h"
 #include "base/commandlineflags.h"
 
-DEFINE_bool(symbolize_stacktrace, true,
-            "Symbolize the stack trace in the tombstone");
+GLOG_DEFINE_bool(symbolize_stacktrace, true,
+                 "Symbolize the stack trace in the tombstone");
 
 _START_GOOGLE_NAMESPACE_
 
@@ -76,13 +79,15 @@ static const int kPrintfPointerFieldWidth = 2 + 2 * sizeof(void*);
 
 static void DebugWriteToStderr(const char* data, void *unused) {
   // This one is signal-safe.
-  write(STDERR_FILENO, data, strlen(data));
+  int ignored = write(STDERR_FILENO, data, strlen(data));
+  (void) ignored;
 }
 
 void DebugWriteToString(const char* data, void *arg) {
   reinterpret_cast<string*>(arg)->append(data);
 }
 
+#ifdef HAVE_SYMBOLIZE
 // Print a program counter and its symbol name.
 static void DumpPCAndSymbol(DebugWriter *writerfn, void *arg, void *pc,
                             const char * const prefix) {
@@ -99,20 +104,7 @@ static void DumpPCAndSymbol(DebugWriter *writerfn, void *arg, void *pc,
            prefix, kPrintfPointerFieldWidth, pc, symbol);
   writerfn(buf, arg);
 }
-
-// Print a program counter and the corresponding stack frame size.
-static void DumpPCAndFrameSize(DebugWriter *writerfn, void *arg, void *pc,
-                               int framesize, const char * const prefix) {
-  char buf[100];
-  if (framesize <= 0) {
-    snprintf(buf, sizeof(buf), "%s@ %*p  (unknown)\n",
-             prefix, kPrintfPointerFieldWidth, pc);
-  } else {
-    snprintf(buf, sizeof(buf), "%s@ %*p  %9d\n",
-             prefix, kPrintfPointerFieldWidth, pc, framesize);
-  }
-  writerfn(buf, arg);
-}
+#endif
 
 static void DumpPC(DebugWriter *writerfn, void *arg, void *pc,
                    const char * const prefix) {
@@ -263,7 +255,7 @@ pid_t GetTID() {
   return GetCurrentThreadId();
 #else
   // If none of the techniques above worked, we use pthread_self().
-  return (pid_t)pthread_self();
+  return (pid_t)(uintptr_t)pthread_self();
 #endif
 }
 
@@ -282,7 +274,11 @@ const string& MyUserName() {
 }
 static void MyUserNameInitializer() {
   // TODO(hamaji): Probably this is not portable.
+#if defined(OS_WINDOWS)
+  const char* user = getenv("USERNAME");
+#else
   const char* user = getenv("USER");
+#endif
   if (user != NULL) {
     g_my_user_name = user;
   } else {
@@ -321,6 +317,14 @@ void InitGoogleLogging(const char* argv0) {
 
 #ifdef HAVE_STACKTRACE
   InstallFailureFunction(&DumpStackTraceAndExit);
+#endif
+}
+
+void ShutdownGoogleLogging() {
+  CHECK(IsGoogleLoggingInitialized())
+      << "You called ShutdownGoogleLogging() without calling InitGoogleLogging() first!";
+#ifdef HAVE_SYSLOG_H
+  closelog();
 #endif
 }
 

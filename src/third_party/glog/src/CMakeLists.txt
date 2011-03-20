@@ -53,4 +53,7 @@ GLOG_TEST(symbolize_unittest)
 GLOG_TEST(utilities_unittest)
 ENDIF (NOT WIN32)
 
+TARGET_LINK_LIBRARIES(glog gflags)
+
+
 LIBMV_INSTALL_THIRD_PARTY_LIB(glog)
