@@ -88,29 +88,52 @@
 // Note: these commands below may look like "#if 1" or "#if 0", but
 // that's because they were constructed that way at ./configure time.
 // Look at gflags.h.in to see how they're calculated (based on your config).
-#if 1
+#if 0
 #include <stdint.h>             // the normal place uint16_t is defined
 #endif
 #if 1
 #include <sys/types.h>          // the normal place u_int16_t is defined
 #endif
-#if 1
+#if 0
 #include <inttypes.h>           // a third place for uint16_t or u_int16_t
+#endif
+
+// Annoying stuff for windows -- makes sure clients can import these functions
+#if defined(_WIN32)
+# ifndef GFLAGS_DLL_DECL
+#   define GFLAGS_DLL_DECL  __declspec(dllimport)
+# endif
+# ifndef GFLAGS_DLL_DECLARE_FLAG
+#   define GFLAGS_DLL_DECLARE_FLAG  __declspec(dllimport)
+# endif
+# ifndef GFLAGS_DLL_DEFINE_FLAG
+#   define GFLAGS_DLL_DEFINE_FLAG   __declspec(dllexport)
+# endif
+#else
+# ifndef GFLAGS_DLL_DECL
+#   define GFLAGS_DLL_DECL
+# endif
+# ifndef GFLAGS_DLL_DECLARE_FLAG
+#   define GFLAGS_DLL_DECLARE_FLAG
+# endif
+# ifndef GFLAGS_DLL_DEFINE_FLAG
+#   define GFLAGS_DLL_DEFINE_FLAG
+# endif
 #endif
 
 namespace google {
 
-#if 1      // the C99 format
+#if 0      // the C99 format
 typedef int32_t int32;
 typedef uint32_t uint32;
 typedef int64_t int64;
 typedef uint64_t uint64;
-#elif 1   // the BSD format
+#elif 0   // the BSD format
 typedef int32_t int32;
 typedef u_int32_t uint32;
 typedef int64_t int64;
 typedef u_int64_t uint64;
-#elif 0     // the windows (vc7) format
+#elif 1     // the windows (vc7) format
 typedef __int32 int32;
 typedef unsigned __int32 uint32;
 typedef __int64 int64;
@@ -148,17 +171,17 @@ typedef unsigned __int64 uint64;
 // Returns true if successfully registered, false if not (because the
 // first argument doesn't point to a command-line flag, or because a
 // validator is already registered for this flag).
-bool RegisterFlagValidator(const bool* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const bool* flag,
                            bool (*validate_fn)(const char*, bool));
-bool RegisterFlagValidator(const int32* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const int32* flag,
                            bool (*validate_fn)(const char*, int32));
-bool RegisterFlagValidator(const int64* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const int64* flag,
                            bool (*validate_fn)(const char*, int64));
-bool RegisterFlagValidator(const uint64* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const uint64* flag,
                            bool (*validate_fn)(const char*, uint64));
-bool RegisterFlagValidator(const double* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const double* flag,
                            bool (*validate_fn)(const char*, double));
-bool RegisterFlagValidator(const std::string* flag,
+GFLAGS_DLL_DECL bool RegisterFlagValidator(const std::string* flag,
                            bool (*validate_fn)(const char*, const std::string&));
 
 
@@ -173,7 +196,7 @@ bool RegisterFlagValidator(const std::string* flag,
 // name) and argv (the entire commandline), which we sock away a copy of.
 // These variables are static, so you should only set them once.
 
-struct CommandLineFlagInfo {
+struct GFLAGS_DLL_DECL CommandLineFlagInfo {
   std::string name;           // the name of the flag
   std::string type;           // the type of the flag: int32, etc
   std::string description;    // the "help text" associated with the flag
@@ -191,28 +214,28 @@ struct CommandLineFlagInfo {
 // call validators during ParseAllFlags.
 // Also make sure then to uncomment the corresponding unit test in
 // commandlineflags_unittest.sh
-extern void GetAllFlags(std::vector<CommandLineFlagInfo>* OUTPUT);
+extern GFLAGS_DLL_DECL void GetAllFlags(std::vector<CommandLineFlagInfo>* OUTPUT);
 // These two are actually defined in commandlineflags_reporting.cc.
-extern void ShowUsageWithFlags(const char *argv0);  // what --help does
-extern void ShowUsageWithFlagsRestrict(const char *argv0, const char *restrict);
+extern GFLAGS_DLL_DECL void ShowUsageWithFlags(const char *argv0);  // what --help does
+extern GFLAGS_DLL_DECL void ShowUsageWithFlagsRestrict(const char *argv0, const char *restrict);
 
 // Create a descriptive string for a flag.
 // Goes to some trouble to make pretty line breaks.
-extern std::string DescribeOneFlag(const CommandLineFlagInfo& flag);
+extern GFLAGS_DLL_DECL std::string DescribeOneFlag(const CommandLineFlagInfo& flag);
 
 // Thread-hostile; meant to be called before any threads are spawned.
-extern void SetArgv(int argc, const char** argv);
+extern GFLAGS_DLL_DECL void SetArgv(int argc, const char** argv);
 // The following functions are thread-safe as long as SetArgv() is
 // only called before any threads start.
-extern const std::vector<std::string>& GetArgvs();  // all of argv as a vector
-extern const char* GetArgv();                // all of argv as a string
-extern const char* GetArgv0();               // only argv0
-extern uint32 GetArgvSum();                  // simple checksum of argv
-extern const char* ProgramInvocationName();  // argv0, or "UNKNOWN" if not set
-extern const char* ProgramInvocationShortName();   // basename(argv0)
+extern GFLAGS_DLL_DECL const std::vector<std::string>& GetArgvs();  // all of argv as a vector
+extern GFLAGS_DLL_DECL const char* GetArgv();               // all of argv as a string
+extern GFLAGS_DLL_DECL const char* GetArgv0();              // only argv0
+extern GFLAGS_DLL_DECL uint32 GetArgvSum();                 // simple checksum of argv
+extern GFLAGS_DLL_DECL const char* ProgramInvocationName(); // argv0, or "UNKNOWN" if not set
+extern GFLAGS_DLL_DECL const char* ProgramInvocationShortName();   // basename(argv0)
 // ProgramUsage() is thread-safe as long as SetUsageMessage() is only
 // called before any threads start.
-extern const char* ProgramUsage();           // string set by SetUsageMessage()
+extern GFLAGS_DLL_DECL const char* ProgramUsage();          // string set by SetUsageMessage()
 
 
 // --------------------------------------------------------------------
@@ -225,19 +248,19 @@ extern const char* ProgramUsage();           // string set by SetUsageMessage()
 
 // Return true iff the flagname was found.
 // OUTPUT is set to the flag's value, or unchanged if we return false.
-extern bool GetCommandLineOption(const char* name, std::string* OUTPUT);
+extern GFLAGS_DLL_DECL bool GetCommandLineOption(const char* name, std::string* OUTPUT);
 
 // Return true iff the flagname was found. OUTPUT is set to the flag's
 // CommandLineFlagInfo or unchanged if we return false.
-extern bool GetCommandLineFlagInfo(const char* name,
+extern GFLAGS_DLL_DECL bool GetCommandLineFlagInfo(const char* name,
                                    CommandLineFlagInfo* OUTPUT);
 
 // Return the CommandLineFlagInfo of the flagname.  exit() if name not found.
 // Example usage, to check if a flag's value is currently the default value:
 //   if (GetCommandLineFlagInfoOrDie("foo").is_default) ...
-extern CommandLineFlagInfo GetCommandLineFlagInfoOrDie(const char* name);
+extern GFLAGS_DLL_DECL CommandLineFlagInfo GetCommandLineFlagInfoOrDie(const char* name);
 
-enum FlagSettingMode {
+enum GFLAGS_DLL_DECL FlagSettingMode {
   // update the flag's value (can call this multiple times).
   SET_FLAGS_VALUE,
   // update the flag's value, but *only if* it has not yet been updated
@@ -257,8 +280,8 @@ enum FlagSettingMode {
 // non-empty else.
 
 // SetCommandLineOption uses set_mode == SET_FLAGS_VALUE (the common case)
-extern std::string SetCommandLineOption(const char* name, const char* value);
-extern std::string SetCommandLineOptionWithMode(const char* name, const char* value,
+extern GFLAGS_DLL_DECL std::string SetCommandLineOption(const char* name, const char* value);
+extern GFLAGS_DLL_DECL std::string SetCommandLineOptionWithMode(const char* name, const char* value,
                                                 FlagSettingMode set_mode);
 
 
@@ -287,7 +310,7 @@ extern std::string SetCommandLineOptionWithMode(const char* name, const char* va
 //
 // This class is thread-safe.
 
-class FlagSaver {
+class GFLAGS_DLL_DECL FlagSaver {
  public:
   FlagSaver();
   ~FlagSaver();
@@ -297,23 +320,23 @@ class FlagSaver {
 
   FlagSaver(const FlagSaver&);  // no copying!
   void operator=(const FlagSaver&);
-} __attribute__ ((unused));
+} ;
 
 // --------------------------------------------------------------------
 // Some deprecated or hopefully-soon-to-be-deprecated functions.
 
 // This is often used for logging.  TODO(csilvers): figure out a better way
-extern std::string CommandlineFlagsIntoString();
+extern GFLAGS_DLL_DECL std::string CommandlineFlagsIntoString();
 // Usually where this is used, a FlagSaver should be used instead.
-extern bool ReadFlagsFromString(const std::string& flagfilecontents,
+extern GFLAGS_DLL_DECL bool ReadFlagsFromString(const std::string& flagfilecontents,
                                 const char* prog_name,
                                 bool errors_are_fatal); // uses SET_FLAGS_VALUE
 
 // These let you manually implement --flagfile functionality.
 // DEPRECATED.
-extern bool AppendFlagsIntoFile(const std::string& filename, const char* prog_name);
-extern bool SaveCommandFlags();  // actually defined in google.cc !
-extern bool ReadFromFlagsFile(const std::string& filename, const char* prog_name,
+extern GFLAGS_DLL_DECL bool AppendFlagsIntoFile(const std::string& filename, const char* prog_name);
+extern GFLAGS_DLL_DECL bool SaveCommandFlags();  // actually defined in google.cc !
+extern GFLAGS_DLL_DECL bool ReadFromFlagsFile(const std::string& filename, const char* prog_name,
                               bool errors_are_fatal);   // uses SET_FLAGS_VALUE
 
 
@@ -325,12 +348,12 @@ extern bool ReadFromFlagsFile(const std::string& filename, const char* prog_name
 // Otherwise, return the value.  NOTE: for booleans, for true use
 // 't' or 'T' or 'true' or '1', for false 'f' or 'F' or 'false' or '0'.
 
-extern bool BoolFromEnv(const char *varname, bool defval);
-extern int32 Int32FromEnv(const char *varname, int32 defval);
-extern int64 Int64FromEnv(const char *varname, int64 defval);
-extern uint64 Uint64FromEnv(const char *varname, uint64 defval);
-extern double DoubleFromEnv(const char *varname, double defval);
-extern const char *StringFromEnv(const char *varname, const char *defval);
+extern GFLAGS_DLL_DECL bool BoolFromEnv(const char *varname, bool defval);
+extern GFLAGS_DLL_DECL int32 Int32FromEnv(const char *varname, int32 defval);
+extern GFLAGS_DLL_DECL int64 Int64FromEnv(const char *varname, int64 defval);
+extern GFLAGS_DLL_DECL uint64 Uint64FromEnv(const char *varname, uint64 defval);
+extern GFLAGS_DLL_DECL double DoubleFromEnv(const char *varname, double defval);
+extern GFLAGS_DLL_DECL const char *StringFromEnv(const char *varname, const char *defval);
 
 
 // --------------------------------------------------------------------
@@ -342,16 +365,15 @@ extern const char *StringFromEnv(const char *varname, const char *defval);
 //   SetUsageMessage(usage);
 // Do not include commandline flags in the usage: we do that for you!
 // Thread-hostile; meant to be called before any threads are spawned.
-extern void SetUsageMessage(const std::string& usage);
+extern GFLAGS_DLL_DECL void SetUsageMessage(const std::string& usage);
 
 // Looks for flags in argv and parses them.  Rearranges argv to put
 // flags first, or removes them entirely if remove_flags is true.
 // If a flag is defined more than once in the command line or flag
-// file, the last definition is used.  Returns the index (into argv)
-// of the first non-flag argument.
+// file, the last definition is used.
 // See top-of-file for more details on this function.
 #ifndef SWIG   // In swig, use ParseCommandLineFlagsScript() instead.
-extern uint32 ParseCommandLineFlags(int *argc, char*** argv,
+extern GFLAGS_DLL_DECL uint32 ParseCommandLineFlags(int *argc, char*** argv,
                                     bool remove_flags);
 #endif
 
@@ -362,32 +384,29 @@ extern uint32 ParseCommandLineFlags(int *argc, char*** argv,
 // changing default values for some FLAGS (via
 // e.g. SetCommandLineOptionWithMode calls) between the time of
 // command line parsing and the time of dumping help information for
-// the flags as a result of command line parsing.  If a flag is
-// defined more than once in the command line or flag file, the last
-// definition is used.  Returns the index (into argv) of the first
-// non-flag argument.  (If remove_flags is true, will always return 1.)
-extern uint32 ParseCommandLineNonHelpFlags(int *argc, char*** argv,
+// the flags as a result of command line parsing.
+// If a flag is defined more than once in the command line or flag
+// file, the last definition is used.
+extern GFLAGS_DLL_DECL uint32 ParseCommandLineNonHelpFlags(int *argc, char*** argv,
                                            bool remove_flags);
 // This is actually defined in commandlineflags_reporting.cc.
 // This function is misnamed (it also handles --version, etc.), but
 // it's too late to change that now. :-(
-extern void HandleCommandLineHelpFlags();   // in commandlineflags_reporting.cc
+extern GFLAGS_DLL_DECL void HandleCommandLineHelpFlags();   // in commandlineflags_reporting.cc
 
 // Allow command line reparsing.  Disables the error normally
 // generated when an unknown flag is found, since it may be found in a
 // later parse.  Thread-hostile; meant to be called before any threads
 // are spawned.
-extern void AllowCommandLineReparsing();
+extern GFLAGS_DLL_DECL void AllowCommandLineReparsing();
 
-// Reparse the flags that have not yet been recognized.  Only flags
-// registered since the last parse will be recognized.  Any flag value
-// must be provided as part of the argument using "=", not as a
-// separate command line argument that follows the flag argument.
+// Reparse the flags that have not yet been recognized.
+// Only flags registered since the last parse will be recognized.
+// Any flag value must be provided as part of the argument using "=",
+// not as a separate command line argument that follows the flag argument.
 // Intended for handling flags from dynamically loaded libraries,
 // since their flags are not registered until they are loaded.
-// Returns the index (into the original argv) of the first non-flag
-// argument.  (If remove_flags is true, will always return 1.)
-extern uint32 ReparseCommandLineNonHelpFlags();
+extern GFLAGS_DLL_DECL uint32 ReparseCommandLineNonHelpFlags();
 
 // Clean up memory allocated by flags.  This is only needed to reduce
 // the quantity of "potentially leaked" reports emitted by memory
@@ -397,7 +416,7 @@ extern uint32 ReparseCommandLineNonHelpFlags();
 // access flags are quiescent.  Referencing flags after this is called
 // will have unexpected consequences.  This is not safe to run when
 // multiple threads might be running: the function is thread-hostile.
-extern void ShutDownCommandLineFlags();
+extern GFLAGS_DLL_DECL void ShutDownCommandLineFlags();
 
 
 // --------------------------------------------------------------------
@@ -437,7 +456,7 @@ extern void ShutDownCommandLineFlags();
 // people can't DECLARE_int32 something that they DEFINE_bool'd
 // elsewhere.
 
-class FlagRegisterer {
+class GFLAGS_DLL_DECL FlagRegisterer {
  public:
   FlagRegisterer(const char* name, const char* type,
                  const char* help, const char* filename,
@@ -459,7 +478,7 @@ extern const char kStrippedFlagHelp[];
 
 #if defined(STRIP_FLAG_HELP) && STRIP_FLAG_HELP > 0
 // Need this construct to avoid the 'defined but not used' warning.
-#define MAYBE_STRIPPED_HELP(txt) (false ? (txt) : ::google::kStrippedFlagHelp)
+#define MAYBE_STRIPPED_HELP(txt) (false ? (txt) : kStrippedFlagHelp)
 #else
 #define MAYBE_STRIPPED_HELP(txt) txt
 #endif
@@ -478,9 +497,10 @@ extern const char kStrippedFlagHelp[];
 #define DEFINE_VARIABLE(type, shorttype, name, value, help) \
   namespace fL##shorttype {                                     \
     static const type FLAGS_nono##name = value;                 \
-    type FLAGS_##name = FLAGS_nono##name;                       \
+    /* We always want to export defined variables, dll or no */ \
+    GFLAGS_DLL_DEFINE_FLAG type FLAGS_##name = FLAGS_nono##name; \
     type FLAGS_no##name = FLAGS_nono##name;                     \
-    static ::google::FlagRegisterer o_##name(      \
+    static ::google::FlagRegisterer o_##name(                   \
       #name, #type, MAYBE_STRIPPED_HELP(help), __FILE__,        \
       &FLAGS_##name, &FLAGS_no##name);                          \
   }                                                             \
@@ -488,7 +508,8 @@ extern const char kStrippedFlagHelp[];
 
 #define DECLARE_VARIABLE(type, shorttype, name) \
   namespace fL##shorttype {                     \
-    extern type FLAGS_##name;                   \
+    /* We always want to import declared variables, dll or no */ \
+    extern GFLAGS_DLL_DECLARE_FLAG type FLAGS_##name; \
   }                                             \
   using fL##shorttype::FLAGS_##name
 
@@ -504,8 +525,8 @@ namespace fLB {
 struct CompileAssert {};
 typedef CompileAssert expected_sizeof_double_neq_sizeof_bool[
                       (sizeof(double) != sizeof(bool)) ? 1 : -1];
-template<typename From> double IsBoolFlag(const From& from);
-bool IsBoolFlag(bool from);
+template<typename From> GFLAGS_DLL_DECL double IsBoolFlag(const From& from);
+GFLAGS_DLL_DECL bool IsBoolFlag(bool from);
 }  // namespace fLB
 
 #define DECLARE_bool(name)          DECLARE_VARIABLE(bool, B, name)
@@ -554,16 +575,13 @@ inline clstring* dont_pass0toDEFINE_string(char *stringspot,
                                            int value);
 }  // namespace fLS
 
-#define DECLARE_string(name)  namespace fLS { extern ::fLS::clstring& FLAGS_##name; } \
+#define DECLARE_string(name)  namespace fLS { extern GFLAGS_DLL_DECLARE_FLAG ::fLS::clstring& FLAGS_##name; } \
                               using fLS::FLAGS_##name
 
 // We need to define a var named FLAGS_no##name so people don't define
 // --string and --nostring.  And we need a temporary place to put val
 // so we don't have to evaluate it twice.  Two great needs that go
 // great together!
-// The weird 'using' + 'extern' inside the fLS namespace is to work around
-// an unknown compiler bug/issue with the gcc 4.2.1 on SUSE 10.  See
-//    http://code.google.com/p/google-gflags/issues/detail?id=20
 #define DEFINE_string(name, val, txt)                                       \
   namespace fLS {                                                           \
     using ::fLS::clstring;                                                  \
@@ -574,9 +592,7 @@ inline clstring* dont_pass0toDEFINE_string(char *stringspot,
     static ::google::FlagRegisterer o_##name(                  \
         #name, "string", MAYBE_STRIPPED_HELP(txt), __FILE__,                \
         s_##name[0].s, new (s_##name[1].s) clstring(*FLAGS_no##name));      \
-    extern clstring& FLAGS_##name;                                          \
-    using fLS::FLAGS_##name;                                                \
-    clstring& FLAGS_##name = *FLAGS_no##name;                               \
+    GFLAGS_DLL_DEFINE_FLAG clstring& FLAGS_##name = *FLAGS_no##name;        \
   }                                                                         \
   using fLS::FLAGS_##name
 
