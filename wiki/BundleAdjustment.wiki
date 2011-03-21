@@ -20,9 +20,9 @@ We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stab
 = Implementation details =
 
 == How to do ==
-  * Where: in _src/optimization_?
-  * Dependencies: no? camera/multiview libs?
-  * Parameters: vector only? matrices? classes (camera/structure/...)?
+  * Where: in _src/libmv/optimization_
+  * Dependencies: no. (will be called in camera/multiview libs)
+  * Parameters: vector only? matrices?
 
 == Possibles signatures ==
   * Camera(s) only
