@@ -115,7 +115,8 @@ NViewDataSet NRealisticCamerasFull(int nviews, int npoints,
 
 
 NViewDataSet NRealisticCamerasSparse(int nviews, int npoints, 
-                                     float view_ratio, uint32_t min_projections,
+                                     float view_ratio, 
+                                     unsigned int min_projections,
                                      const nViewDatasetConfigator config) {
   assert(view_ratio <= 1.0);
   assert(view_ratio > 0.0);
@@ -138,7 +139,7 @@ NViewDataSet NRealisticCamerasSparse(int nviews, int npoints,
   Mat randoms(nviews, npoints);
   randoms.setRandom();
   randoms = (randoms.cwise() + 1)/2.0;
-  uint32_t num_visibles = 0;
+  unsigned int num_visibles = 0;
   for (size_t i = 0; i < nviews; ++i) {
     num_visibles = 0;
     for (size_t j = 0; j < npoints; j++) {
@@ -148,7 +149,7 @@ NViewDataSet NRealisticCamerasSparse(int nviews, int npoints,
       }
     }
     if (num_visibles < min_projections) {
-      uint32_t num_projections_to_add = min_projections - num_visibles;
+      unsigned int num_projections_to_add = min_projections - num_visibles;
       for (size_t j = 0; j < npoints && num_projections_to_add > 0; ++j) {
         if (!visibility(i, j)) {
           num_projections_to_add--;
