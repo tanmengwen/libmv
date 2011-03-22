@@ -48,7 +48,7 @@
 //     5b) Trim most flag's descriptions to fit on a single terminal line
 
 
-#include "config.h"
+#include "gflags_config.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>   // for strlen
@@ -58,7 +58,7 @@
 #include <utility>
 #include <vector>
 
-#include "gflags.h"
+#include <gflags.h>
 
 #ifndef PATH_SEPARATOR
 #define PATH_SEPARATOR  '/'

@@ -1,8 +1,13 @@
+
 IF(WIN32)
   INCLUDE_DIRECTORIES(
+    windows
+    windows/gflags
     ../msinttypes
     ../pthreads-w32/include
   )
+ELSE (WIN32)
+  INCLUDE_DIRECTORIES(./)
 ENDIF(WIN32)
 
 ADD_LIBRARY(gflags

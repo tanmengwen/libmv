@@ -48,15 +48,15 @@
 // called after all flag-values have been assigned, that is, after
 // parsing the command-line.
 
-#include "config.h"
+#include "gflags_config.h"
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <assert.h>
 #include <string>
 #include <vector>
-#include "gflags.h"
-#include "gflags_completions.h"
+#include <gflags.h>
+#include <gflags_completions.h>
 
 #ifndef PATH_SEPARATOR
 #define PATH_SEPARATOR  '/'
