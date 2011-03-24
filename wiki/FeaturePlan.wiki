@@ -50,10 +50,10 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || multiview || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_ || TODO ||
 || libmv || Make libmv build for Mac OS  || medium ||  || _ _ || DRAFT ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
-|| third parties || Installation rules for third parties (headers) || low ||  || _need to be tested in win/mac_ || GOOD ||
-|| libmv || Packaging scripts using CPack  || low ||  || _linux: done, win:to be tested, mac: todo_ || GOOD ||
+|| third parties || Installation rules for third parties (headers) || low ||  || _to be tested in mac_ || GOOD ||
+|| libmv || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_ || GOOD ||
 || libmv || Make a documentation rule using cmake (doxygen, man) || low ||  || _in src/CMake/Documentation.cmake_ || STARTED ||
-|| libmv || Make a changelog  || low ||  || _ _ || TODO ||
+|| libmv || Make a changelog  || low ||  || _ _ || GOOD ||
 
 === Version 2.x ===
 
@@ -79,11 +79,11 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 === When we have time ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
-|| third parties || Switch to Eigen 3  || high  || julien/pierre || _in /branches/libmv-eigen3, need to be tested in win/mac_ || GOOD ||
+|| third parties || Switch to Eigen 3  || high  || julien/pierre || _in /branches/libmv-eigen3, need to be merged with trunk_ || GOOD ||
 || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
 || third parties || Update third parties (glog, gflag, etc.) || low ||  || _in /branches/new_gflags_glog_dasy_ || DRAFT ||
-|| correspondence || Plane tracker (for plan based augmented reality) || low  ||  || _ _ || GOOD ||
+|| correspondence || Plane tracker (for plane based augmented reality) || low  ||  || _ _ || GOOD ||
 || robust_estimation || Create a robust estimation lib || low ||  || _ _ || TODO ||
 || robust_estimation || Add PROSAC robust estimation +GroupSAC? || low ||  || _ _ || TODO ||
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
@@ -100,7 +100,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || libmv || Switch to mercurial/git? || low  ||  || _ _ || IDEA ||
 || libmv || Project management tool (Redmine?) || low ||  || _ _ || IDEA ||
 || libmv || Python binding || low  ||  || _ _ || IDEA ||
-|| libmv || Online API documentation || low  ||  || _ _ || IDEA ||
+|| libmv || Online API documentation || low  ||  || _unfeasible with googlecode?_ || IDEA ||
 
 `*`_Feel free to add yourself!!_
 
