@@ -1,0 +1,27 @@
+#summary Change log
+
+
+Releases
+<wiki:toc max_depth="2" />
+This page summarizes the main changes of the different versions of libmv.
+A complete changelog can be found in [http://code.google.com/p/libmv/source/browse/trunk/ChangeLog].
+
+
+= Libmv 0.02 =
+Released on *February 14, 2009*.
+
+    * Added a dense reconstruction via plane sweep algorithm.
+
+= Libmv 0.01 =
+Released on *February 12, 2009*.
+
+First release of libmv. Primary goal is to get something released that people can play with, even if it is extremely basic.
+
+    * Contains a single executable for reconstructing from 2 uncalibrated images.
+    * The output is a blender script, containing two cameras at the appropriate position, and the cloud of reconstructed points.
+    * Builds on Linux, Windows, Mac.
+
+Internally:
+
+    * Has basic USURF implementation.
+    * Has basic non-sparse bundle adjustment.
