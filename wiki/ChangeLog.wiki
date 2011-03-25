@@ -3,6 +3,9 @@
 
 Releases
 <wiki:toc max_depth="2" />
+
+= Introduction =
+
 This page summarizes the main changes of the different versions of libmv.
 A complete changelog can be found in [http://code.google.com/p/libmv/source/browse/trunk/ChangeLog].
 
