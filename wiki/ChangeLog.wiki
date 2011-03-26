@@ -118,7 +118,7 @@ Changes since libmv 0.0.2:
       *  Added an homography estimation (+ a robust version)
       *  Added two point reconstruction for uncalibrated N views methods (standard, algebraic)
       *  Updated the reconstruction from six points of N views.
-      *  Added a panography stiching (minimalistic: 2 points) function (+ a robust version)
+      *  Added a panography stitching (minimalistic: 2 points) function (+ a robust version)
       *  Updated and added some useful projection functions and tools (homogeneous to/from euclidean, root mean square error,
       *  Added a uniform random sample function that picks a random subset of the integers [0, total), in random order.
       *  Added a projective resection method (+ a robust version)
@@ -160,7 +160,7 @@ Changes since libmv 0.0.2:
   *  New tools
     *  Added a detector repeatability tool
     *  Added a tool that extract ExifData from images
-    *  Added a stiching tool (homography warping)
+    *  Added a stitching tool (homography warping)
     *  Added a tool (nViewMatching) that estimates the matches of a set of images
     *  Added a points detector that extracts points feature from an image and draws the detected features
     *  Added a reconstruct_video tool that takes a file containing tracks matches as input and estimate the 3D reconstruction. Save all results into a .ply/.py file.
