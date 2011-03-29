@@ -36,43 +36,46 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 
 === Version 1.x ===
 
-|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comments*  || *Status* ||
-|| reconstruction || General calibrated reconstruction from video  || high ||  julien || _ _ || GOOD ||
-|| reconstruction || Keyframe selection method   || high || julien || _ _ || GOOD ||
-|| correspondence || Write tracker unit test  || high || julien || _ _ || STARTED ||
-|| camera || Radial distorsion correction || high ||  || _ _ || TODO ||
-|| multiview || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_ || TODO ||
-|| reconstruction || Write reconstruction unit test  || medium ||julien || _ _ || STARTED ||
-|| reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _ || GOOD ||
-|| multiview || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_ || TODO ||
-|| libmv || Make libmv build for Mac OS  || medium ||  || _ _ || DRAFT ||
-|| contrib || Define/rewrite interfaces with Blender || low  ||  || _ _ || TODO ||
-|| third parties || Installation rules for third parties (headers) || low ||  || _to be tested in mac_ || GOOD ||
-|| libmv || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_ || GOOD ||
-|| libmv || Make a documentation rule using cmake (doxygen, man) || low ||  || _in src/CMake/Documentation.cmake_ || STARTED ||
-|| libmv || Make libmv examples || low ||  || _ _ || TODO ||
-|| libmv || Make a changelog  || low ||  || _ _ || GOOD ||
+|| *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comments*  || *Target* || *Status* ||
+|| reconstruction || General calibrated reconstruction from video  || high||  julien || _ _  || 1.0 || GOOD ||
+|| reconstruction || Keyframe selection method   || high || julien || _ _ || 1.0  || GOOD ||
+|| correspondence || Write tracker unit test  || high || julien || _ _  || 1.0 || STARTED ||
+|| camera || Radial distorsion correction || high ||  || _ _  || 1.0 || TODO ||
+|| multiview || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
+|| reconstruction || Write reconstruction unit test  || medium ||julien || _ _  || 1.0 || STARTED ||
+|| reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _  || 1.0 || GOOD ||
+|| multiview || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
+|| libmv || Make libmv build for Mac OS  || medium ||  || _ _  || 1.0 || DRAFT ||
+|| third parties || Installation rules for third parties (headers) || low ||  || _to be tested in mac_  || 1.0 || GOOD ||
+|| libmv || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_  || 1.0 || GOOD ||
+|| libmv || Make a documentation rule using cmake (doxygen) || low ||  || _in src/CMake/Documentation.cmake_  || 1.0 || GOOD ||
+|| libmv || Make libmv examples || low ||  || _ _  || 1.0 || TODO ||
+|| libmv || Make a changelog  || low ||  || _ _  || 1.0 || DONE ||
+|| correspondence || Marker (patch/color) based tracker || medium  ||  || _for greenscreen environment_  || 1.0 || TODO ||
+|| correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_  || 1.0 || DRAFT ||
+|| correspondence || Guided traker (with tracks prediction) || low ||  || _ _  || 1.0 || TODO ||
+|| correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.0 || TODO ||
+|| correspondence || ImagePyramid tracker || low  ||  || _ _  || 1.0 || STARTED ||
+|| correspondence || F+H traker [Torr98] || low ||  || _useful when bad structure/motion_  || 1.0 || TODO ||
+|| contrib || Define/rewrite interfaces with Blender || low  ||  || _ _  || 1.0 || TODO ||
+
 
 === Version 2.x ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
-|| reconstruction || Reconstruction of an Images set || high ||  || _ _ || TODO ||
-|| optimize? || Nonlinear Optimization library  || high ||  || _see [BundleAdjustment]_ || TODO ||
-|| reconstruction || Precise metric rectification || medium  ||  || _ _ || TODO ||
-|| multiview || Camera optimization (projective)   || medium  ||  || _see [BundleAdjustment]_ || TODO ||
-|| multiview || Point structure optimization (projective) || medium  ||  || _see [BundleAdjustment]_ || TODO ||
-|| ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _ || TODO ||
-|| correspondence || ImagePyramid tracker || medium  ||  || _ _ || STARTED ||
-|| reconstruction || General uncalibrated reconstruction from video || medium  ||  || _ _ || TODO ||
-|| camera || Radial distorsion estimation from lines || low ||  || _ _ || TODO ||
-|| correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_ || DRAFT ||
-|| correspondence || Guided traker (with tracks prediction) || low ||  || _ _ || TODO ||
-|| correspondence || F+H traker [Torr98] || low ||  || _ _ || TODO ||
+|| reconstruction || Reconstruction of an Images set || high ||  || _ _  || 2.0 || TODO ||
+|| optimize? || Nonlinear Optimization library  || high ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
+|| reconstruction || Precise metric rectification || medium  ||  || _ _  || 2.0 || TODO ||
+|| multiview || Camera optimization (projective)   || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
+|| multiview || Point structure optimization (projective) || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
+|| ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _  || 2.0 || TODO ||
+|| reconstruction || General uncalibrated reconstruction from video || medium  ||  || _ _  || 2.0 || TODO ||
+|| camera || Radial distorsion estimation from lines || low ||  || _ _  || 2.0 || TODO ||
 
 === Version 3.x ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
-|| libmv || 3D dense reconstruction|| high ||  || _plane sweep?_ || TODO ||
+|| libmv || 3D dense reconstruction|| high ||  || _plane sweep?_  || 2.0 || TODO ||
 
 === When we have time ===
 
@@ -87,6 +90,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
+|| libmv || Udate all comments to doxygen style || medium ||  || _ _ || TODO ||
 || libmv || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
 || wiki || Merge [Roadmap] with [FeaturePlan] || low ||  || _ _ || *DONE* ||
 || wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
