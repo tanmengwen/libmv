@@ -90,7 +90,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 === When we have time ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
-|| third parties || Switch to Eigen 3  || high  || julien/pierre || _in /branches/libmv-eigen3, need to be merged with trunk_ || GOOD ||
+|| third parties || Switch to Eigen 3  || high  || julien/pierre || _in /branches/libmv-eigen3, need to be merged with trunk_ || *DONE* ||
 || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
 || third parties || Update third parties (glog, gflag, etc.) || low ||  || _in /branches/new_gflags_glog_dasy_ || DRAFT ||
