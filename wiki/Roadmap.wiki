@@ -94,8 +94,9 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || correspondence || Rewrite of the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
 || third parties || Update third parties (glog, gflag, etc.) || low ||  || _in /branches/new_gflags_glog_dasy_ || DRAFT ||
+|| general || Use Eigen 3 new features such as Orientation2D, Affine3f, etc. || low ||  || _ define in numeric and use in multiview_ || TODO ||
 || correspondence || Plane tracker (for plane based augmented reality) || low  ||  || _ _ || GOOD ||
-|| robust_estimation || Create a robust estimation lib || low ||  || _ _ || TODO ||
+|| robust_estimation || Create a robust estimation folder (lib?) || low ||  || _ _ || TODO ||
 || robust_estimation || Add PROSAC robust estimation +GroupSAC? || low ||  || _ _ || TODO ||
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
