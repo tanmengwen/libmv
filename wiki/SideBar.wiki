@@ -1,0 +1,5 @@
+#summary Wiki side bar
+
+== Question or Comment? ==
+
+Please post to the [http://groups.google.com/group/libmv-devel discussion group].
