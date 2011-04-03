@@ -12,11 +12,65 @@ Libmv has several applications and tools, this page describes some of them.
 == Introduction ==
 A KLT tracker.
 
-= Tracker =
-== Introduction ==
-  * Tracker is a point tracker tool that takes images as input and gives point tracks with matches as output. It saves all results into a .txt file. 
+= Reconstruct video =
+== Description ==
+*Reconstruct_video* is a tool that localizes a camera and sparsely reconstruct the 3D scene.
 
-== Limitations ==
+=== Example ===
+{{{
+reconstruct_video -i matches.txt -o recons.ply -v 1 -w 650.6 -h 471.75 -f 515.295
+}}}
+=== Limitations ===
   * Images must be radially corrected.
+  * matches.txt can be obtained using the *tracker* tool
+
+== Results or screenshots ==
+
+= Tracker =
+== Description ==
+*Tracker* is a point tracker tool that takes images as input and gives point tracks with matches as output. It saves all results into a .txt file. 
+
+=== Example ===
+{{{
+tracker frame1.jpg frameN.jpg -o matches.txt
+}}}
+=== Limitations ===
+  * Images must be radially corrected.
+
+== Results or screenshots ==
+
+= Mosaicing video =
+== Description ==
+*Mosaicing_video* is a tool for making a mosaic from a video (list of images). It uses the following simple approach:
+
+From the given features matches, the chained relatives matrices are estimated (affine or homography) and images are warpped and written in a global mosaic image. The overlapping zones are blended and the last image takes 50% of the blending.
+
+=== Example ===
+{{{
+mosaicing_video frame1.jpg frameN.jpg -m matches.txt -o mosaic.jpg -draw_lines
+}}}
+=== Limitations ===
+  * Only for video
+  * matches.txt can be obtained using the *tracker* tool
+  * Images must be radially corrected.
+== Results or screenshots ==
+
+= Undistort =
+== Description ==
+*Undistort* is a tool for undistorting images using known lens distortion coefficients. It supports radial (up to 5 coef.) and tangential distortions (up to 2 coef). Undistorted images are saved in the same location as input images, with a suffix ("undist") placed at the end of the file name. 
+We use the Brown's distortion model
+Variables:
+  * (x,y): 2D point in the image (pixel)
+  * (u,v): the undistorted 2D point (pixel)
+  * radial_distortion (k1, k2, k3, ...): vector containing the    radial distortion
+  * tangential_distortion_ (p1, p2): vector containing the  tangential distortion
+  * (cx,cy): camera principal point
+
+=== Example ===
+{{{
+undistort image1.jpg imageN.jpg -k1 0.02 -fx 515.295
+}}}
+=== Limitations ===
+  * All images must have the same size.
 
 == Results or screenshots ==
