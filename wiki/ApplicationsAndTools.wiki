@@ -8,6 +8,24 @@ Libmv has several applications and tools, this page describes some of them.
 
 = ... =
 
+= Mosaicing video =
+== Description ==
+*Mosaicing_video* is a tool for making a mosaic from a video (list of images). It uses the following simple approach:
+
+From the given features matches, the chained relatives matrices are estimated (affine or homography) and images are warped and written in a global mosaic image. The overlapping zones are blended and the last image takes 50% of the blending.
+
+_note:_ matches.txt can be obtained using the *tracker* tool
+=== Example ===
+{{{
+mosaicing_video frame1.jpg frameN.jpg -m matches.txt -o mosaic.jpg 
+}}}
+=== Limitations ===
+  * Images must be radially corrected.
+  * images must be given in the same order/number than when the *tracker* where called.
+  * Only for video
+== Results or screenshots ==
+
+
 = Reconstruct video =
 == Description ==
 *Reconstruct_video* is a tool that localizes a camera and sparsely reconstruct the 3D scene.
@@ -21,6 +39,29 @@ reconstruct_video -i matches.txt -o recons.ply -w 640 -h 480 -f 515.295
 
 == Results or screenshots ==
 
+
+= Stabilize video =
+== Description ==
+*Stabilize* is a tool for stabilizing a video.
+It uses the following simple approach:
+From the given features matches, the chained relatives matrices are estimated (euclidean or homography) and images are warped so that the features keep the same position in every images.
+
+_note:_ matches.txt can be obtained using the *tracker* tool
+=== Example ===
+{{{
+stabilize frame1.jpg frameN.jpg -m matches.txt -of ./
+}}}
+=== Limitations ===
+  * This version supports *only fixed camera* (no moving camera)
+  * The colors are not smoothed, ie. *the pixel colors are not stabilized*
+  * The empty spaces are filled with the previous stabilized images and are not blended/smoothed.
+  * Images must be radially corrected.
+  * images must be given in the same order/number than when the *tracker* where called.
+  * Only for video
+
+== Results or screenshots ==
+
+
 = Tracker =
 == Description ==
 *Tracker* is a point tracker tool that takes images as input and gives point tracks with matches as output. It saves all results into a .txt file. 
@@ -32,23 +73,6 @@ tracker frame1.jpg frameN.jpg -o matches.txt
 === Limitations ===
   * Images must be radially corrected.
 
-== Results or screenshots ==
-
-= Mosaicing video =
-== Description ==
-*Mosaicing_video* is a tool for making a mosaic from a video (list of images). It uses the following simple approach:
-
-From the given features matches, the chained relatives matrices are estimated (affine or homography) and images are warpped and written in a global mosaic image. The overlapping zones are blended and the last image takes 50% of the blending.
-
-_note:_ matches.txt can be obtained using the *tracker* tool
-=== Example ===
-{{{
-mosaicing_video frame1.jpg frameN.jpg -m matches.txt -o mosaic.jpg 
-}}}
-=== Limitations ===
-  * Images must be radially corrected.
-  * images must be given in the same order/number than when the *tracker* where called.
-  * Only for video
 == Results or screenshots ==
 
 = Undistort =
