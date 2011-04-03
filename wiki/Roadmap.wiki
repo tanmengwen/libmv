@@ -59,7 +59,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _  || 1.0 || TODO ||
 || tracker/correspondence || ImagePyramid tracker || low  ||  || _ _  || 1.1 || STARTED ||
 || tracker/correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.1 || TODO ||
-|| tool || Video stabilization (fixed camera)  || low ||  || _a simple way to do would be to compute a 2D affinity/similarity/homography (as mosaicing?)?_  || 1.1 || TODO ||
+|| tool || Video stabilization (fixed camera)  || low ||  || _a simple way to do would be to compute a 2D affinity/similarity/homography_  || 1.1 || DRAFT ||
 || tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera but using a "mean" affinity/similarity/homography?_  || 1.1 || TODO ||
 || detector || Lines/edges detection || medium ||  || _ _  || 1.1 || TODO ||
 || camera || Lens distorsion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
