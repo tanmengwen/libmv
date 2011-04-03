@@ -42,7 +42,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || General calibrated reconstruction from video  || high||  julien || _ _  || 1.0 || GOOD ||
 || reconstruction || Keyframe selection method   || high || julien || _ _ || 1.0  || GOOD ||
 || correspondence || Write tracker unit test  || high || julien || _ _  || 1.0 || STARTED ||
-|| camera & tool || Lens distorsion correction || high ||  || _ _  || 1.0 || STARTED ||
+|| camera & tool || Lens distorsion correction || high ||  || _need full tests + move to camera lib_  || 1.0 || GOOD ||
 || multiview & optimization || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _  || 1.0 || STARTED ||
 || reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _  || 1.0 || GOOD ||
@@ -64,7 +64,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || detector || Lines/edges detection || medium ||  || _ _  || 1.1 || TODO ||
 || camera || Lens distorsion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || F+H traker [Torr98] || low ||  || _useful when bad structure/motion_  || 1.2 || TODO ||
-|| tool || Image mosaicing  || low ||  || _ same as homography_warping but for N images?_  || 1.2 || STARTED ||
+|| tool || Image mosaicing  || low ||  || _ mosaicing of video:draft_  || 1.2 || DRAFT ||
 
 
 === Version 2.x ===
