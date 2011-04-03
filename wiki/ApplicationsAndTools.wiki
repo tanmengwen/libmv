@@ -14,7 +14,7 @@ Libmv has several applications and tools, this page describes some of them.
 
 === Example ===
 {{{
-reconstruct_video -i matches.txt -o recons.ply -w 650.6 -h 471.75 -f 515.295
+reconstruct_video -i matches.txt -o recons.ply -w 640 -h 480 -f 515.295
 }}}
 === Limitations ===
   * matches.txt can be obtained using the *tracker* tool
