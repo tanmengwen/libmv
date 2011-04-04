@@ -21,7 +21,7 @@ mosaicing_video frame1.jpg frameN.jpg -m matches.txt -o mosaic.jpg
 }}}
 === Limitations ===
   * Images must be radially corrected.
-  * images must be given in the same order/number than when the *tracker* where called.
+  * images must be given in the same order/number than when the *tracker* were called.
   * Only for video
 == Results or screenshots ==
 
@@ -56,7 +56,7 @@ stabilize frame1.jpg frameN.jpg -m matches.txt -of ./
   * The colors are not smoothed, ie. *the pixel colors are not stabilized*
   * The empty spaces are filled with the previous stabilized images and are not blended/smoothed.
   * Images must be radially corrected.
-  * images must be given in the same order/number than when the *tracker* where called.
+  * images must be given in the same order/number than when the *tracker* were called.
   * Only for video
 
 == Results or screenshots ==
