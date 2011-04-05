@@ -62,6 +62,12 @@ SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${LIBMV_LIBRARY_OUTPUT_DIR})
 
 
 INCLUDE(ConfigureBuild)
+# INCLUDE(Documentation)
+INCLUDE(Installation)
+INCLUDE(Packaging)
+INCLUDE(Testing)
+
+ADD_SUBDIRECTORY(third_party)
 
 INCLUDE_DIRECTORIES(
   .
@@ -98,15 +104,8 @@ IF (UNIX)
     third_party/zlib)
 ENDIF (UNIX)
 
-
-# INCLUDE(Documentation)
-INCLUDE(Installation)
-INCLUDE(Packaging)
-INCLUDE(Testing)
-
 ADD_SUBDIRECTORY(libmv)
 ADD_SUBDIRECTORY(testing)
-ADD_SUBDIRECTORY(third_party)
 
 IF (QT4_FOUND)
   MESSAGE(STATUS "Qt4 found: GUI enabled.")

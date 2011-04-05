@@ -76,6 +76,9 @@
 //   other thread is writing to the variable or calling non-const
 //   methods of this class.
 
+#if defined(_MSC_VER)
+#  include "windows/gflags/gflags.h"
+#else
 #ifndef GOOGLE_GFLAGS_H_
 #define GOOGLE_GFLAGS_H_
 
@@ -583,3 +586,4 @@ inline clstring* dont_pass0toDEFINE_string(char *stringspot,
 #endif  // SWIG
 
 #endif  // GOOGLE_GFLAGS_H_
+#endif // _MSC_VER
