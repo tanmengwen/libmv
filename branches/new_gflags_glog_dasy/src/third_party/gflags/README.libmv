@@ -15,3 +15,4 @@ Local modifications:
 
 - Added gflags_config_linux.h and gflags_config_mac.h, 
 - renamed config.h to gflags_config.h (due to a conflict with glog)
+- Added defined(_MSC_VER) in gflags.h

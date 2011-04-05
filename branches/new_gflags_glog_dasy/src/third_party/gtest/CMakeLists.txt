@@ -1,4 +1,7 @@
 
+INCLUDE_DIRECTORIES(include
+					./)
+
 ADD_LIBRARY( gtest
              src/gtest.cc
              src/gtest-death-test.cc

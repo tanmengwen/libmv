@@ -17,6 +17,9 @@ Local modifications:
 * Add virtual destructor to Thread in googletest.h.
 * Update windows/glog/log_severity to build with QT library that include WinGDI
   (It cause a double definition of ERROR variable).
+  
+* Added a if defined(_MSC_VER) in glog/logging.h
+* Added #undef ERROR in glog/log_severity.h
 
 Old changes which got obsoleted (maybe?) by 0.2.1 merge:
 * Added #ifndef / def REG_EIP; not sure what that is.

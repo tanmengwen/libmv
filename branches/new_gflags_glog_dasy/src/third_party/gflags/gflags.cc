@@ -88,7 +88,7 @@
 // other hand, hooks into CommandLineFlagParser.  Other API functions
 // are, similarly, mostly hooks into the functionality described above.
 
-#include <gflag_config.h>
+#include "gflags_config.h"
 // This comes first to ensure we define __STDC_FORMAT_MACROS in time.
 #ifdef HAVE_INTTYPES_H
 #ifndef __STDC_FORMAT_MACROS
