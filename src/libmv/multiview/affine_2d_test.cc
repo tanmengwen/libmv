@@ -18,9 +18,10 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#include "testing/testing.h"
 #include "libmv/logging/logging.h"
 #include "libmv/multiview/affine_2d.h"
+#include "testing/testing.h"
+
 namespace {
 using namespace libmv;
 

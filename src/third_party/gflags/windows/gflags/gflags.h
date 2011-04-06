@@ -101,13 +101,13 @@
 // Annoying stuff for windows -- makes sure clients can import these functions
 #if defined(_WIN32)
 # ifndef GFLAGS_DLL_DECL
-#   define GFLAGS_DLL_DECL  __declspec(dllimport)
+#   define GFLAGS_DLL_DECL  //__declspec(dllimport)
 # endif
 # ifndef GFLAGS_DLL_DECLARE_FLAG
-#   define GFLAGS_DLL_DECLARE_FLAG  __declspec(dllimport)
+#   define GFLAGS_DLL_DECLARE_FLAG  //__declspec(dllimport)
 # endif
 # ifndef GFLAGS_DLL_DEFINE_FLAG
-#   define GFLAGS_DLL_DEFINE_FLAG   __declspec(dllexport)
+#   define GFLAGS_DLL_DEFINE_FLAG   //__declspec(dllimport)
 # endif
 #else
 # ifndef GFLAGS_DLL_DECL
