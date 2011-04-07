@@ -32,7 +32,7 @@ The basic idea is to have something like this:
 
 The *next major release will be 1.0* and *packages will be made*. 
 
-Before this release, we will produce several unstable versions (0.Y), where Y will be increased each time that a feature (defined in the following tables) reach the DONE state.
+Before this release, we will produce several unstable versions (0.Y), where Y will be increased each time that a major feature reaches the *DONE* state.
 
 == Features and Todo list ==
 
@@ -47,9 +47,9 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _  || 1.0 || GOOD ||
 || multiview & optimization || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
 || multiview & optimization || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
-|| general || Make libmv build for Mac OS  || medium ||  || _vess_  || 1.0 || GOOD ||
+|| general || Make libmv build for Mac OS  || medium || vess || _ _  || 1.0 || GOOD ||
 || general || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_  || 1.0 || GOOD ||
-|| general || Make a documentation rule using cmake (doxygen) || low ||  || _in src/CMake/Documentation.cmake_  || 1.0 || GOOD ||
+|| general || Make a documentation rule using cmake (doxygen) || low ||  || _in src/CMake/Documentation.cmake_  || 1.0 || *DONE* ||
 || general || Make libmv examples || low ||  || _ _  || 1.0 || TODO ||
 || general || Make a changelog  || low ||  || _ _  || 1.0 || *DONE* ||
 || third parties || Installation rules for third parties (headers) || low ||  || _to be tested in mac_  || 1.0 || GOOD ||
