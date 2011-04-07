@@ -77,6 +77,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || multiview || F/E (fundamental/essential matrices) optimization  || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _  || 2.0 || TODO ||
 || reconstruction || General uncalibrated reconstruction from video || medium  ||  || _ _  || 2.0 || TODO ||
+|| multiview || Point/patch normal estimation || medium ||  || _ _  || 2.0  || TODO ||
 
 === Version 3.x ===
 
@@ -92,8 +93,8 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || correspondence || Rewrite the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || multiview || 3D (and 2D?) Translation, Rotation, Euclidean transformations estimation from corresp. (+robust) || medium ||  || _ _ || TODO ||
 || multiview || 3D linear Similarity, Affinity, Homography transformations estimation from corresp. (+robust) || medium ||  || _ _ || TODO ||
+|| multiview || 2D/3D T, R, E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ _ || TODO ||
 || detector || Lines/edges detection || medium ||  || _ _   || TODO ||
-|| multiview || 2D/3D T, R, E, S, A, H transformations estimation from NO corresp. (+robust) || low ||  || _ _ || TODO ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
 || third parties || Update third parties (glog, gflag, etc.) || low || vess/julien || _in /branches/new_gflags_glog_dasy_ || GOOD ||
 || general || Use Eigen 3 [http://eigen.tuxfamily.org/dox/TutorialGeometry.html new features] such as Orientation2D, Affine3f, etc. || low ||  || _ define in numeric and use in multiview_ || TODO ||
