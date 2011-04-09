@@ -71,13 +71,15 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || reconstruction || Reconstruction of an Images set || high ||  || _ _  || 2.0 || TODO ||
 || optimization || Nonlinear Optimization library  || high ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
-|| reconstruction || Precise metric rectification || medium  ||  || _ _  || 2.0 || TODO ||
+|| reconstruction+multiview || 3D metric rectification (self-calibration)|| medium  ||  || _ _  || 2.0 || TODO ||
+|| reconstruction+multiview || 3D metric rectification from a priori (distances, perpendicular lines, etc.) || low  ||  || _ _  || 2.0 || TODO ||
 || multiview || Camera optimization (projective)   || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || multiview || Point structure optimization (projective) || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || multiview || F/E (fundamental/essential matrices) optimization  || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _  || 2.0 || TODO ||
 || reconstruction || General uncalibrated reconstruction from video || medium  ||  || _ _  || 2.0 || TODO ||
 || multiview || Point/patch normal estimation || medium ||  || _ _  || 2.0  || TODO ||
+|| reconstruction || 2D image rectification from a priori (distances, perpendicular lines, etc.) || low  ||  || _ _  || 2.0 || TODO ||
 
 === Version 3.x ===
 
