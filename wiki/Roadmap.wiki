@@ -42,25 +42,25 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || reconstruction || General calibrated reconstruction from video  || high||  julien || _ _  || 1.0 || GOOD ||
 || reconstruction || Keyframe selection method   || high || julien || _ _ || 1.0  || GOOD ||
 || correspondence || Write tracker unit test  || high || julien || _ _  || 1.0 || STARTED ||
-|| camera & tool || Lens distorsion correction || high ||  || _need full tests + move to camera lib_  || 1.0 || GOOD ||
+|| camera & tool || Lens distortion correction || high ||  || _need full tests + move to camera lib_  || 1.0 || GOOD ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _  || 1.0 || STARTED ||
 || reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _  || 1.0 || GOOD ||
 || multiview & optimization || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
 || multiview & optimization || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
-|| general || Make libmv build for Mac OS  || medium || vess || _ _  || 1.0 || GOOD ||
+|| general || Make libmv build for Mac OS  || medium || vess/marco || _ _  || 1.0 || *DONE* ||
 || general || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_  || 1.0 || GOOD ||
 || general || Make a documentation rule using cmake (doxygen) || low ||  || _in src/CMake/Documentation.cmake_  || 1.0 || *DONE* ||
 || general || Make libmv examples || low ||  || _ _  || 1.0 || TODO ||
 || general || Make a changelog  || low ||  || _ _  || 1.0 || *DONE* ||
 || third parties || Installation rules for third parties (headers) || low ||  || _to be tested in mac_  || 1.0 || GOOD ||
-|| tracker/correspondence || Marker (patch/color) based tracker || medium  ||  || _for greenscreen environment_  || 1.0 || TODO ||
+|| tracker/correspondence || Adapt the tracker for marker (patch/color) based tracking || medium  ||  || _for greenscreen environment_  || 1.0 || TODO ||
 || tracker/correspondence || Fast window traker || low  ||  || _circle:draft, ellipse:todo_  || 1.0 || DRAFT ||
 || tracker/correspondence || Guided traker (with tracks prediction) || low ||  || _ _  || 1.0 || TODO ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _  || 1.0 || TODO ||
 || tracker/correspondence || ImagePyramid tracker || low  ||  || _ _  || 1.1 || STARTED ||
-|| tool || Video stabilization (fixed camera)  || low ||  || _use the 2D affinity/similarity/homography, need NL image registration_  || 1.1 || DRAFT ||
-|| tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera but using a "mean" affinity/similarity/homography?, need NL image registration_  || 1.1 || TODO ||
-|| camera || Lens distorsion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
+|| tool || Video stabilization (fixed camera)  || low ||  || _use the 2D homography H, need H optimization or NL image registration_  || 1.1 || DRAFT ||
+|| tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera but using a "mean" homography, need H optimization_  || 1.1 || TODO ||
+|| camera || Lens distortion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || F+H traker [Torr98] || low ||  || _useful when bad structure/motion_  || 1.2 || TODO ||
 || tool || Image mosaicing  || low ||  || _ mosaicing of video:draft_  || 1.2 || DRAFT ||
@@ -76,7 +76,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || multiview || Camera optimization (projective)   || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || multiview || Point structure optimization (projective) || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
 || multiview || F/E (fundamental/essential matrices) optimization  || medium  ||  || _see [BundleAdjustment]_  || 2.0 || TODO ||
-|| ui/nview || Find the focal length (in px!) from Exif data || medium |||  || _ _  || 2.0 || TODO ||
+|| ui/nview || Read the focal length (in px!) from Exif data || medium |||  || _ _  || 2.0 || TODO ||
 || reconstruction || General uncalibrated reconstruction from video || medium  ||  || _ _  || 2.0 || TODO ||
 || multiview || Point/patch normal estimation || medium ||  || _ _  || 2.0  || TODO ||
 || reconstruction || 2D image rectification from a priori (distances, perpendicular lines, etc.) || low  ||  || _ _  || 2.0 || TODO ||
@@ -92,29 +92,30 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || third parties || Switch to Eigen 3  || high  || julien/pierre || _ _ || *DONE* ||
+|| third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || correspondence || Rewrite the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
-|| multiview || 3D (and 2D?) Translation, Rotation, Euclidean transformations estimation from corresp. (+robust) || medium ||  || _ _ || TODO ||
-|| multiview || 3D linear Similarity, Affinity, Homography transformations estimation from corresp. (+robust) || medium ||  || _ _ || TODO ||
-|| multiview || 2D/3D T, R, E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ _ || TODO ||
+|| multiview || 3D linear Similarity, Affinity, Homography transformations estimation from corresp. (+robust) || medium ||  || _ _ || STARTED ||
+|| multiview || 2D/3D T, R, E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ need only ICP!_ || TODO ||
 || detector || Lines/edges detection || medium ||  || _ _   || TODO ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
-|| third parties || Update third parties (glog, gflag, etc.) || low || vess/julien || _in /branches/new_gflags_glog_dasy_ || GOOD ||
+|| third parties || Update third parties (glog, gflag, etc.) || low || vess/julien || _in /branches/new_gflags_glog_dasy, glog:todo_ || GOOD ||
 || general || Use Eigen 3 [http://eigen.tuxfamily.org/dox/TutorialGeometry.html new features] such as Orientation2D, Affine3f, etc. || low ||  || _ define in numeric and use in multiview_ || TODO ||
-|| correspondence || Plane tracker (for plane based augmented reality) || low  ||  || _ _ || GOOD ||
+|| correspondence || Plane tracker (for plane based augmented reality) || low  ||  || _ need tests+UT_ || GOOD ||
 || robust_estimation || Create a robust estimation folder (lib?) || low ||  || _ _ || TODO ||
 || robust_estimation || Add PROSAC robust estimation || low ||  || _ _ || TODO ||
 || robust_estimation || Add GroupSAC || low ||  || _ _ || IDEA ||
 || tools || Camera calibration tool || low  ||  || _ _ || TODO ||
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
-|| third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || general || Udate all comments to doxygen style || medium ||  || _ _ || TODO ||
 || general || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
+|| multiview || 3D (and 2D?) Translation, Rotation (only) estimation from corresp. (+robust) || low ||  || _ _ || TODO ||
 || wiki || Merge [Roadmap] with [FeaturePlan] || low ||  || _ _ || *DONE* ||
 || wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
 
 === To be decided ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| third parties || Remove pthread?  || high ||  || _ it was need by gflags or so_ || IDEA ||
 || correspondence || KLT: make it use the new components? || low  ||  || _ _ || IDEA ||
 || general || Switch to mercurial/git? || low  ||  || _ _ || IDEA ||
 || general || Project management tool (Redmine?) || low ||  || _ _ || IDEA ||
