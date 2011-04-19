@@ -95,6 +95,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
 || correspondence || Rewrite the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || multiview || 3D linear Similarity, Affine, Homography transformations estimation from corresp. (+robust) || medium ||  || _robust:TODO + fix bug in affine 3D (see unit tests)_ || GOOD ||
+|| multiview || 2D/3D T, R, E, S, A, H transformations optimization || medium ||  || _ _ || STARTED ||
 || multiview || 2D/3D T, R, E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ need only ICP!_ || TODO ||
 || detector || Lines/edges detection || medium ||  || _ _   || TODO ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
