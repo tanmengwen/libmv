@@ -62,6 +62,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera but using a "mean" homography, need H optimization_  || 1.1 || TODO ||
 || camera || Lens distortion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.1 || TODO ||
+|| camera & tool || Rolling shutter correction / calibration? || medium ||  || _ affect most of the CMOs cameras_  || 1.2 || TODO ||
 || tracker/correspondence || F+H traker [Torr98] || low ||  || _useful when bad structure/motion_  || 1.2 || TODO ||
 || tool || Image mosaicing  || low ||  || _ mosaicing of video:draft_  || 1.2 || DRAFT ||
 
