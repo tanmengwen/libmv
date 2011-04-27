@@ -59,12 +59,11 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _  || 1.0 || TODO ||
 || tracker/correspondence || ImagePyramid tracker || low  ||  || _ _  || 1.1 || STARTED ||
 || tool || Video stabilization (fixed camera)  || low ||  || _use the 2D homography H, need H optimization or NL image registration_  || 1.1 || DRAFT ||
-|| tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera but using a "mean" homography, need H optimization_  || 1.1 || TODO ||
+|| tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera with a lowpass filter on the 2D motion estimation (as a start)_  || 1.1 || TODO ||
 || camera || Lens distortion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.1 || TODO ||
-|| camera & tool || Rolling shutter correction / calibration? || medium ||  || _ affect most of the CMOs cameras_  || 1.2 || TODO ||
+|| camera & tool || Rolling shutter correction / calibration? || medium ||  || _ affect most of the CMOS cameras_  || 1.2 || TODO ||
 || tracker/correspondence || F+H traker [Torr98] || low ||  || _useful when bad structure/motion_  || 1.2 || TODO ||
-|| tool || Image mosaicing  || low ||  || _ mosaicing of video:draft_  || 1.2 || DRAFT ||
 
 
 === Version 2.x ===
@@ -88,6 +87,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || libmv || 3D dense reconstruction|| high ||  || _plane sweep?_  || 3.0 || TODO ||
 || tool || Image super-resolution  || low ||  || _ _  || 3.0 || IDEA ||
 || tool || Image Gigapixel  || low ||  || _ _  || 3.0 || IDEA ||
+|| tool || Image mosaicing  || low ||  || _ mosaicing of video:draft_  || 1.2 || DRAFT ||
 
 === When we have time ===
 
