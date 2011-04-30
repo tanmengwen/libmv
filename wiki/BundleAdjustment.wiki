@@ -1,4 +1,4 @@
-#summary Describe our needs on the bundle adjustment library
+#summary Describes the future bundle adjustment library
 #labels bundleadjustment
 
 = Introduction =
@@ -20,8 +20,8 @@ We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stab
 = Implementation details =
 
 == How to do ==
-  * Where: in _src/libmv/optimization_
-  * Dependencies: no. (will be called in camera/multiview libs)
+  * Where: in _src/libmv/mutliview_
+  * Dependencies: no. (maybe camera)
   * Parameters: vector only? matrices?
 
 == Possibles signatures ==
@@ -35,3 +35,46 @@ We can build it on the top of Eigen3'snonlinear and sparse modules (not yet stab
   * Cameras and Structures (Bundle Adjustment)
     * {{{BundleAdjust(...)}}}
     * ...
+
+== Internal classes ==
+Re-use the same structure than for 2D/3D homography optimization (parameterization, errors, jacobian)
+
+  * Camera parameterizations
+{{{
+// Pinhole camera
+class PerspectiveCameraParameterization;
+class AffineCameraParameterization;
+class ProjectiveCameraParameterization;
+// Others -> rays
+...
+}}}
+  * Structure parameterizations
+{{{
+class EuclideanPointParameterization;
+class HomogeneousPointParameterization;
+class LineParameterization;
+...
+}}}
+  * Projection errors
+{{{
+// Pinhole camera
+class GeometricError;
+  static double Error(const Mat34 &P, const Vec &X, const Vec &x) 
+  static void Residuals(const Mat34 &P, const Mat &X, 
+                        const Mat &x, Mat2X *dx)
+class AlgebraicError;
+  static double Error(const Mat34 &P, const Vec &X, const Vec &x) 
+  static void Residuals(const Mat34 &P, const Mat &X, 
+                        const Mat &x, Mat3X *dx)
+// Others -> rays
+}}}
+  * Jacobians (== pair parametrization, error)
+{{{
+struct ProjectionJacobian <PerspectiveCameraParameterization,
+ GeometricError>{
+  Jacobian(Vec &x, Vec &Q, Vec2 &q,
+                   Vec *jac_x, Vec *jac_y) {
+    ...
+  }
+}
+}}}
