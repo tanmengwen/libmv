@@ -58,7 +58,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || tracker/correspondence || Guided traker (with tracks prediction) || low ||  || _ _  || 1.0 || TODO ||
 || contrib || Define/rewrite interfaces with Blender || low  ||  || _ _  || 1.0 || TODO ||
 || tracker/correspondence || ImagePyramid tracker || low  ||  || _ _  || 1.1 || STARTED ||
-|| tool || Video stabilization (fixed camera)  || low ||  || _use the 2D homography H, need H optimization or NL image registration_  || 1.1 || DRAFT ||
+|| tool || Video stabilization (fixed camera)  || low ||  || _ need Homography optimization_  || 1.1 || DRAFT ||
 || tool || Video stabilization (moving camera)  || low ||  || _same as fixed camera with a lowpass filter on the 2D motion estimation (as a start)_  || 1.1 || TODO ||
 || camera || Lens distortion estimation (using lines/grid) || medium ||  || _ _  || 1.1 || TODO ||
 || tracker/correspondence || Re-tracker: use apriori tracks (user defined) to enhance the tracking || low  ||  || _ _  || 1.1 || TODO ||
@@ -94,10 +94,11 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
 || third parties || Switch to Eigen 3  || high  || julien/pierre || _ _ || *DONE* ||
 || third parties || Use a serialization lib (libjson?) || high ||  || _ _ || TODO ||
+|| general || Online API documentation || medium  ||  || _ in doc/_ || TODO ||
 || correspondence || Rewrite the BipartiteGraph (in bipartite_graph_new.h)|| medium ||  || _ _ || DRAFT ||
 || multiview || 3D linear Similarity, Affine, Homography transformations estimation from corresp. (+robust) || medium ||  || _robust:TODO + fix bug in affine 3D (see unit tests)_ || GOOD ||
-|| multiview || 2D/3D T, R, E, S, A, H transformations optimization || medium ||  || _ _ || STARTED ||
-|| multiview || 2D/3D T, R, E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ need only ICP!_ || TODO ||
+|| multiview || 2D/3D E, S, A, H transformations optimization || medium ||  || _ parameterizations:done, jacobians:todo, opt:todo_ || STARTED ||
+|| multiview || 2D/3D E, S, A, H transformations estimation without corresp. (+robust) || low ||  || _ need only ICP!_ || TODO ||
 || detector || Lines/edges detection || medium ||  || _ _   || TODO ||
 || wiki || Update the wiki! || medium ||  || _update outdated pages_ || TODO ||
 || third parties || Update third parties (glog, gflag, etc.) || low || vess/julien || _in /branches/new_gflags_glog_dasy, glog:todo_ || GOOD ||
@@ -110,7 +111,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || ui/nview || A 3D view for nview || low  ||  || _ _ || TODO ||
 || general || Udate all comments to doxygen style || medium ||  || _ _ || TODO ||
 || general || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
-|| multiview || 3D (and 2D?) Translation, Rotation (only) estimation from corresp. (+robust) || low ||  || _ _ || TODO ||
+|| multiview || 3D/2D Translation, Rotation (only) estimation from corresp. (+robust, +opt) || low ||  || _ _ || TODO ||
 || wiki || Merge [Roadmap] with [FeaturePlan] || low ||  || _ _ || *DONE* ||
 || wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
 
@@ -122,7 +123,6 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || general || Switch to mercurial/git? || low  ||  || _ _ || IDEA ||
 || general || Project management tool (Redmine?) || low ||  || _ _ || IDEA ||
 || general || Python binding || low  ||  || _ _ || IDEA ||
-|| general || Online API documentation || low  ||  || _unfeasible with googlecode?_ || IDEA ||
 
 `*`_Feel free to add yourself!!_
 
