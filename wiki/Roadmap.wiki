@@ -118,6 +118,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 === To be decided ===
 
 || *Component* || *Feature Description* || *Priority* || *Who*`*` || *Comment*  || *Status* ||
+|| [http://pointclouds.org/ PCL] integration || medium ||  || _ for ICP + 3D registration without corresp., + dense 3D point set_ || IDEA ||
 || third parties || Remove pthread?  || high ||  || _ it was need by gflags or so_ || IDEA ||
 || correspondence || KLT: make it use the new components? || low  ||  || _ _ || IDEA ||
 || general || Switch to mercurial/git? || low  ||  || _ _ || IDEA ||
