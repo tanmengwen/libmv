@@ -113,7 +113,7 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || general || Make libmv build with mingw  || low ||  || _problem with pthread_ || TODO ||
 || multiview || 3D/2D Translation, Rotation (only) estimation from corresp. (+robust, +opt) || low ||  || _ _ || TODO ||
 || wiki || Merge [Roadmap] with [FeaturePlan] || low ||  || _ _ || *DONE* ||
-|| wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ _ || TODO ||
+|| wiki || Merge [MajorComponents] with [StartingGuide] || low ||  || _ everything is in [StartingGuide]_ || *DONE* ||
 
 === To be decided ===
 
