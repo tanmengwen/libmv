@@ -91,15 +91,18 @@ Content
    * Homography
 
  * 2 View Tensor
-  * Fundamental matrix 7 Points,
-  * Fundamental matrix 8 points.
-  * Essential Matrix
+  * Linear solvers
+   * Fundamental Matrix 7 Points
+   * Fundamental Matrix 8 points
+   * Essential Matrix (+R,t extraction)
 
  * N View Tensor
-  * 6 Points solver
+  * Linear solvers
+   * 6 Points solver
 
  * Robust estimation
-  * RANSAC
+  * Random Sample Consensus (linear)
+   * RANSAC
 
  * 2D Conditioning 
   * Isotropic
