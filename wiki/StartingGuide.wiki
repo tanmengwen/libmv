@@ -1,5 +1,8 @@
 #summary Explain the main objective of each libmv module.
 
+Content
+<wiki:toc max_depth="3" />
+
 = Introduction =
 
 *libmv* is a structure from motion library, which plans to one day take raw video footage or photographs, and produce full camera calibration information and dense 3D models.
@@ -29,14 +32,16 @@
 
 = multiview =
 
- * Rigid geometric constraint 
+ * 2D and 3D Rigid geometric constraint (linear & robust (2D only) estimation)
+  * Euclidean,
+  * Similarity,
   * Affine,
   * Homography,
-  * 2 points homography (related to Panoramic stitching, fixed center, rotated camera).
 
  * 2View Tensor
   * Fundamental matrix 7 Points,
   * Fundamental matrix 8 points.
+  * Essential Matrix
 
  * NView Tensor
   * 6Pt - NView.
@@ -55,7 +60,7 @@
  * Triangulation
   * 2 View triangulation (projective)
   * N View triangulation (projective)
-   * Classic? method
+   * Geometric method
    * Algebraic method
 
  * Euclidean Bundle Adjustment
