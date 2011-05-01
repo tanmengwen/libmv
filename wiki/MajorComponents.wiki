@@ -1,4 +1,5 @@
 #summary Major parts of libmv, and their dependencies.
+#labels Deprecated
 
 = Introduction =
 
