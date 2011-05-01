@@ -7,9 +7,11 @@ Content
 
 *libmv* is a structure from motion library, which plans to one day take raw video footage or photographs, and produce full camera calibration information and dense 3D models.
 
-*libmv* is cut in different module (image/detector/descriptor/multiview) that allow to resolve part of the SFM process. Each module purpose documented functional implementation that rely on an Interface. The user could choose to use the available implementation or to customize the module by writing is own by using the same general interface.
+*libmv* is cut in different moduleq (image/detector/descriptor/multiview) that allow to resolve part of the SFM process. Each module purpose documented functional implementation that rely on an Interface. The user could choose to use the available implementation or to customize the module by writing is own by using the same general interface.
 
-= image =
+*libmv* has also several applications and tools [ApplicationsAndTools]
+
+= Image =
  * Image container (1->3 channel, various bit depth),
  * Image convert (RGB to Gray),
  * Image Drawing (Line, Circle, Rotated Ellipse),
@@ -19,18 +21,22 @@ Content
  * Image IO
   * JPG, PNM, PGM, PNG.
 
-= detector =
+= Detector =
  * Corner detector (FAST),
  * SURF/ STAR,
  * MSER.
 
-= descriptor =
+= Descriptor =
  * Sparse patch (Simplest),
  * SURF,
  * DAISY,
  * DIPOLE (WIP).
 
-= multiview =
+= Camera =
+  * Pinhole camera
+  * Lens: radial and tangential correction
+
+= Multiview =
 
  * 2D and 3D Rigid geometric constraint (linear & robust (2D only) estimation)
   * Euclidean,
@@ -66,7 +72,7 @@ Content
  * Euclidean Bundle Adjustment
   * Wrapper to _simple sparse ba_
 
-= correspondence =
+= Correspondence =
  * ArrayMatcher (Nearest Neighbor search)
   * Brute Force,
   * KDTREE (2 implementations : libmv, flann)
@@ -83,5 +89,5 @@ Content
 
  * Tracker.
 
-= tools =
+= Tools =
  * Reading JPEG EXIF meta data.
