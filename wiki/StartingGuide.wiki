@@ -9,8 +9,6 @@ Content
 
 *libmv* is cut in different modules (image/detector/descriptor/multiview) that allow to resolve part of the SfM process. Each module purpose documented functional implementation that rely on an Interface. The user could choose to use the available implementation or to customize the module by writing is own by using the same general interface.
 
-*libmv* has also several applications and tools [ApplicationsAndTools].
-
 = Libraries =
 
 == Numeric ==
@@ -83,8 +81,8 @@ Content
    * Affine
    * Homography
 
- * 3D Rigid geometric constraint (linear estimation, nonlinear will follow)
-  * From known correspondences (linear & robust estimation, nonlinear will follow)
+ * 3D Rigid geometric constraint 
+  * From known correspondences (linear estimation, nonlinear will follow)
    * Euclidean (Euler, Angle Axis, Quaternion)
    * Similarity
    * Affine
@@ -163,6 +161,7 @@ Content
 
 
 == Tools ==
+*Tools* contains some useful tools.
  * Reading JPEG EXIF meta data.
 
 = Applications and Tools =
