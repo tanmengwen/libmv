@@ -76,17 +76,19 @@ Content
 == Multiview ==
 *Multiview* contains various basic structures and algorithms for estimating the 2D or 3D motion of a camera and the 3D structure of a rigid scene.
 
- * 2D Rigid geometric constraint (linear & robust estimation, nonlinear will follow)
-  * Euclidean
-  * Similarity
-  * Affine
-  * Homography
+ * 2D Rigid geometric constraint 
+  * From known correspondences (linear & robust estimation, nonlinear will follow)
+   * Euclidean
+   * Similarity
+   * Affine
+   * Homography
 
  * 3D Rigid geometric constraint (linear estimation, nonlinear will follow)
-  * Euclidean (Euler, Angle Axis, Quaternion)
-  * Similarity
-  * Affine
-  * Homography
+  * From known correspondences (linear & robust estimation, nonlinear will follow)
+   * Euclidean (Euler, Angle Axis, Quaternion)
+   * Similarity
+   * Affine
+   * Homography
 
  * 2 View Tensor
   * Fundamental matrix 7 Points,
