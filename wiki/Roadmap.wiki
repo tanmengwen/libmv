@@ -45,8 +45,8 @@ Before this release, we will produce several unstable versions (0.Y), where Y wi
 || camera & tool || Lens distortion correction || high ||  || _need full tests + move to camera lib_  || 1.0 || GOOD ||
 || reconstruction || Write reconstruction unit test  || medium ||julien || _ _  || 1.0 || STARTED ||
 || reconstruction || Robust initial reconstruction, 2 views   || medium || julien || _ _  || 1.0 || GOOD ||
-|| multiview & optimization || Camera optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
-|| multiview & optimization || Point structure optimization (euclidean) || medium  ||  || _see [BundleAdjustment]_  || 1.0 || TODO ||
+|| multiview & optimization || Camera optimization (euclidean) || medium  ||  || _needs parameterization, error, jacobian, optimization_  || 1.0 || STARTED ||
+|| multiview & optimization || Point structure optimization (euclidean) || medium  ||  || _needs parameterization, error,  jacobian, optimization_  || 1.0 || STARTED ||
 || general || Make libmv build for Mac OS  || medium || vess/marco || _ _  || 1.0 || *DONE* ||
 || general || Packaging scripts using CPack  || low ||  || _linux: done, win:done, mac: todo_  || 1.0 || GOOD ||
 || general || Make a documentation rule using cmake (doxygen) || low ||  || _in src/CMake/Documentation.cmake_  || 1.0 || *DONE* ||
