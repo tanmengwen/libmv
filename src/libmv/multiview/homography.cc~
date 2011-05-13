@@ -42,7 +42,7 @@ namespace libmv {
  * | 1  0 -x1| * |d e f| * |y2| =  |0|
  * |-x2  x1 0|   |g h 1|   |y3|    |0|
  *
- * That gives:
+ * That gives :
  *
  * (-d+x2*g)*y1    + (-e+x2*h)*y2 + -f+x2          |0|
  * (a-x1*g)*y1     + (b-x1*h)*y2  + c-x1         = |0|
