@@ -130,6 +130,26 @@ TEST(Homography2DTest, HomographyGeneral) {
   EXPECT_MATRIX_NEAR(homography_mat, m, 1e-8);
 }
 
+TEST(HomographyNL2DTest, HomographyGeneral) {
+  Mat x1(3, 4);
+  x1 <<  0, 1, 0, 5,
+         0, 0, 2, 3,
+         1, 1, 1, 1;
+  Mat3 m;
+  m <<   3, -1,  4,
+         6, -2, -3,
+         1, -3,  1;
+
+  Mat x2 = x1;
+  for(int i = 0; i < x2.cols(); ++i)
+    x2.col(i) = m * x1.col(i);
+
+  Mat3 homography_mat = m + 0.1 * Mat3::Random();
+  //homography_mat(2, 2) = 1;
+  EXPECT_TRUE(Homography2DFromCorrespondencesNonLinear(x1, x2, &homography_mat));
+  EXPECT_MATRIX_NEAR(homography_mat, m, 1e-8);
+}
+
 TEST(Homography3DTest, RotationAndTranslationXYZ) {
   Mat x1(4, 5);
   x1 <<  0, 0, 1, 5, 2,

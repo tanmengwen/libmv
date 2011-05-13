@@ -1,9 +1,10 @@
 /** 
  ** @mainpage Overview 
  **
- ** Libmv is a structure from motion library, which plans to one day take raw video footage or photographs, 
- ** and produce full camera calibration information and dense 3D models. 
- ** TODO describe me more!
+ ** <b>libmv</b> is a structure from motion library, which plans to one day take raw video footage or photographs, and produce full camera calibration information and dense 3D models.
+ ** 
+ ** <b>libmv</b> is cut in different modules (image/detector/descriptor/multiview) that allow to resolve part of the SfM process. Each module purpose documented functional implementation that rely on an Interface. The user could choose to use the available implementation or to customize the module by writing is own by using the same general interface.
+ ** 
  **
  ** @section Camera Camera - A high level Camera library
  ** The Libmv Camera Libary is... TODO describe me!

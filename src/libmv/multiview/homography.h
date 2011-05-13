@@ -52,6 +52,28 @@ bool Homography2DFromCorrespondencesLinear(const Mat &x1,
                                            double expected_precision = 
                                              EigenDouble::dummy_precision());
 
+/** 2D Homography transformation estimation.
+ * 
+ * This function can be used in order to estimate the homography transformation
+ * from a list of 2D correspondences.
+ * 
+ * \param[in] x1 The first 2xN or 3xN matrix of euclidean or homogeneous points 
+ * \param[in] x2 The second 2xN or 3xN matrix of euclidean or homogeneous points
+ * \param[out] H The 3x3 homography transformation matrix (8 dof) such that
+ *               x2 = H * x1   with       |a b c| 
+ *                                    H = |d e f|
+ *                                        |g h 1| 
+ * \param[in] max_iter The maximun number of iterations of the nonlinear method
+ * 
+ * \return true if the transformation estimation has succeeded
+ * 
+ * \note Need at least 4 non aligned points 
+ */
+bool Homography2DFromCorrespondencesNonLinear(const Mat &x1,
+                                              const Mat &x2,
+                                              Mat3 *H,
+                                              unsigned int max_iter = 400);
+
 /** 3D Homography transformation estimation.
  * 
  * This function can be used in order to estimate the homography transformation

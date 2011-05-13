@@ -23,31 +23,19 @@
 
 #include "libmv/logging/logging.h"
 #include "libmv/multiview/homography.h"
-#include "libmv/multiview/homography_error.h"
-#include "libmv/multiview/homography_parameterization.h"
+#include "libmv/multiview/homography_optimize.h"
 #include "libmv/multiview/projection.h"
 
 #include <iostream>
 
-using namespace libmv::homography::homography2D;
+using namespace libmv::homography;
 
 namespace libmv {
 /** 2D Homography transformation estimation in the case that points are in 
  * euclidean coordinates.
- *
- * x = H y
- * x and y vector must have the same direction, we could write
- * crossproduct(|x|, * H * |y| ) = |0|
- *
- * | 0 -1  x2|   |a b c|   |y1|    |0|
- * | 1  0 -x1| * |d e f| * |y2| =  |0|
- * |-x2  x1 0|   |g h 1|   |y3|    |0|
- *
- * That gives :
- *
- * (-d+x2*g)*y1    + (-e+x2*h)*y2 + -f+x2          |0|
- * (a-x1*g)*y1     + (b-x1*h)*y2  + c-x1         = |0|
- * (-x2*a+x1*d)*y1 + (-x2*b+x1*e)*y2 + -x2*c+x1*f  |0|
+ * | 0 -1  x2|   |a b c|   |y1|     (-d+x2*g)*y1 + (-e+x2*h)*y2 + -f+x2              |0|
+ * | 1  0 -x1| * |d e f| * |y2| =   (a-x1*g)*y1  + (b-x1*h)*y2  + c-x1             = |0|
+ * |-x2  x1 0|   |g h 1|   |y3|    (-x2*a+x1*d)*y1 + (-x2*b+x1*e)*y2 + -x2*c+x1*f   |0|
  */
 bool Homography2DFromCorrespondencesLinearEuc(
     const Mat &x1,
@@ -92,11 +80,35 @@ bool Homography2DFromCorrespondencesLinearEuc(
   // Solve Lx=B
   Vec h = L.fullPivLu().solve(b);
   if ((L * h).isApprox(b, expected_precision))  {
-    Homography2DNormalizedParameterization<double>::To(h, H);
+    Homography2DNormalizedParameterization<>::To(h, H);
     return true;
   } else {
     return false;
   }
+}
+
+bool Homography2DFromCorrespondencesNonLinear(const Mat &x1,
+                                              const Mat &x2,
+                                              Mat3 *H,
+                                              unsigned int max_iter) {
+  assert(3 == x1.rows());
+  assert(4 <= x1.cols());
+  assert(x1.rows() == x2.rows());
+  assert(x1.cols() == x2.cols());
+  int info;
+  Vec8 x8;
+  Homography2DNormalizedParameterization<>::From(*H, &x8);
+  // TODO(julien) avoid this copy!
+  Vec x = x8;
+  typedef homography2D::Analytic2RowsFunctor<Homography2DNormalizedParameterization<>, 
+                                             homography2D::AlgebraicError> HomographyFunctor;
+  HomographyFunctor homography_functor(x1, x2);
+  Eigen::LevenbergMarquardt<HomographyFunctor> lm(homography_functor);
+  lm.parameters.maxfev = max_iter;
+  info = lm.minimize(x);  
+  
+  Homography2DNormalizedParameterization<double>::To(x, H);
+  return info > 0;
 }
 
 /** 2D Homography transformation estimation in the case that points are in 

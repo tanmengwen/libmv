@@ -42,7 +42,7 @@ struct AsymmetricError {
    * where Psi is the function that transforms homogeneous to euclidean coords.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * The estimated homography should approximatelly hold the condition x2 = H x1.
    * \param[in]  x1  A set of 2D points (2xN or 3xN matrix of column vectors).
    * \param[in]  x2  A set of 2D points (2xN or 3xN matrix of column vectors).
    * \param[out] dx  A 2xN matrix of column vectors of residuals errors
@@ -69,7 +69,7 @@ struct AsymmetricError {
    * where Psi is the function that transforms homogeneous to euclidean coords.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * The estimated homography should approximatelly hold the condition x2 = H x1.
    * \param[in]  x1 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[in]  x2 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[out] dx  A vector of size 2 of the residual error
@@ -93,7 +93,7 @@ struct AsymmetricError {
    * where Psi is the function that transforms homogeneous to euclidean coords.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * The estimated homography should approximatelly hold the condition x2 = H x1.
    * \param[in]  x1  A set of 2D points (2xN or 3xN matrix of column vectors).
    * \param[in]  x2  A set of 2D points (2xN or 3xN matrix of column vectors).
    * \return  The squared norm of the asymmetric residuals errors
@@ -109,7 +109,7 @@ struct AsymmetricError {
    * where Psi is the function that transforms homogeneous to euclidean coords.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * The estimated homography should approximatelly hold the condition x2 = H x1.
    * \param[in]  x1 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[in]  x2 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \return  The squared norm of the asymmetric residual error
@@ -136,7 +136,7 @@ struct SymmetricError {
    * where Psi is the function that transforms homogeneous to euclidean coords.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * The estimated homography should approximatelly hold the condition x2 = H x1.
    * \param[in]  x1 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[in]  x2 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \return  The squared norm of the symmetric residuals errors
@@ -150,10 +150,11 @@ struct SymmetricError {
   }
   // TODO(julien) Add residuals function \see AsymmetricError
 };
+
  /**
    * Structure for estimating the algebraic error (cross product) 
    * between a vector x2 and the transformed x1 such that 
-   *   Error = ||[x2] * H * x1||^^2
+   *   Error = ||[x2] * H * x1||^2
    * where [x2] is the skew matrix of x2.
    */
 struct AlgebraicError {
@@ -162,13 +163,13 @@ struct AlgebraicError {
   /**
    * Computes the algebraic residuals (cross product) between a set of 2D 
    * points x2 and the transformed 2D point set x1 such that 
-   *   [x2] * H * x1  where [x2] is the skew matrix of x2.
+   *   Residuals_i = [x2_i] * H *  x1_i
+   * where [x2] is the skew matrix of x2 (matrix cross product)
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
    * \param[in]  x1  A set of 2D points (2xN or 3xN matrix of column vectors).
    * \param[in]  x2  A set of 2D points (2xN or 3xN matrix of column vectors).
-   * \param[out] dx  A 3xN matrix of column vectors of residuals errors
+   * \param[out] dx  A 3xN matrix of column vectors of algebraic residuals errors
    */
   static void Residuals(const Mat &H, const Mat &x1, 
                         const Mat &x2, Mat3X *dx) {
@@ -180,15 +181,36 @@ struct AlgebraicError {
     }
   }
   /**
-   * Computes the algebraic residuals (cross product) between a 2D point x2 
-   * and the transformed 2D point x1 such that 
-   *   [x2] * H * x1  where [x2] is the skew matrix of x2.
+   * Computes the algebraic residuals (cross product) between a set of 2D 
+   * points x2 and the transformed 2D point set x1 such that 
+   *   Residuals_i = |1 0 0| * ([x2_i] * H *  x1_i)
+   *                 |0 1 0|
+   * where [x2] is the skew matrix of x2 (matrix cross product)
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
+   * \param[in]  x1  A set of 2D points (2xN or 3xN matrix of column vectors).
+   * \param[in]  x2  A set of 2D points (2xN or 3xN matrix of column vectors).
+   * \param[out] dx  A 2xN matrix of column vectors of algebraic residuals errors
+   */
+  static void Residuals(const Mat &H, const Mat &x1, 
+                        const Mat &x2, Mat2X *dx) {
+    dx->resize(2, x1.cols());
+    Vec3 col;
+    for (int i = 0; i < x1.cols(); ++i) {
+      Residuals(H, x1.col(i), x2.col(i), &col);
+      dx->col(i) << col(0), col(1);
+    }
+  }
+  /**
+   * Computes the algebraic residuals (cross product) between a 2D point x2 
+   * and the transformed 2D point x1 such that 
+   *   Residuals = [x2] * H *  x1
+   * where [x2] is the skew matrix of x2 (matrix cross product).
+   *
+   * \param[in]  H The 3x3 homography matrix.
    * \param[in]  x1 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[in]  x2 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
-   * \param[out] dx  A vector of size 3 of the residual error
+   * \param[out] dx  A vector (size 3) of the algebraic residual error
    */
   static void Residuals(const Mat &H, const Vec &x1, 
                         const Vec &x2, Vec3 *dx) {
@@ -207,13 +229,12 @@ struct AlgebraicError {
   /**
    * Computes the squared norm of the algebraic residuals between a set of 2D 
    * points x2 and the transformed 2D point set x1 such that 
-   *   [x2] * H * x1  where [x2] is the skew matrix of x2.
+   *   Error = ||[x2] * H * x1||^2  where [x2] is the skew matrix of x2.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
    * \param[in]  x1 A set of 2D points (2xN or 3xN matrix of column vectors).
    * \param[in]  x2 A set of 2D points (2xN or 3xN matrix of column vectors).
-   * \return  The squared norm of the asymmetric residuals errors
+   * \return  The squared norm of the algebraic residuals errors
    */
   static double Error(const Mat &H, const Mat &x1, const Mat &x2) {
     Mat3X dx;
@@ -223,13 +244,12 @@ struct AlgebraicError {
   /**
    * Computes the squared norm of the algebraic residuals between a 2D point x2 
    * and the transformed 2D point x1 such that 
-   * [x2] * H * x1  where [x2] is the skew matrix of x2.
+   * Error = ||[x2] * H * x1||^2  where [x2] is the skew matrix of x2.
    *
    * \param[in]  H The 3x3 homography matrix.
-   * The estimated homography should approximatelly hold the condition y = H x.
    * \param[in]  x1 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
    * \param[in]  x2 A 2D point (vector of size 2 or 3 (euclidean/homogeneous)) 
-   * \return  The squared norm of the asymmetric residual error
+   * \return  The squared norm of the algebraic residual error
    */
   static double Error(const Mat &H, const Vec &x1, const Vec &x2) {
     Vec3 dx;

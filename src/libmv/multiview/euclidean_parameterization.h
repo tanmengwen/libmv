@@ -100,7 +100,7 @@ class Euclidean2DSCParameterization {
   }
 };
 
-/** A parameterization of the 2D euclidean matrix that uses 6 
+/** A parameterization of the 3D euclidean matrix that uses 6 
  * parameters. The angle convention can be chosen with the
  * template arguments N0, N1 and N2 with a possible value of 0 (X),
  * 1 (Y) and 2 (Z). The default convention is Y-X-Z.
@@ -110,8 +110,7 @@ class Euclidean2DSCParameterization {
  *        H = | R(e) ty|
  *            |      tz|
  *            |0 0 0 1 |
- * where R(e) = Rot(Y, e0) * Rot(X, e1) * Rot(Z, e2)
- * for N0 = 1, N1 = 0, N2 = 2.
+ * with R(e) = Rot(Y, e0) * Rot(X, e1) * Rot(Z, e2) for N0 = 1, N1 = 0, N2 = 2.
  */
 template<typename T = double, 
          int N0 = 1, 
@@ -143,7 +142,7 @@ class Euclidean3DEulerParameterization {
   }
 };
 
-/** A parameterization of the 2D euclidean matrix that uses 7 
+/** A parameterization of the 3D euclidean matrix that uses 7 
  * parameters. The rotation is parametrized by a quaternion.
  * The euclidean matrix H is built from a list of 7 parameters 
  * (q0, q1, q2, q3, tx, ty, tz) as follows

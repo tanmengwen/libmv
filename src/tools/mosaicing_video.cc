@@ -46,6 +46,7 @@
 #include "libmv/image/image_transform_linear.h"
 #include "libmv/image/cached_image_sequence.h"
 #include "libmv/image/sample.h"
+#include "libmv/multiview/homography.h"
 #include "libmv/multiview/robust_affine.h"
 #include "libmv/multiview/robust_euclidean.h"
 #include "libmv/multiview/robust_homography.h"
@@ -209,12 +210,19 @@ void ComputeRelativeHomographyMatrices(const Matches &matches,
   for (;image_iter != matches.get_images().end(); ++image_iter) {
     TwoViewPointMatchMatrices(matches, *prev_image_iter, *image_iter, &xs2);
       if (xs2[0].cols() >= 4) {
+        vector<int> inliers;
+        // Robust linear estimation
         Homography2DFromCorrespondences4PointRobust(xs2[0], xs2[1], 
                                                     max_error_2d, 
-                                                    &H, NULL, 
+                                                    &H, &inliers, 
                                                     outliers_prob);
-        Hs->push_back(H);
+        Mat2X x1_in = ExtractColumns(xs2[0], inliers);
+        Mat2X x2_in = ExtractColumns(xs2[1], inliers);
         VLOG(2) << "H = " << std::endl << H << std::endl;
+        // Nonlinear refinement
+        Homography2DFromCorrespondencesNonLinear(x1_in, x2_in, &H);
+        Hs->push_back(H);
+        VLOG(2) << "Hopt = " << std::endl << H << std::endl;
       } // TODO(julien) what to do when no enough points?
     ++prev_image_iter;
   }
