@@ -1,0 +1,15 @@
+ADD_SUBDIRECTORY(base)
+ADD_SUBDIRECTORY(camera)
+ADD_SUBDIRECTORY(detector)
+ADD_SUBDIRECTORY(descriptor)
+ADD_SUBDIRECTORY(image)
+ADD_SUBDIRECTORY(numeric)
+ADD_SUBDIRECTORY(correspondence)
+ADD_SUBDIRECTORY(optimize)
+ADD_SUBDIRECTORY(multiview)
+ADD_SUBDIRECTORY(reconstruction)
+ADD_SUBDIRECTORY(scene_graph)
+ADD_SUBDIRECTORY(tools)
+
+#Installation macro for all headers
+LIBMV_INSTALL_ALL_HEADERS()
