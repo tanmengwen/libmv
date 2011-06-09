@@ -196,28 +196,30 @@ where both `foo_test.cc` and `bar_test.cc` use the data inside testdata.
 
 Functions that are expected to become part of libmv's public API should get doxygen comments. Here is the preferred style:
 {{{
-  /**
-   * Search for the nearest neighbour to a query point in the database.
-   * 
-   * This finds the nearest neighbour in the L2 norm sense out of all of the
-   * points in the database to the given query point.
-   *
-   * \param query
-   *   The point to find the nearest neighbour of. This array must have the
-   *   same number of elements as the other entries in the database.
-   * \param neighbour_index 
-   *   The index of the found nearest neighbour in the searched array. If the
-   *   search fails, then this remains unchanged.
-   * \param distance_to_neighbour
-   *   The distance from the query point to the nearest neighbour, if the
-   *   search was succesful. The distance is the L2 norm.
-   *
-   * \return True if a neighbour was found. This will only return false if the
-   * database is empty.
-   */
-  virtual bool FindNearestNeighbour(const Scalar *query,
-                                    int *neighbour_index,
-                                    Scalar *distance_to_neighbour) = 0;
+/*!
+    The Tracks class stores \link Marker reconstruction markers \endlink.
+    
+    The Tracks container is intended as the store of correspondences between
+    images, which must get created before any 3D reconstruction can take place.
+    
+    The container has several fast lookups for queries typically needed for
+    structure from motion algorithms, such as \l MarkersForTracksInBothImages().
+    
+    \sa Marker
+*/
+class Tracks {
+ public:
+  /*!
+      Inserts a marker into the set. If there is already a marker for the given
+      \a image and \a track, the existing marker is replaced. If there is no
+      marker for the given \a image and \a track, a new one is added.
+    
+      \a image and \a track are the keys used to retrieve the markers with the
+      other methods in this class.
+    
+      \note To get an identifier for a new track, use \l MaxTrack() + 1.
+  */
+  void Insert(int image, int track, double x, double y);
 
 }}}
 
