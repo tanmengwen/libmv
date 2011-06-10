@@ -1,0 +1,19 @@
+#summary Blender GSOC projects focusing on libmv
+
+= Introduction =
+
+Blender allocated two GSoC slots to integrate libmv:
+- On the Blender side to develop an UI leveraging libmv.
+- On the libmv side to improve matchmoving and provide an API.
+
+= Details =
+
+== Camera Tracking Integration ==
+
+[http://wiki.blender.org/index.php/User:Nazg-gul/GSoC-2011 Blender Wiki Documentation]
+[https://svn.blender.org/svnroot/bf-blender/branches/soc-2011-tomato/ Blender SVN Branch]
+
+== API and Tracker Improvements for libmv ==
+
+[http://wiki.blender.org/index.php/User:Matthias.fauconneau/GSoC2011 Blender Wiki Documentation]
+[https://github.com/Matthias-Fauconneau/libmv libmv Git branch]
