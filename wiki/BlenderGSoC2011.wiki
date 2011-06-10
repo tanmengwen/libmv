@@ -2,9 +2,9 @@
 
 = Introduction =
 
-Blender allocated two GSoC slots to integrate libmv:
-* On the Blender side to develop an UI leveraging libmv.
-* On the libmv side to improve matchmoving and provide an API.
+Blender allocated two GSoC slots to integrate libmv :
+  * Blender side: develop an UI leveraging libmv.
+  * libmv side: improve matchmoving and provide an API.
 
 = Details =
 
