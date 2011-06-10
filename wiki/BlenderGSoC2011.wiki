@@ -11,9 +11,11 @@ Blender allocated two GSoC slots to integrate libmv:
 == Camera Tracking Integration ==
 
 [http://wiki.blender.org/index.php/User:Nazg-gul/GSoC-2011 Blender Wiki Documentation]
+
 [https://svn.blender.org/svnroot/bf-blender/branches/soc-2011-tomato/ Blender SVN Branch]
 
 == API and Tracker Improvements for libmv ==
 
 [http://wiki.blender.org/index.php/User:Matthias.fauconneau/GSoC2011 Blender Wiki Documentation]
+
 [https://github.com/Matthias-Fauconneau/libmv libmv Git branch]
